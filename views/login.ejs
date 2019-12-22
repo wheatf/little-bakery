@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <header>
+        <h1>Login</h1>
+
+        <nav>
+            <ul>
+                <!-- The top-level route defined in route.js + The sub-route defined in other file = The complete route to put inside 'href'. -->
+                <li><a href="/">Main Menu</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <form action="/login" method="POST">
+        <fieldset>
+            <ul>
+                <li>
+                    <label for="identification">Username / Email</label>
+                    <!-- Values passed by the server are stored in the locals object. If the attribute doesn't exists, Express will send back an error instead. -->
+                    <!-- Check if attribute exists by using 'locals.attribute || default_value'. -->
+                    <input id="identification" name="identification" value="<%=locals.identification || ''%>" />
+                </li>
+
+                <li>
+                    <label for="password">Password</label>
+                    <input id="password" name="password" />
+                </li>
+            </ul>
+        </fieldset>
+
+        <fieldset>
+            <button type="submit">Login</button>
+        </fieldset>
+    </form>
+</body>
+</html>

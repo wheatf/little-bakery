@@ -1,0 +1,49 @@
+#!/usr/bin/env node
+
+// Ignore the above line. If you must know, its for use when packaging a project for npm and running this script from the command-line. The end result of this project will probably never be done this way, but it is added as a standard.
+
+/**
+ * Start a web application with Express.
+ * 
+ * NOTE:    The main reason for having this script
+ *          instead of putting everything in app.js
+ *          is to decouple configuration.
+ *          Namely, configurations needed for 
+ *          running a web application (this file)
+ *          versus configurations for how the web
+ *          application works (app.js).
+ * 
+ *          The lesser reason is to able to have
+ *          different configurations for 
+ *          different scenario.
+ *          For example, a 'test' script can be
+ *          used instead of this script for 
+ *          running automated tests without needing
+ *          to fire up the web application, or a
+ *          'reset' script for resetting the web
+ *          application.
+ */
+
+// Loads environment variables from the .env file
+require('dotenv').config();
+// Continue from where app.js left off.
+const app = require('../app');
+
+/**
+ * Retrieve port number.
+ */
+// If 'process.env.PORT' returns undefined (because either the .env file is missing or there isn't a PORT variable defined in the file), use the default port number 3000 instead.
+const port = process.env.WEB_PORT || 3000;
+
+/**
+ * Connect to database
+ */
+// A file called datastore.js will connect to MongoDB for us. Look at datastore.js to find out how.
+require('../datastores/datastore')();
+
+/**
+ * Start web application
+ */
+app.listen(port, function () {
+    console.log(`Listening to app on port ${port}.`);
+});
