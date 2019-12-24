@@ -1,0 +1,120 @@
+#msg_container{
+    text-align: center;
+    margin: 25px auto;
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+    color: rgba(0, 0, 0, 1);
+    line-height: 1.5;
+    letter-spacing: 0.1em;  
+}
+
+#msg_container a{
+    color: lightcoral;
+}
+
+.login-reg-container{
+    width: 40%; 
+    margin: 0 auto;
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 0.1em;
+    line-height: 20px; 
+    color: rgba(0, 0, 0, 1);
+    padding: 30px;
+}
+
+/* #login-only-container{
+    height: 250px;
+} */
+
+
+.login-reg-container label{
+    display: inline-block;
+    width: 150px;
+    text-align: left;
+    padding-top: 12px;
+}
+
+
+.login-reg-container input, 
+.login-reg-container textarea{ /* text area for address */
+    background-color: #fcf7f3;
+    padding: 12px 20px;
+    margin: 5px 0;
+    border-radius: 5px;    
+    border: 1px solid #f6e3e1;
+    /* display: inline-block; */
+    font-family: inherit;
+    width:60%;
+    box-sizing:border-box;
+}
+
+
+.login-reg-container input[name="submit"]{
+    cursor: pointer;
+    background-color: #edc2bd;
+    color: black;
+    margin: 5px 0;
+
+}
+
+.login-reg-container input[name="submit"]:hover{
+    background-color: transparent;
+    border: 2px solid #edc2bd;
+}
+
+
+.login-reg-container input:focus
+{
+    outline-color: transparent;
+    outline-style: none;
+}
+
+.login-reg-container input:hover
+{
+    border: 1px solid #edc2bd ;
+
+}
+
+.login-reg-container input[type=submit]:hover
+{
+    background-color: #edc2bd;
+    color: black;
+
+}
+
+#showPass {
+    cursor: pointer;
+    display:inline-block;
+    margin-left:-40px;
+    margin-top:40px;
+}
+
+
+
+
+
+/* .alert {
+    text-align: center;
+    padding: 10px;
+    border:1px solid lightcoral;
+    color: lightcoral;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 20px;
+}
+
+.alert .closebtn {
+    margin-left: 15px;
+    color: lightcoral;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.alert .closebtn:hover {
+    color: darkslategrey;
+} */

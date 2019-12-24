@@ -1,43 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Page</title>
+
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="image/logo-name-img/logo.png" /> -->
+    <link rel="stylesheet" type="text/css" href="/public/css/Css_Reset.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/style_common.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/style_login.css">
+
+    <!-- fonts used -->
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+    <!-- search icon -->
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'
+        integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+
+    <!-- show and hide password-->
+    <script src="/public/js/client/jquery-3.3.1.min.js"></script>
+    <script src="/public/js/client/login.js"></script>
+
+
 </head>
+
 <body>
-    <header>
-        <h1>Login</h1>
-        <p>TESTTTTTTT</p>
+    <div id="wrapper">
 
-        <nav>
+        <header>
+            <section id="header">
+                <i class="fas fa-search fa-sm"></i>
+                <form autocomplete="off" action="search.php" id="search" class="alignleft">
+                    <div class="autocomplete" style="width:300px;">
+                        <input id="myInput" type="text" name="valueToSearch" placeholder="Search" size="40"
+                            maxlength="128" class="submit_on_enter">
+                    </div>
+
+                    <input type="submit" name="search" value="Search"
+                        style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
+                        hidefocus="true" tabindex="-1">
+
+                    <br><br>
+                </form>
+            </section>
+
+            <!-- <div class="logo_name" onclick="window.location.href='index.ejs'"></div> -->
+            <div class="logo_name" onclick="window.location.href='index.ejs'"> LITTLE BAKERY</div>
+
+        </header>
+
+        <nav class="navbar">
             <ul>
-                <!-- The top-level route defined in route.js + The sub-route defined in other file = The complete route to put inside 'href'. -->
-                <li><a href="/">Main Menu</a></li>
+                <li class="item"><a href="#" class="nav-link ">Menu</a></li>
+                <li class="item"><a href="#" class="nav-link">Catering</a></li>
+                <li class="item"><a href="#" class="nav-link">About</a></li>
+                <li class="item"><a href="#" class="nav-link">Contact</a></li>
+                <li class="item cart">
+                    <a href="#" class="nav-link">Cart
+                        <span class="cartcount">0</span>
+                        <span class="cartamount">SGD $0.00</span>
+                    </a>
+                    <!-- need to get item count and amount from db cart eventually -->
+
+                </li>
+                <li class="item active"><a href="#" class="nav-link">Login/Register</a></li>
+                <!-- <li class="item" id="search"><a href="search.php" class="nav-link">Search</a></li> -->
             </ul>
+            <hr id="divider">
         </nav>
-    </header>
 
-    <form action="/login" method="POST">
-        <fieldset>
-            <ul>
-                <li>
-                    <label for="identification">Username / Email</label>
-                    <!-- Values passed by the server are stored in the locals object. If the attribute doesn't exists, Express will send back an error instead. -->
-                    <!-- Check if attribute exists by using 'locals.attribute || default_value'. -->
-                    <input id="identification" name="identification" value="<%=locals.identification || ''%>" />
-                </li>
 
-                <li>
-                    <label for="password">Password</label>
-                    <input id="password" name="password" />
-                </li>
-            </ul>
-        </fieldset>
+        <div id="msg_container">
+            <p>You must login before you can proceed to checkout.</p>
+            <p><u><a href="#">Create account here</a></u> if you don't have an account yet.</p>
+        </div>
 
-        <fieldset>
-            <button type="submit">Login</button>
-        </fieldset>
-    </form>
+
+        <ul class="breadcrumb">
+            <li><a href="index.ejs">Home</a></li>
+            <li class="active"><a href="login.ejs">Login</a> </li>
+        </ul>
+
+        <section class="login-reg-container" id="login-only-container">
+            <!-- 
+            <?php
+            // if login fail
+            if(isset($_GET['fail']))
+            {
+
+                echo '<div class="alert">
+                    <span class="closebtn">&times;</span>
+                    Incorrect email or password!
+                </div>';
+            }
+            ?>
+
+
+            <?php
+            // if reg success
+            if(isset($_GET['pass']))
+            {
+                echo '<div class="alert">
+                    <span class="closebtn">&times;</span>Register success! Please log in.
+
+                </div>';
+            }
+            ?> -->
+
+
+            <form action="/login" method="POST" name="login" id="loginForm">
+
+                <label for="identification">Email Address:</label>
+                <!-- <input type="email" name="email" required> -->
+
+                <!-- Values passed by the server are stored in the locals object. If the attribute doesn't exists, Express will send back an error instead. -->
+                <!-- Check if attribute exists by using 'locals.attribute || default_value'. -->
+                <input  type="email" id="identification" name="identification" value="<%=locals.identification || ''%>" />
+
+                <label>Password:</label>
+                <input type="password" name="pw" id="pw-field" class="pw" required>
+                <span id="showPass">
+                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                    <i class="fa fa-eye" aria-hidden="true" style="display:none;"></i>
+                </span>
+
+                <label></label><input type="submit" name="submit" value="Login">
+
+
+            </form>
+        </section>
+
+
+    </div>
+
+    <!-- <script>
+        var close = document.getElementsByClassName("closebtn");
+        var i;
+
+        for (i = 0; i < close.length; i++) {
+            close[i].onclick = function(){
+                var div = this.parentElement;
+                div.style.opacity = "0";
+                setTimeout(function(){ div.style.display = "none"; }, 600);
+            }
+        }
+    </script> -->
+
 </body>
+
 </html>
