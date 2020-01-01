@@ -175,7 +175,8 @@ ul.breadcrumb {
     font-family: 'Muli',sans-serif;
     letter-spacing: 0.1em;
     line-height: 20px; 
-    padding: 30px auto;
+/*    padding: 30px auto;*/
+    margin: 20px;
     font-weight: 500;
 
 }

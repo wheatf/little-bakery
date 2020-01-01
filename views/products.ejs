@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Login Page</title>
+
+        <!-- <link rel="shortcut icon" type="image/x-icon" href="image/logo-name-img/logo.png" /> -->
+        <link rel="stylesheet" type="text/css" href="/public/css/Css_Reset.css">
+        <link rel="stylesheet" type="text/css" href="/public/css/style_common.css">
+        <link rel="stylesheet" type="text/css" href="/public/css/style_menu_category.css">
+
+        <!-- fonts used -->
+        <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+        <!-- search icon -->
+        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+
+        <script src="/public/js/client/jquery-3.3.1.min.js"></script>
+
+
+    </head>
+
+    <body>
+        <div id="wrapper">
+            <header>
+                <section id="header">
+                    <i class="fas fa-search fa-sm"></i>
+                    <form autocomplete="off" action="search.php" id="search" class="alignleft">
+                        <div class="autocomplete" style="width:300px;">
+                            <input id="myInput" type="text" name="valueToSearch" placeholder="Search" size="40"
+                                   maxlength="128" class="submit_on_enter">
+                        </div>
+
+                        <input type="submit" name="search" value="Search"
+                               style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
+                               hidefocus="true" tabindex="-1">
+
+                        <br><br>
+                    </form>
+                </section>
+
+                <!-- <div class="logo_name" onclick="window.location.href='index.ejs'"></div> -->
+                <div class="logo_name" onclick="window.location.href='/'"> LITTLE BAKERY</div>
+
+            </header>
+
+            <nav class="navbar">
+                <ul>
+                    <li class="item"><a href="#" class="nav-link ">Menu</a></li>
+                    <li class="item"><a href="#" class="nav-link">Catering</a></li>
+                    <li class="item"><a href="#" class="nav-link">About</a></li>
+                    <li class="item"><a href="#" class="nav-link">Contact</a></li>
+                    <li class="item cart">
+                        <a href="#" class="nav-link">Cart
+                            <span class="cartcount">0</span>
+                            <span class="cartamount">SGD $0.00</span>
+                        </a>
+                        <!-- need to get item count and amount from db cart eventually -->
+
+                    </li>
+                    <li class="item active"><a href="/login" class="nav-link">Login/Register</a></li>
+                    <!-- <li class="item" id="search"><a href="search.php" class="nav-link">Search</a></li> -->
+                </ul>
+                <hr id="divider">
+            </nav>
+
+            <div id="top-flex">
+
+                <ul class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/">Menu (By category) </a></li>
+
+                    <!-- TODO: retrieve category name based on href clicked at menu.html -->
+                    <li class="active">Cookies</li> 
+                </ul>
+
+                <div class="dropdown">
+                    <form action=""> 
+                        Sort By:
+                        <!--                    <input type="hidden" name="category" value="<?php echo $oneProduct['categoryID']; ?>" />-->
+                        <select name="sort" class= "sort-by" onchange="this.form.submit()" >
+                            <option value="alph" name="alphAsc">Alphabetical (a-z)</option>
+                            <option value="alph" name="alphDesc">Alphabetical (z-a)</option>
+                            <option value="pop" name="pop">Popularity</option>
+                            <option value="price" name="priceAsc">Price (Low-High)</option>
+                            <option value="price" name="priceDes">Price (High-Low)</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+
+            <div class="flex-container">
+
+                <!-- TODO: need a loop to show all items based on selected category from the db -->
+
+
+                <figure class="category" id="product">
+                    <div class="image">
+                        <!--                       
+<img src="image/<?php echo $row['productPicture']; ?>" onmouseover="this.src='image/<?php echo $row['productPicture2']; ?>';" onmouseout="this.src='image/<?php echo $row['productPicture']; ?>';" onclick="location.href='ProductDetails.php?id=<?php echo $row["productID"]; ?>';" style="cursor:pointer;" />-->
+
+                        <img src="../public/images/cat/cookies/chocochhip_cookie.jpg" style="cursor:pointer;" />
+
+                        <a class="show-category" href="#" id="viewBtn">View Details</a>
+
+                    </div>
+
+                    <figcaption>
+                        <p>Almond Flour Chocolate Chip Cookie</p>
+                        <div class="price">SGD $2.00</div>
+                    </figcaption>
+
+                </figure>
+
+
+            </div>
+
+        </div>
+
+
+    </body>
+
+</html>

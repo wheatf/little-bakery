@@ -21,9 +21,10 @@
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'
         integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
 
-    <!-- show and hide password-->
     <script src="/public/js/client/jquery-3.3.1.min.js"></script>
-    <script src="/public/js/client/login.js"></script>
+    
+    <!-- show and hide password-->
+    <script src="/public/js/client/validation.js"></script>
 
 
 </head>
@@ -81,7 +82,7 @@
 
         <ul class="breadcrumb">
             <li><a href="/">Home</a></li>
-            <li class="active"><a href="/login">Login</a> </li>
+            <li class="active">Login</li>
         </ul>
 
         <section class="login-reg-container" id="login-only-container">
@@ -113,15 +114,15 @@
 
             <form action="/login" method="POST" name="login" id="loginForm">
 
-                <label for="identification">Email Address:</label>
+                <label for="identification">Username/      
+                    Email Address:</label>
                 <!-- <input type="email" name="email" required> -->
 
                 <!-- Values passed by the server are stored in the locals object. If the attribute doesn't exists, Express will send back an error instead. -->
                 <!-- Check if attribute exists by using 'locals.attribute || default_value'. -->
                 <input  type="email" id="identification" name="identification" value="<%=locals.identification || ''%>" />
 
-                <label>Password:</label>
-                <input type="password" name="pw" id="pw-field" class="pw" required>
+                <label>Password:</label><input type="password" name="pw" id="pw-field" class="pw" required>
                 <span id="showPass">
                     <i class="fa fa-eye-slash" aria-hidden="true"></i>
                     <i class="fa fa-eye" aria-hidden="true" style="display:none;"></i>

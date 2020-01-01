@@ -1,0 +1,120 @@
+/*-- CSS for menu.html, product.html and search.html ---*/
+
+#top-flex{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#top-flex .dropdown{
+/*    padding-top: 50px;*/
+        margin: 21px; /* same setting done for breadcrumb @ style_common.css */
+        font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 0.1em;
+    line-height: 20px; 
+
+}
+
+.flex-container{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+/*-- flex-container child ---*/
+.category {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+    min-width: 220px;
+    max-width: 310px;
+    width: 100%;
+    color: #333333;
+    text-align: center;
+    background-color: #ffffff;
+    line-height: 1.6em;
+    font-size: 16px;
+    font-family: 'Muli',sans-serif;
+    color: rgba(0, 0, 0, 0.702);
+    line-height: 1.2;
+    letter-spacing: 0.1em;
+
+}
+.category * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+}
+.category .image {
+    position: relative;
+
+}
+.category img {
+    max-width: 100%;
+    vertical-align: top;
+    -webkit-transition: opacity 0.35s;
+    transition: opacity 0.35s;
+}
+
+.category .show-category {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    opacity: 0;
+}
+
+.category .show-category {
+    position: absolute;
+    bottom: 20px;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    font-size: 0.8em;
+    color: #000000;
+    line-height: 46px;
+    letter-spacing: 1.5px;
+    background-color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.category .show-category:hover {
+    background: #000000;
+    color: #ffffff;
+}
+.category figcaption {
+    padding: 20px 20px 30px;
+    text-align: center;
+
+}
+
+.category:hover img,
+.category.hover img {
+    opacity: 0.7;
+}
+
+.category:hover .show-category,
+.category.hover .show-category {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+}
+
+
+/*-- additional CSS for product.html ---*/
+#product p {
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 500;
+}
+#product .price {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/*-- additional CSS for search.html ---*/
+.breadcrumb .active span{
+    font-weight: 600;
+}
