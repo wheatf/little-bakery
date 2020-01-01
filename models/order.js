@@ -16,9 +16,9 @@ const orderSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    breads: [{
+    products: [{
         type: Schema.Types.ObjectId,
-        ref: 'Bread'
+        ref: 'Product'
     },{
         quantity: Number
     }]
@@ -27,6 +27,6 @@ const orderSchema = new Schema({
 /**
  * The model that represent a document in the 'orders' collection.
  */
-const orderModel = mongoose.model('Orders', orderSchema);
+const orderModel = mongoose.model('Order', orderSchema);
 
 module.exports = orderModel;

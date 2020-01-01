@@ -9,19 +9,24 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 /**
- * The schema for the 'breads' collection.
+ * The schema for the 'product' collection.
  */
-const breadSchema = new Schema({
+const productSchema = new Schema({
     name: String,
     description: String,
     price: Schema.Types.Decimal128, // Decimal128 is the type used for handling currency values.
     availableQuantity: Number,
-    pointsObtainable: Number
+    pointsObtainable: Number,
+    imagePath: String,
+    category: {
+        type: Schema.Types.ObjectId,
+        ref: 'Category'
+    }
 });
 
 /**
- * The model that represent a document in the 'breads' collection.
+ * The model that represent a document in the 'product' collection.
  */
-const breadModel = mongoose.model('Bread', breadSchema);
+const productModel = mongoose.model('Product', productSchema);
 
-module.exports = breadModel;
+module.exports = productModel;

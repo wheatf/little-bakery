@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=locals.category%></title>
+</head>
+<body>
+    <%
+        let products = locals.products;
+        if (products) { 
+    %>
+        <ul>
+            <% products.forEach(product => { %>
+                <li>Name: <%= product.name %></li>
+                <li>Description: <%= product.description %></li>
+                <li>
+                    Image: <img src="<%= product.imagePath %>" alt="<%= product.name %>" width="100" height="100" />
+                </li>
+            <% }); %>
+        </ul>
+    <% } %>
+</body>
+</html>

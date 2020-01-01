@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories</title>
+</head>
+
+<body>
+    <ul>
+        <%
+        let categories = locals.categories;
+
+        categories.forEach(category => {
+        %>
+        <li>
+            <a href="/category/<%=category.name.toLowerCase()%>">
+                <%=category.name%>
+            </a>
+            <% if (category.imagePath) { %>
+                <img src="<%=category.imagePath%>" alt="<%=category.name%>" height="100" width="100" />
+            <% } %>
+        </li>
+        <%
+        });
+        %>
+    </ul>
+</body>
+
+</html>

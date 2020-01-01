@@ -36,12 +36,6 @@ const app = require('../app');
 const port = process.env.WEB_PORT || 3000;
 
 /**
- * Connect to database
- */
-// A file called datastore.js will connect to MongoDB for us. Look at datastore.js to find out how.
-require('../datastores/datastore')();
-
-/**
  * Start web application
  */
 app.listen(port, function () {

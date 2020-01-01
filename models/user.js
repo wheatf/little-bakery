@@ -16,7 +16,7 @@ const Schema = mongoose.Schema;
  * The schema for the 'users' collection.
  */
 const userSchema = new Schema({
-    name: String,
+    fullname: String,
     email: String,
     address: String,
     mobile: String, // Store mobile numbers as String to avoid any loss in numbers, and to support globalization.

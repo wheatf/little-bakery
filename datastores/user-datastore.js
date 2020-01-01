@@ -35,6 +35,7 @@ module.exports = {
      * Add a new user to the database.
      * 
      * @param {userModel} user - The user to add.
+     * @returns A list of error if validation fails.
      */
     add: async function(user) {
         await user.save();

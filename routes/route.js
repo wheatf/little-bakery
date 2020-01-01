@@ -9,9 +9,10 @@ function routes(app) {
     app.use('/', require('./index-route'));
     // Login route. Starts with '/login', sub-routes will be added using the router in login-route.js.
     app.use('/login', require('./login-route'));
-    // User route. Starts with '/user', sub-routes will be added using the router in user-route.js
-    app.use('/user', require('./user-route'));
-
+    // Register route. Starts with '/register', sub-routes will be added using the router in user-route.js
+    app.use('/register', require('./register-route'));
+    // Category route. Starts with '/category', sub-routes will be added using the router in category-route.js
+    app.use('/category', require('./category-route'));
 }
 
 
