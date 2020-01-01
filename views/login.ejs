@@ -10,7 +10,7 @@
     <!-- <link rel="shortcut icon" type="image/x-icon" href="image/logo-name-img/logo.png" /> -->
     <link rel="stylesheet" type="text/css" href="/public/css/Css_Reset.css">
     <link rel="stylesheet" type="text/css" href="/public/css/style_common.css">
-    <link rel="stylesheet" type="text/css" href="/public/css/style_login.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/style_login_reg.css">
 
     <!-- fonts used -->
     <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
@@ -48,7 +48,7 @@
             </section>
 
             <!-- <div class="logo_name" onclick="window.location.href='index.ejs'"></div> -->
-            <div class="logo_name" onclick="window.location.href='index.ejs'"> LITTLE BAKERY</div>
+            <div class="logo_name" onclick="window.location.href='/'"> LITTLE BAKERY</div>
 
         </header>
 
@@ -66,7 +66,7 @@
                     <!-- need to get item count and amount from db cart eventually -->
 
                 </li>
-                <li class="item active"><a href="#" class="nav-link">Login/Register</a></li>
+                <li class="item active"><a href="/login" class="nav-link">Login/Register</a></li>
                 <!-- <li class="item" id="search"><a href="search.php" class="nav-link">Search</a></li> -->
             </ul>
             <hr id="divider">
@@ -75,13 +75,13 @@
 
         <div id="msg_container">
             <p>You must login before you can proceed to checkout.</p>
-            <p><u><a href="#">Create account here</a></u> if you don't have an account yet.</p>
+            <p><u><a href="/register">Create account here</a></u> if you don't have an account yet.</p>
         </div>
 
 
         <ul class="breadcrumb">
-            <li><a href="index.ejs">Home</a></li>
-            <li class="active"><a href="login.ejs">Login</a> </li>
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/login">Login</a> </li>
         </ul>
 
         <section class="login-reg-container" id="login-only-container">

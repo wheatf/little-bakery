@@ -11,6 +11,8 @@ function routes(app) {
     app.use('/login', require('./login-route'));
     // User route. Starts with '/user', sub-routes will be added using the router in user-route.js
     app.use('/user', require('./user-route'));
+
 }
+
 
 module.exports = routes;
