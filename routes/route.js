@@ -13,6 +13,10 @@ function routes(app) {
     app.use('/register', require('./register-route'));
     // Category route. Starts with '/category', sub-routes will be added using the router in category-route.js
     app.use('/category', require('./category-route'));
+    // Product route. Starts with '/product', sub-routes will be added using the router in product-route.js
+    app.use('/product', require('./product-route'));
+    // Cart route. Starts with '/cart', sub-routes will be added using the router in cart-route.js
+    app.use('/cart', require('./cart-route'));
 }
 
 

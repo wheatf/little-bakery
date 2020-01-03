@@ -14,7 +14,7 @@ const Schema = mongoose.Schema;
 const productSchema = new Schema({
     name: String,
     description: String,
-    price: Schema.Types.Decimal128, // Decimal128 is the type used for handling currency values.
+    price: Schema.Types.Decimal128,
     availableQuantity: Number,
     pointsObtainable: Number,
     imagePath: String,

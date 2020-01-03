@@ -65,7 +65,7 @@ require('./datastores/datastore')();
  * Allow Express to use session state.
  */
 let secret = process.env.SESSION_SECRET || 'keyboard cat';
-let cookieMaxAge = parseInt(process.env.COOKIE_MAX_AGE) || 60000;
+let cookieMaxAge = parseInt(process.env.COOKIE_MAX_AGE) || 600000;
 
 app.use(session({
     secret: secret,

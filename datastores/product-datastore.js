@@ -3,6 +3,8 @@
  */
 const productModel = require('../models/product');
 
+const categoryModel = require('../models/category');
+
 module.exports = {
 
     /**
@@ -36,6 +38,26 @@ module.exports = {
      * @param {String} category - The category of the product to search for.
      */
     findByCategory: async function(category) {
-        return await productModel.find({'category.name': category}).populate().exec();
+        return await productModel.aggregate([
+            {
+                // Perform a LEFT-JOIN with category collection.
+                $lookup:{
+                    from: categoryModel.collection.name,
+                    localField: 'category',
+                    foreignField: '_id',
+                    as: 'category'
+                }
+            },
+            {
+                // Exclude the category's image path field.
+                $project: {
+                    'category.imagePath': 0
+                }
+            },
+            {
+                // Perform a equality test with the category name.
+                $match: { 'category.name' : category }
+            }
+        ]).exec();
     }
 }
