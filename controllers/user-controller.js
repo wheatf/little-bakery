@@ -1,3 +1,5 @@
+const crypto = require('crypto');
+
 const userDatastore = require('../datastores/user-datastore');
 const userModel = require('../models/user');
 
@@ -21,8 +23,9 @@ module.exports = {
     login: async function (req, res) {
         // Get the username/email from the form.
         let identification = req.body.identification;
-        // Get the password from the form.
-        let password = req.body.password;
+        // Get the password from the form and hash it to match database hashing algorithm
+        // let password = req.body.password;
+        let password = crypto.createHash('sha256').update(req.body.pw.toString()).digest('base64');
 
         // Perform validation
         let errors = validateLogin(req, res);
@@ -39,8 +42,12 @@ module.exports = {
             if (user) {
                 // Check if password matches. If so, allow user to enter.
                 if (user.password == password) {
+                    // User is authenticated.
+                    // Store user id in session
+                    req.session.userId = user._id;
+
                     // Pass a redirect here so that user won't resent form again if he clicks 'Back' on his browser.
-                    return res.redirect('/user');
+                    return res.redirect('/index');
                 }
             }
 
@@ -74,16 +81,18 @@ module.exports = {
      */
     register: async function (req, res) {
         // Get the form data.
-        let fullname = req.body.fullname;
+        let fullname = req.body.name;
         let email = req.body.email;
         let address = req.body.address;
-        let mobile = req.body.mobile;
+        let mobile = req.body.mobileNo;
         let username = req.body.username;
-        let password = req.body.password;
+        let password = req.body.pw;
 
         // Perform validation
         let errors = validateRegister(req, res);
         if (errors) {
+            console.log(errors);
+            
             req.flash('error', errors);
             res.render('register', {
                 fullname: fullname,
@@ -121,7 +130,7 @@ module.exports = {
  */
 function validateLogin(req, res) {
     let identification = req.body.identification;
-    let password = req.body.password;
+    let password = req.body.pw;
 
     // Define an array of errors.
     let errors = [];
@@ -145,13 +154,13 @@ function validateLogin(req, res) {
  * @param {Express.Response} res 
  */
 function validateRegister(req, res) {
-    let fullname = req.body.fullname;
+    let fullname = req.body.name;
     let email = req.body.email;
     let address = req.body.address;
-    let mobile = req.body.mobile;
+    let mobile = req.body.mobileNo;
     let username = req.body.username;
-    let password = req.body.password;
-    let confirmPassword = req.body.confirmPassword;
+    let password = req.body.pw;
+    let confirmPassword = req.body.cfpw;
 
     // Define an array of errors.
     let errors = [];

@@ -17,6 +17,8 @@
                 <li>
                     Image: <img src="<%= product.imagePath %>" alt="<%= product.name %>" width="100" height="100" />
                 </li>
+                <li>Price: <%=product.price%></li>
+                <li>Link: <a href="/product/<%=product._id%>">Details</a></li>
             <% }); %>
         </ul>
     <% } %>

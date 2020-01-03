@@ -24,12 +24,12 @@ module.exports = {
      * @param {Express.Response} res 
      */
     categoryPage: async function(req, res) {
-        let category = req.params.category;
+        let category = req.params.category.charAt(0).toUpperCase() + req.params.category.slice(1).toLowerCase();
 
         let products = await productDatastore.findByCategory(category);
 
         res.render('category', {
-            category: category.charAt(0).toUpperCase() + category.slice(1),
+            category: category,
             products: products
         });
     }

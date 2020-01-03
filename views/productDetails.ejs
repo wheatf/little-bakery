@@ -26,6 +26,23 @@
     </head>
 
     <body>
+        <!-- Example only, please remove this once you are done reviewing the example -->
+        <section id="removeThis">
+            <% let product = locals.product; %> </br>
+            Name: <%= product.name %> </br>
+            Description: <%= product.description %> </br>
+            Price: <%= product.price %> </br>
+            Available Quantity: <%= product.availableQuantity %> </br>
+            Points Obtainable: <%= product.pointsObtainable %> </br>
+            Image: <img src="<%= product.imagePath %>" width="100" height="100" /> </br>
+            
+            <form action="/cart/add" method="POST">
+                <input type="hidden" name="productId" value="<%= product._id %>" />
+                Quantity: <input type="number" name="quantity" />
+                <button type="submit">Add to Cart</button>
+            </form>
+        </section>
+
         <div id="wrapper">
             <header>
                 <section id="header">

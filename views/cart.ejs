@@ -27,6 +27,28 @@
     </head>
 
     <body>
+        <!-- Example only, please remove this once you are done reviewing the example -->
+        <div id="removeThis">
+            <%
+            let carts = locals.carts;
+            if (carts) {
+                carts.forEach(cart => {
+            %>
+                    <ul>
+                        <li>Name: <%= cart.product.name %></li> </br>
+                        <li>Description: <%= cart.product.description %></li> </br>
+                        <li>Price: <%= cart.product.price %></li> </br>
+                        <li>Available Quantity: <%= cart.product.availableQuantity %></li> </br>
+                        <li>Points Obtainable: <%= cart.product.pointsObtainable %></li> </br>
+                        <li>Image Path: <img src="<%= cart.product.imagePath %>" height="100" width="100" /></li> </br>
+                        <li>Quantity: <%= cart.quantity %></li> </br>
+                    </ul>
+            <%
+                });
+            }
+            %>
+        </div>
+
         <div id="wrapper">
             <header>
                 <section id="header">

@@ -121,7 +121,7 @@
 
                 <!-- Values passed by the server are stored in the locals object. If the attribute doesn't exists, Express will send back an error instead. -->
                 <!-- Check if attribute exists by using 'locals.attribute || default_value'. -->
-                <input  type="email" id="identification" name="identification" value="<%=locals.identification || ''%>" />
+                <input type="text" id="identification" name="identification" value="<%=locals.identification || ''%>" />
 
                 <label>Password:</label><input type="password" name="pw" id="pw-field" class="pw" required>
                 <span id="showPass">

@@ -11,18 +11,20 @@ const Schema = mongoose.Schema;
 /**
  * The schema for the 'orders' collection.
  */
-const orderSchema = new Schema({
-    user: { // References to another collection using their _id.
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+const orderSchema = new Schema(
+    {
+        user: { // References to another collection using their _id.
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        product: {
+            type: Schema.Types.ObjectId,
+            ref: 'Product'
+        },
+        quantity: Number,
     },
-    products: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Product'
-    },{
-        quantity: Number
-    }]
-});
+    { timestamps: true }
+);
 
 /**
  * The model that represent a document in the 'orders' collection.
