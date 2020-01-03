@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Login Page</title>
+        <title>Cart</title>
 
         <!-- <link rel="shortcut icon" type="image/x-icon" href="image/logo-name-img/logo.png" /> -->
         <link rel="stylesheet" type="text/css" href="/public/css/Css_Reset.css">
@@ -52,19 +52,20 @@
 
             <nav class="navbar">
                 <ul>
-                    <li class="item"><a href="#" class="nav-link ">Menu</a></li>
-                    <li class="item"><a href="#" class="nav-link">Catering</a></li>
+                    <!-- The top-level route defined in route.js + The sub-route defined in other file = The complete route to put inside 'href'. -->
+                    <li class="item"><a href="/category" class="nav-link ">Category</a></li>
+                    <!-- <li class="item"><a href="#" class="nav-link">Catering</a></li> -->
                     <li class="item"><a href="#" class="nav-link">About</a></li>
                     <li class="item"><a href="#" class="nav-link">Contact</a></li>
+                    <li class="item active"><a href="/login" class="nav-link">Login/Register</a></li>
                     <li class="item cart">
                         <a href="#" class="nav-link">Cart
                             <span class="cartcount">0</span>
                             <span class="cartamount">SGD $0.00</span>
                         </a>
                         <!-- need to get item count and amount from db cart eventually -->
-
+    
                     </li>
-                    <li class="item active"><a href="/login" class="nav-link">Login/Register</a></li>
                     <!-- <li class="item" id="search"><a href="search.php" class="nav-link">Search</a></li> -->
                 </ul>
                 <hr id="divider">
