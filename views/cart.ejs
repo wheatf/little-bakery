@@ -31,7 +31,7 @@
         <div id="removeThis">
             <%
             let carts = locals.carts;
-            if (carts) {
+            if (carts) { 
                 carts.forEach(cart => {
             %>
                     <ul>
@@ -47,6 +47,7 @@
                 });
             }
             %>
+            <div><a href="/checkout">Checkout</a></div>
         </div>
 
         <div id="wrapper">

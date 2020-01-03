@@ -1,8 +1,5 @@
 const cartModel = require('../models/cart');
 
-const userModel = require('../models/user');
-const productModel = require('../models/product');
-
 module.exports = {
     
     /**
@@ -20,7 +17,6 @@ module.exports = {
      * @param {cartModel} cart - The cart to add to database.
      */
     add: async function(cart) {
-
         // Check if item exists in cart.
         let cartItem = await cartModel.findOne({user: cart.user, product: cart.product});
 

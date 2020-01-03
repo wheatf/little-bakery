@@ -3,6 +3,9 @@ const crypto = require('crypto');
 const userDatastore = require('../datastores/user-datastore');
 const userModel = require('../models/user');
 
+const cartDatastore = require('../datastores/cart-datastore');
+const cartModel = require('../models/cart');
+
 module.exports = {
     /**
      * Serve the login page to client.
@@ -46,8 +49,33 @@ module.exports = {
                     // Store user id in session
                     req.session.userId = user._id;
 
+                    // Check if user has cart in session.
+                    let sessionCart = req.session.cart;
+                    if (sessionCart) {
+                        // Transfer the cart in session to database.
+                        for (const element of sessionCart) {
+                            let cart = new cartModel({
+                                user: user._id,
+                                product: element.productId,
+                                quantity: element.quantity
+                            });
+
+                            await cartDatastore.add(cart);
+                        }
+                    }
+
                     // Pass a redirect here so that user won't resent form again if he clicks 'Back' on his browser.
-                    return res.redirect('/index');
+                    // Check if user was sent to login from other pages.
+                    let loginRedirect = req.session.loginRedirect;
+                    if (loginRedirect) {
+                        // Clear value from session.
+                        req.session.loginRedirect = undefined;
+                        // Redirect him to where he came from.
+                        return res.redirect(loginRedirect);
+                    } else {
+                        // Redirect him to index.
+                        return res.redirect('/index');
+                    }
                 }
             }
 

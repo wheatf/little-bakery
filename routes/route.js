@@ -17,6 +17,8 @@ function routes(app) {
     app.use('/product', require('./product-route'));
     // Cart route. Starts with '/cart', sub-routes will be added using the router in cart-route.js
     app.use('/cart', require('./cart-route'));
+    // Checkout route. Start with '/checkout', sub-routes will be added using the router in checkout-route.js
+    app.use('/checkout', require('./checkout-route'));
 }
 
 
