@@ -26,9 +26,9 @@ const userSchema = new Schema({
     username: String,
     password: {
         type: String,
-        get: function(password) { // Calls the following method when retrieving the password.
-            return Buffer.from(password, 'base64'); // Decode Base64; the encoding used for storing password in the database.
-        },
+        // get: function(password) { // Calls the following method when retrieving the password.
+        //     return Buffer.from(password, 'base64'); // Decode Base64; the encoding used for storing password in the database.
+        // },
         set: function(password) { // Calls the following method when setting the password.
             return crypto.createHash('sha256').update(password).digest('base64'); // Hash the password using SHA256, then encode using Base64.
         }
