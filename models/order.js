@@ -17,11 +17,10 @@ const orderSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'User'
         },
-        product: {
+        orderDetails: [{
             type: Schema.Types.ObjectId,
-            ref: 'Product'
-        },
-        quantity: Number,
+            ref: 'OrderDetail'
+        }]
     },
     { timestamps: true }
 );

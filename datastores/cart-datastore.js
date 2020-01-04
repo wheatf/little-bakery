@@ -27,5 +27,14 @@ module.exports = {
             // Item doesn't exists, insert to database.
             cart.save();
         }
+    },
+
+    /**
+     * Clears all cart from the user.
+     * 
+     * @param {Mongoose.SchemaTypes.ObjectId} id - The _id of the user to search for.
+     */
+    removeByUserId: async function(id) {
+        await cartModel.deleteMany({user: id});
     }
 }
