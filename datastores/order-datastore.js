@@ -11,7 +11,12 @@ module.exports = {
      * @param {Mongoose.SchemaTypes.ObjectId} id - The _id of the user to search for. 
      */
     findByUserId: async function(id) {
-        return await orderModel.find({user: id}).populate('orderDetails').exec();
+        return await orderModel.find({user: id}).populate({
+            path: 'orderDetails',
+            populate: { 
+                path: 'product'
+            }
+        }).exec();
     },
 
     /**
@@ -35,8 +40,6 @@ module.exports = {
                 orderDetailsIds.push(value._id);
             });
         }
-
-        console.log("orderDetailsIds: " + orderDetailsIds);
 
         // Store order into database.
         let order = new orderModel({

@@ -1,5 +1,7 @@
 const crypto = require('crypto');
 
+const orderDatastore = require('../datastores/order-datastore');
+
 const userDatastore = require('../datastores/user-datastore');
 const userModel = require('../models/user');
 
@@ -7,6 +9,41 @@ const cartDatastore = require('../datastores/cart-datastore');
 const cartModel = require('../models/cart');
 
 module.exports = {
+    /**
+     * Serve the profile page to client.
+     * 
+     * @param {Express.Request} req - The request object.
+     * @param {Express.Response} res - The response object.
+     */
+    profilePage: async function(req, res) {
+        // Check if user is logged in or not.
+        let userId = req.session.userId;
+        if (userId) {
+            // Retrieve user information.
+            let user = await userDatastore.find(userId);
+            
+            // Calculate total points earned.
+            let orders = await orderDatastore.findByUserId(userId);
+            let totalPoints = 0;
+            for (const order of orders) {
+                for (const orderDetail of order.orderDetails) {
+                    // Points times quantity.
+                    totalPoints += orderDetail.product.pointsObtainable * orderDetail.quantity;
+                }
+            }
+
+            res.render('profile', {
+                user: user,
+                pointsEarned: totalPoints
+            });
+        } else {
+            // User must be logged in before allowing access to his profile page.
+            // Redirect user to the login page.
+            req.session.loginRedirect = '/profile';
+            res.redirect('/login');
+        }
+    },
+
     /**
      * Serve the login page to client.
      * 
@@ -27,7 +64,6 @@ module.exports = {
         // Get the username/email from the form.
         let identification = req.body.identification;
         // Get the password from the form and hash it to match database hashing algorithm
-        // let password = req.body.password;
         let password = crypto.createHash('sha256').update(req.body.pw.toString()).digest('base64');
 
         // Perform validation

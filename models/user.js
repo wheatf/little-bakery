@@ -1,3 +1,5 @@
+const orderDatastore = require('../datastores/order-datastore');
+
 /**
  * Provides functions for hashing.
  */
@@ -20,9 +22,6 @@ const userSchema = new Schema({
     email: String,
     address: String,
     mobile: String, // Store mobile numbers as String to avoid any loss in numbers, and to support globalization.
-
-    pointsEarned: Number,
-    
     username: String,
     password: {
         type: String,
