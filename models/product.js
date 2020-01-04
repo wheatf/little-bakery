@@ -14,7 +14,7 @@ const Schema = mongoose.Schema;
 const productSchema = new Schema({
     name: String,
     description: String,
-    price: Schema.Types.Decimal128,
+    price: Number,
     availableQuantity: Number,
     pointsObtainable: Number,
     imagePath: String,

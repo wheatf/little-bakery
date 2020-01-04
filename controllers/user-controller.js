@@ -45,6 +45,54 @@ module.exports = {
     },
 
     /**
+     * Serve the order history page to client.
+     * 
+     * @param {Express.Request} req - The request object.
+     * @param {Express.Response} res - The response object.
+     */
+    orderHistoryPage: async function (req, res) {
+        // Check if user is logged in
+        let userId = req.session.userId;
+        if (userId) {
+            // Retrieve all orders.
+            let orders = await orderDatastore.findByUserId(userId);
+
+            res.render('orderHistory', {
+                orders: orders
+            });
+        } else {
+            // User must be logged in before allowing access to his order history.
+            // Redirect user to the login page.
+            req.session.loginRedirect = '/profile/order-history';
+            res.redirect('/login');
+        }
+    },
+
+    /**
+     * Serve the order details history page to client.
+     * 
+     * @param {Express.Request} req - The request object.
+     * @param {Express.Response} res - The response object.
+     */
+    orderDetailHistoryPage: async function(req, res) {
+        // Check if user is logged in
+        let userId = req.session.userId;
+        // Retrieve order id
+        let orderId = req.params.orderId;
+        if (userId) {
+            // Retrieve order from database
+            let order = await orderDatastore.find(orderId);
+            console.log(order);
+            res.render('orderDetailHistory', {
+                order: order
+            });
+        } else {
+            req.session.loginRedirect = '/profile/order-history/' + orderId;
+            req.redirect('/login');
+        }
+    },
+
+    /**
      * Serve the login page to client.
      * 
      * @param {Express.Request} req - The request object.

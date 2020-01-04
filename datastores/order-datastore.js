@@ -6,9 +6,23 @@ const cartDatastore = require('../datastores/cart-datastore');
 module.exports = {
 
     /**
+     * Get order from the database.
+     * 
+     * @param {Mongoose.SchemaTypes.ObjectId} id - The id of the order to search for
+     */
+    find: async function(id) {
+        return await orderModel.findOne({_id: id}).populate({
+            path: 'orderDetails',
+            populate: {
+                path: 'product'
+            }
+        }).exec();
+    },
+
+    /**
      * Get orders from the database.
      * 
-     * @param {Mongoose.SchemaTypes.ObjectId} id - The _id of the user to search for. 
+     * @param {Mongoose.SchemaTypes.ObjectId} id - The id of the user to search for. 
      */
     findByUserId: async function(id) {
         return await orderModel.find({user: id}).populate({
