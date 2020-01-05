@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+</head>
+<body>
+    <h1>Edit Profile</h1>
+
+    <div id='error'>
+        <%
+        let messages = getMessages();
+        let errors = messages.error;
+        
+        if (errors) {
+        %>
+        <ul>
+            <% errors.forEach(error => { %>
+                <li><%= error %></li>
+            <% }); %>
+        </ul>
+        <% } %>
+    </div>
+
+    <form action="/profile/edit" method="POST">
+        Full Name: <input type="text" name="name" id="name" value="<%= locals.fullname %>" /> </br>
+
+        Email Address: <input type="email" name="email" id="email" value="<%= locals.email %>"/> </br>
+
+        Address: <input type="text" name="address" id="address" value="<%= locals.address %>"/> </br>
+
+        Mobile Number: <input type="tel" name="mobileNo" id="mobileNo" value="<%= locals.mobile %>"/> </br>
+
+        Old Password: <input type="password" name="oldpw" id="oldpw" /> </br>
+
+        New Password: <input type="password" name="pw" id="pw" value="<%= locals.pw || '' %>" /> </br>
+
+        Confirm New Password: <input type="password" name="cfpw" id="cfpw" value="<%= locals.cfpw || '' %>" /> </br>
+
+        <button type="submit">Save Changes</button>
+    </form>
+</body>
+</html>

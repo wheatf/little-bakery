@@ -45,6 +45,96 @@ module.exports = {
     },
 
     /**
+     * Serve the edit profile page to client.
+     * 
+     * @param {Express.Request} req - The request object
+     * @param {Express.Response} res - The response object
+     */
+    editProfilePage: async function(req, res) {
+        // Check if user is logged in
+        let userId = req.session.userId;
+        if (userId) {
+            // Retrieve user's information
+            let user = await userDatastore.find(userId);
+
+            res.render('editProfile', {
+                fullname: user.fullname,
+                email: user.email,
+                address: user.address,
+                mobile: user.mobile
+            });
+        } else {
+            // User must be logged in before allowing access to edit his profile page.
+            // Redirect user to the login page.
+            req.session.loginRedirect = '/profile/edit';
+            res.redirect('/login')
+        }
+    },
+
+    /**
+     * Edit the user's profile.
+     * 
+     * @param {Express.Request} req - The request object
+     * @param {Express.Response} res - The response object
+     */
+    editProfile: async function(req, res) {
+        // Check if user is logged in
+        let userId = req.session.userId;
+        if (userId) {
+            // Perform validation
+            let errors = validateEdit(req, res);
+            if (errors) {
+                req.flash('error', errors);
+                res.render('editProfile', {
+                    fullname: req.body.name,
+                    email: req.body.email,
+                    address: req.body.address,
+                    mobile: req.body.mobileNo
+                });
+                return;
+            }
+
+            // Check if password matches old password.
+            let oldUser = await userDatastore.find(userId);
+            let oldPassword = crypto.createHash('sha256').update(req.body.oldpw.toString()).digest('base64');
+            if (oldUser.password != oldPassword) {
+                req.flash('error', "Old password is incorrect!");
+                res.render('editProfile', {
+                    fullname: req.body.name,
+                    email: req.body.email,
+                    address: req.body.address,
+                    mobile: req.body.mobileNo,
+                    pw: req.body.pw,
+                    cfpw: req.body.cfpw
+                });
+                return;
+            }
+
+            // All checks passed, update the user.
+            let user = {
+                _id: userId,
+                fullname: req.body.name,
+                email: req.body.email,
+                address: req.body.address,
+                mobile: req.body.mobileNo,
+                password: req.body.pw
+            };
+
+            console.log("Password: " + req.body.pw);
+            console.log("User: " + user);
+
+            await userDatastore.update(user);
+
+            res.redirect('/profile');
+        } else {
+            // User must be logged in before allowing access to edit his profile page.
+            // Redirect user to the login page.
+            req.session.loginRedirect = '/profile/edit';
+            res.redirect('/login');
+        }
+    },
+
+    /**
      * Serve the order history page to client.
      * 
      * @param {Express.Request} req - The request object.
@@ -232,6 +322,65 @@ module.exports = {
             res.redirect('/login');
         }
     }
+}
+
+/**
+ * Validate edit profile form.
+ * 
+ * @param {Express.Request} req 
+ * @param {Express.Response} res 
+ */
+function validateEdit(req, res) {
+    let fullname = req.body.name;
+    let email = req.body.email;
+    let address = req.body.address;
+    let mobile = req.body.mobileNo;
+    let newPassword = req.body.pw;
+    let confirmPassword = req.body.cfpw;
+
+    // Define an array of errors.
+    let errors = [];
+
+    if (!fullname) {
+        errors.push('Full Name must not be empty!');
+    }
+
+    if (!email) {
+        errors.push('Email Address must not be empty!');
+    } else {
+        // Regex for testing email format (must contain one @ and one fullstop; abc@mail.com).
+        let regex = /^\S+@\S+\.\S+$/;
+        
+        if (!regex.test(email)) {
+            errors.push('Email must be of a valid format! For example: abc@mail.com');
+        }
+    }
+
+    if (!address) {
+        errors.push('Address must not be empty!');
+    }
+
+    if (!mobile) {
+        errors.push('Mobile Number must not be empty!');
+    } else {
+        if (mobile.length != 8) {
+            errors.push('Mobile Number must be 8 digit long!');
+        }
+
+        // Regex for testing if value consists of only integers.
+        let regex = /^\d+$/;
+        if (!regex.test(mobile)) {
+            errors.push('Mobile Number must consists of only whole numbers!');
+        }
+    }
+
+    if (!newPassword) {
+        errors.push('Password must not be empty!');
+    } else if (confirmPassword != newPassword) {
+        errors.push('Confirm Password must match Password!');
+    }
+
+    return errors.length > 0 ? errors : null;
 }
 
 /**
