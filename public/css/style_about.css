@@ -1,0 +1,51 @@
+.about-container{
+    text-align: center;
+  width: 50%; 
+     margin: 0 auto;
+     font-size: 16px;
+     font-family: 'Raleway', sans-serif;
+     letter-spacing: 0.1em;
+     line-height: 20px; 
+     color: rgba(0, 0, 0, 1);
+     padding: 30px; 
+ }
+ 
+ .about-container span{
+     color: lightcoral;
+ }
+ 
+ img{
+     width:100%;
+     
+ }
+ h1{
+    font-size: 20px;
+    color: lightcoral;
+    text-align: center;
+ }
+ 
+ /* .alert {
+ text-align: center;
+ padding: 10px;
+ border:1px solid lightcoral;
+ color: lightcoral;
+ opacity: 1;
+ transition: opacity 0.6s;
+ margin-bottom: 20px;
+ }
+ 
+ .alert .closebtn {
+ margin-left: 15px;
+ color: lightcoral;
+ font-weight: bold;
+ float: right;
+ font-size: 22px;
+ line-height: 20px;
+ cursor: pointer;
+ transition: 0.3s;
+ }
+ 
+ .alert .closebtn:hover {
+ color: darkslategrey;
+ } */
+ 

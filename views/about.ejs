@@ -1,38 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-</head>
-<body>
-    <h1>Profile Page</h1>
-    
-    Name: <%= user.fullname %></br>
-    Email: <%= user.email %></br>
-    Address: <%= user.address %></br>
-    Mobile: <%= user.mobile %></br>
-    Points Earned: <%= pointsEarned %>
-
-    <a href="/profile/edit">Edit Profile</a>
-    <a href="/profile/order-history">Order History</a>
-</body>
-</html>
-
-<!-- the styling
-<!DOCTYPE html>
-<html lang="en">
 
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Login Page</title>
+        <title>About</title>
 
         <!-- <link rel="shortcut icon" type="image/x-icon" href="image/logo-name-img/logo.png" /> -->
         <link rel="stylesheet" type="text/css" href="/public/css/Css_Reset.css">
         <link rel="stylesheet" type="text/css" href="/public/css/style_common.css">
-        <link rel="stylesheet" type="text/css" href="/public/css/style_profile.css">
+        <link rel="stylesheet" type="text/css" href="/public/css/style_about.css">
 
         <!-- fonts used -->
         <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
@@ -88,93 +66,49 @@
                         <!-- need to get item count and amount from db cart eventually -->
 
                     </li>
-                    <li class="item "><a href="/login" class="nav-link">Login/Register</a></li>
+                    <li class="item active"><a href="/login" class="nav-link">Login/Register</a></li>
                     <!-- <li class="item" id="search"><a href="search.php" class="nav-link">Search</a></li> -->
                 </ul>
                 <hr id="divider">
             </nav>
 
 
-     
-
 
             <ul class="breadcrumb">
                 <li><a href="/">Home</a></li>
-                <li class="active">My Account</li>
+                <li class="active">Register</li>
             </ul>
 
-            <section class="profile-container" >
-
-                <table>
-                
-                    <tr>
-                    <td>Full Name:</td>
-                    <td><%= user.fullname %></td>
-                    </tr>
-                    
-                    <tr>
-                    <td>Email Address:</td>
-                    <td><%= user.email %></td>
-                    </tr>
-                    
-                    <tr>
-                    <td>Address:</td>
-                    <td><%= user.address %></td>
-                    </tr>
-                    
-                    <tr>
-                    <td>Mobile Number</td>
-                    <td><%= user.mobile %></td>
-                    </tr>
-                    
-                    <tr>
-                    <td>Date Joined</td>
-                    <td>29-12-2019</td>
-                    </tr>
-
-                    <tr>
-                        <td>Points Earned</td>
-                        <td><%= pointsEarned %></td>
-                        </tr>
-                    
-                    <tr>
-                        <td></td>
-                        <td><input type="submit" name="submit" value="Edit Profile"></td>
-                    </tr>
-                    
-                </table>
-                
-                
+            <section class="about-container" >
+                <p>At Little Bakery, we ensure every product of ours are always fresh at all times.
+                </p>
+                <br>
+    
+    <img src="/public/images/banners/cupcakey.jpg"> 
               
-            </section>
-            
-             <p>Order History</p>
-            
-            <section class="order-container">
+    <p><span>Little bakery</span> founded at year 1998 by JCH and it is one of only a handful few enduring Craft Bakeries in Singapore. 
+                </p>
                 
-                <table>
-                <tr>
-                    <th>Order #</th>
-                    <th>Delivery Date</th>
-                    <th>Status</th>
-                    <th>Total Amount</th>
-                    </tr>
-                    
-                    <tr>
-                    <td><span><a href="/profile/order-history">1</a></span></td>
-                    <td>31-12-2019</td>
-                    <td>Ordered</td>
-                    <td>SGD $5.50</td>
-                    </tr>
-                </table>
-               
-            
+                    We offer our clients a full scope of pie, macarons, cookies, cakes and baked goods. 
+
+Our cake is handmade day by day at our bakery shop <p>
+                <p> Our motto is to: </p>
+                <br>
+                <h1>"Only providing the freshest"</h1> 
+                <br>
+                <p>We swear by our motto to always give our customer the best.
+                </p>
+
+
+
+              
             </section>
 
 
         </div>
 
+  
 
     </body>
 
-</html> -->
+</html>
