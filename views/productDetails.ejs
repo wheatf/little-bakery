@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Product Details</title>
+
+        <!-- <link rel="shortcut icon" type="image/x-icon" href="image/logo-name-img/logo.png" /> -->
+        <link rel="stylesheet" type="text/css" href="/public/css/Css_Reset.css">
+        <link rel="stylesheet" type="text/css" href="/public/css/style_common.css">
+        <link rel="stylesheet" type="text/css" href="/public/css/style_products.css">
+
+        <!-- fonts used -->
+        <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+        <!-- search icon -->
+        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+
+        <script src="/public/js/client/jquery-3.3.1.min.js"></script>
+
+
+    </head>
+
+    <body>
+        <!-- Example only, please remove this once you are done reviewing the example -->
+        <section id="removeThis">
+            <% let product = locals.product; %> </br>
+            Name: <%= product.name %> </br>
+            Description: <%= product.description %> </br>
+            Price: <%= product.price %> </br>
+            Available Quantity: <%= product.availableQuantity %> </br>
+            Points Obtainable: <%= product.pointsObtainable %> </br>
+            Image: <img src="<%= product.imagePath %>" width="100" height="100" /> </br>
+            
+            <form action="/cart/add" method="POST">
+                <input type="hidden" name="productId" value="<%= product._id %>" />
+                Quantity: <input type="number" name="quantity" />
+                <button type="submit">Add to Cart</button>
+            </form>
+        </section>
+
+        <div id="wrapper">
+            <header>
+                <section id="header">
+                    <i class="fas fa-search fa-sm"></i>
+                    <form autocomplete="off" action="search.php" id="search" class="alignleft">
+                        <div class="autocomplete" style="width:300px;">
+                            <input id="myInput" type="text" name="valueToSearch" placeholder="Search" size="40"
+                                   maxlength="128" class="submit_on_enter">
+                        </div>
+
+                        <input type="submit" name="search" value="Search"
+                               style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
+                               hidefocus="true" tabindex="-1">
+
+                        <br><br>
+                    </form>
+                </section>
+
+                <!-- <div class="logo_name" onclick="window.location.href='index.ejs'"></div> -->
+                <div class="logo_name" onclick="window.location.href='/'"> LITTLE BAKERY</div>
+
+            </header>
+
+            <nav class="navbar">
+                <ul>
+                    <!-- The top-level route defined in route.js + The sub-route defined in other file = The complete route to put inside 'href'. -->
+                    <li class="item"><a href="/category" class="nav-link ">Category</a></li>
+                    <!-- <li class="item"><a href="#" class="nav-link">Catering</a></li> -->
+                    <li class="item"><a href="#" class="nav-link">About</a></li>
+                    <li class="item"><a href="#" class="nav-link">Contact</a></li>
+                    <li class="item active"><a href="/login" class="nav-link">Login/Register</a></li>
+                    <li class="item cart">
+                        <a href="#" class="nav-link">Cart
+                            <span class="cartcount">0</span>
+                            <span class="cartamount">SGD $0.00</span>
+                        </a>
+                        <!-- need to get item count and amount from db cart eventually -->
+    
+                    </li>
+                    <!-- <li class="item" id="search"><a href="search.php" class="nav-link">Search</a></li> -->
+                </ul>
+                <hr id="divider">
+            </nav>
+
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Menu (By category) </a></li>
+                <li><a href="/">Cookies</a></li>
+
+
+                <!-- TODO: retrieve category name based on href clicked at menu.html -->
+                <li class="active">Almond Flour Chocolate Chip</li> 
+            </ul>
+
+
+
+            <section id="productContainer">
+                <div class="productImg">
+                    <img name="img" class="img" src="../public/images/cat/cookies/almong_flour_chocochip.jpg" >
+                </div>
+
+                <div class="productDetails">
+                    <h1>Almond Flour Chocolate Chip</h1>
+                    <p class="price">SGD $2.50</p>
+                    <p class="desc">Sweet almond flour together with bitter chocochip to balance and give....</p>
+                    <p class="stock">No. of stock remaining: 20</p>
+
+
+                    <form method="post" action="" class="addCartForm">
+                        <div id="addCartAndQuantityFlex">
+
+                            <!-- TODO: max value will be based on qoh from db -->
+                            <div>
+                                <label>Quantity:</label><input type="number" name="qty" size="2" min="1" max="" required /><br />
+                            </div>
+                            <div>
+                                <input type="hidden" name="pname" value="productName" />
+                                <input type="hidden" name="pprice" value="productprice" />
+                                <input type="hidden" name="pimg" value="productimg" />
+                                <input type="hidden" name="pid" value="productid"/>
+
+                                <!--                            <button name="submit" class="cartBtn" id="myBtn">Add to Cart</button>-->
+
+                                <!--                            
+<button class="soldoutBTN" >Sold Out</button>
+-->
+
+                                <input type="submit" name="submit" value="Add to Cart">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+        </div>
+
+
+    </body>
+
+</html>

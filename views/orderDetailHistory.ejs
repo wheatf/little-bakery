@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+</head>
+<body>
+    <%
+    let order = locals.order;
+    if (order) {
+        order.orderDetails.forEach(orderDetail => {
+    %>
+        <ul>
+            <li>Image: <img src="<%= orderDetail.product.imagePath %>" height="100" width="100" /></li>
+            <li>Name: <%= orderDetail.product.name %></li>
+            <li>Quantity: <%= orderDetail.quantity %></li>
+            <li>Total Price: <%= orderDetail.quantity * orderDetail.product.price %></li>
+        </ul>
+    <%
+        });
+    }
+    %>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History</title>
+</head>
+<body>
+    <h1>Order History</h1>
+    <% 
+    let orders = locals.orders;
+    orders.forEach(order => {
+        let totalAmount = 0;
+        order.orderDetails.forEach(orderDetail => {
+            totalAmount += orderDetail.product.price * orderDetail.quantity;
+    %>
+        <p>
+            <ul>
+                <li>Ordered At: <%= order.createdAt %></li>
+                <li>Total Amount: <%= totalAmount %></li>
+                <li><a href="/profile/order-history/<%=order._id%>">View ordered products</a></li>
+            </ul>
+        </p>
+    <%
+        });
+    }); %>
+</body>
+</html>

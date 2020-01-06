@@ -35,6 +35,7 @@ module.exports = {
      * Add a new user to the database.
      * 
      * @param {userModel} user - The user to add.
+     * @returns A list of error if validation fails.
      */
     add: async function(user) {
         await user.save();
@@ -46,7 +47,13 @@ module.exports = {
      * @param {userModel} user - The user with the updated information. The _id of the user will determine which user gets updated in the database.
      */
     update: async function(user) {
-        await userModel.updateOne({_id: id}, user);
+        await userModel.updateOne({_id: user._id}, {
+            fullname: user.fullname,
+            email: user.email,
+            address: user.address,
+            mobile: user.mobile,
+            password: user.password
+        });
     },
 
     /**

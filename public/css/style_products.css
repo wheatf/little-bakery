@@ -1,0 +1,128 @@
+#productContainer{
+    font-family: 'Muli',sans-serif;
+    color: rgba(0, 0, 0, 0.702);
+    line-height: 1.2;
+    letter-spacing: 0.1em;
+    font-size: 14px;
+    display: flex;
+    /*    justify-content: flex-start;*/
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+
+#productContainer > div{
+    flex: 1;
+    margin: 15px;
+}
+
+
+.productImg{
+    /*    width: 50%;*/
+    max-width: 400px;
+    max-height: 400px;
+
+}
+.productImg .img{
+    /*        max-width: 70%;*/
+    max-width: 400px;
+    max-height: 400px;
+}
+
+.productDetails{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.productDetails h1{
+    font-size: 22px;
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 0.1em;
+    line-height: 20px; 
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.productDetails p{
+    margin: 10px 0;
+
+}
+.productDetails p.price{
+    font-size: 18px;
+    font-weight: 400;
+
+}
+
+.productDetails p.stock{
+    color: #E74C3C;
+}
+
+.productDetails input{
+    background-color: #fcf7f3;
+    padding: 12px 20px;
+    margin: 5px 0;
+    border-radius: 5px;    
+    border: 1px solid #f6e3e1;
+    /* display: inline-block; */
+    font-family: inherit;
+    width:30%;
+    box-sizing:border-box;
+}
+
+
+.productDetails input[name="submit"]{
+    cursor: pointer;
+    background-color: #edc2bd;
+    color: black;
+    margin: 5px 0;
+
+}
+
+.productDetails input[name="submit"]:hover{
+    background-color: transparent;
+    border: 2px solid #edc2bd;
+}
+
+
+.productDetails input:focus
+{
+    outline-color: transparent;
+    outline-style: none;
+}
+
+.productDetails input:hover
+{
+    border: 1px solid #edc2bd ;
+
+}
+
+.productDetails input[type=submit]:hover
+{
+    background-color: #edc2bd;
+    color: black;
+
+}
+
+input[name=qty]{
+    margin: 5px;
+    padding: 8px;
+    width: 15%;
+}
+
+
+
+#addCartAndQuantityFlex{
+/*
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+*/
+
+}
+
+
+#addCartAndQuantityFlex > div{
+    flex: 1;
+/*    margin: 10px;*/
+}

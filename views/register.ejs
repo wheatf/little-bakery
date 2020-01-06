@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Register Page</title>
+
+        <!-- <link rel="shortcut icon" type="image/x-icon" href="image/logo-name-img/logo.png" /> -->
+        <link rel="stylesheet" type="text/css" href="/public/css/Css_Reset.css">
+        <link rel="stylesheet" type="text/css" href="/public/css/style_common.css">
+        <link rel="stylesheet" type="text/css" href="/public/css/style_login_reg.css">
+
+        <!-- fonts used -->
+        <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+        <!-- search icon -->
+        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'
+              integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+
+        <script src="/public/js/client/jquery-3.3.1.min.js"></script>
+        <!-- show and hide password-->
+        <script src="/public/js/client/validation.js"></script>
+
+
+    </head>
+
+    <body>
+        <div id="wrapper">
+            <header>
+                <section id="header">
+                    <i class="fas fa-search fa-sm"></i>
+                    <form autocomplete="off" action="search.php" id="search" class="alignleft">
+                        <div class="autocomplete" style="width:300px;">
+                            <input id="myInput" type="text" name="valueToSearch" placeholder="Search" size="40"
+                                   maxlength="128" class="submit_on_enter">
+                        </div>
+
+                        <input type="submit" name="search" value="Search"
+                               style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
+                               hidefocus="true" tabindex="-1">
+
+                        <br><br>
+                    </form>
+                </section>
+
+                <!-- <div class="logo_name" onclick="window.location.href='index.ejs'"></div> -->
+                <div class="logo_name" onclick="window.location.href='/'"> LITTLE BAKERY</div>
+
+            </header>
+
+            <nav class="navbar">
+                <ul>
+                    <!-- The top-level route defined in route.js + The sub-route defined in other file = The complete route to put inside 'href'. -->
+                    <li class="item"><a href="/category" class="nav-link ">Category</a></li>
+                    <!-- <li class="item"><a href="#" class="nav-link">Catering</a></li> -->
+                    <li class="item"><a href="#" class="nav-link">About</a></li>
+                    <li class="item"><a href="#" class="nav-link">Contact</a></li>
+                    <li class="item active"><a href="/login" class="nav-link">Login/Register</a></li>
+                    <li class="item cart">
+                        <a href="#" class="nav-link">Cart
+                            <span class="cartcount">0</span>
+                            <span class="cartamount">SGD $0.00</span>
+                        </a>
+                        <!-- need to get item count and amount from db cart eventually -->
+    
+                    </li>
+                    <!-- <li class="item" id="search"><a href="search.php" class="nav-link">Search</a></li> -->
+                </ul>
+                <hr id="divider">
+            </nav>
+
+
+            <div id="msg_container">
+                <p>Create an account to enjoy full shopping process.</p>
+                <p><u><a href="/login">Login here</a></u> if you already have an account.</p>
+            </div>
+
+
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">Register</li>
+            </ul>
+
+            <section class="login-reg-container" id="reg-only-container">
+
+                <form action="/register" method="POST" name="register" id="regForm">
+
+                    <span class="success">
+
+                    </span>
+
+                    <label>Full Name:</label><input type="text" name="name" required ><br><br>
+
+                    <label>Username:</label><input type="text" name="username" pattern="[A-Za-z\s]{2,25}" title="Between 2 to 25 characters only" required><br><br>
+
+                    <label>Email Address:</label><input type="email" name="email" size="50" required><br><br>
+
+                    <label>Mobile Number:</label><input type="tel" name="mobileNo" oninvalid="this.setCustomValidity('Enter Mobile Number with 8 digits only(Starting 8 or 9)')" oninput="this.setCustomValidity('')" pattern = "^[8||9]{1}[0-9]{7}$" required /><br />
+
+                    <label>Address:</label><textarea name="address" cols="50" rows="3" required></textarea><br />
+
+                    <label>Password:</label><input type="password" name="pw" id="pw-field" class="pw" pattern="[a-zA-Z0-9]{4,8}" title="4-8 characters" required >
+                    <span id="showPass">
+                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                        <i class="fa fa-eye" aria-hidden="true" style="display:none;"></i>
+                    </span>
+
+
+                    <label>Confirm Password:</label><input type="password" name="cfpw" id="pw-field" class="cfm-pw" pattern="[a-zA-Z0-9]{4,8}" title="4-8 characters" required/>
+                    <span id="showPass">
+                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                        <i class="fa fa-eye" aria-hidden="true" style="display:none;"></i>
+                    </span>
+
+                    <label></label><input type="submit" name="submit" value="Register">
+
+
+                </form>
+            </section>
+
+
+        </div>
+
+        <!-- <script>
+var close = document.getElementsByClassName("closebtn");
+var i;
+
+for (i = 0; i < close.length; i++) {
+close[i].onclick = function(){
+var div = this.parentElement;
+div.style.opacity = "0";
+setTimeout(function(){ div.style.display = "none"; }, 600);
+}
+}
+</script> -->
+
+    </body>
+
+</html>

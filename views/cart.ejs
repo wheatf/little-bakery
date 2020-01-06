@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Cart</title>
+
+        <!-- <link rel="shortcut icon" type="image/x-icon" href="image/logo-name-img/logo.png" /> -->
+        <link rel="stylesheet" type="text/css" href="/public/css/Css_Reset.css">
+        <link rel="stylesheet" type="text/css" href="/public/css/style_common.css">
+        <link rel="stylesheet" type="text/css" href="/public/css/style_cart_checkout.css">
+
+        <!-- fonts used -->
+        <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+        <!-- search icon -->
+        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'
+              integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+
+        <script src="/public/js/client/jquery-3.3.1.min.js"></script>
+
+
+    </head>
+
+    <body>
+        <!-- Example only, please remove this once you are done reviewing the example -->
+        <div id="removeThis">
+            <%
+            let carts = locals.carts;
+            if (carts) { 
+                carts.forEach(cart => {
+            %>
+                    <ul>
+                        <li>Name: <%= cart.product.name %></li> </br>
+                        <li>Description: <%= cart.product.description %></li> </br>
+                        <li>Price: <%= cart.product.price %></li> </br>
+                        <li>Available Quantity: <%= cart.product.availableQuantity %></li> </br>
+                        <li>Points Obtainable: <%= cart.product.pointsObtainable %></li> </br>
+                        <li>Image Path: <img src="<%= cart.product.imagePath %>" height="100" width="100" /></li> </br>
+                        <li>Quantity: <%= cart.quantity %></li> </br>
+                    </ul>
+            <%
+                });
+            }
+            %>
+            <div><a href="/checkout">Checkout</a></div>
+        </div>
+
+        <div id="wrapper">
+            <header>
+                <section id="header">
+                    <i class="fas fa-search fa-sm"></i>
+                    <form autocomplete="off" action="search.php" id="search" class="alignleft">
+                        <div class="autocomplete" style="width:300px;">
+                            <input id="myInput" type="text" name="valueToSearch" placeholder="Search" size="40"
+                                   maxlength="128" class="submit_on_enter">
+                        </div>
+
+                        <input type="submit" name="search" value="Search"
+                               style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
+                               hidefocus="true" tabindex="-1">
+
+                        <br><br>
+                    </form>
+                </section>
+
+                <!-- <div class="logo_name" onclick="window.location.href='index.ejs'"></div> -->
+                <div class="logo_name" onclick="window.location.href='/'"> LITTLE BAKERY</div>
+
+            </header>
+
+            <nav class="navbar">
+                <ul>
+                    <!-- The top-level route defined in route.js + The sub-route defined in other file = The complete route to put inside 'href'. -->
+                    <li class="item"><a href="/category" class="nav-link ">Category</a></li>
+                    <!-- <li class="item"><a href="#" class="nav-link">Catering</a></li> -->
+                    <li class="item"><a href="#" class="nav-link">About</a></li>
+                    <li class="item"><a href="#" class="nav-link">Contact</a></li>
+                    <li class="item active"><a href="/login" class="nav-link">Login/Register</a></li>
+                    <li class="item cart">
+                        <a href="#" class="nav-link">Cart
+                            <span class="cartcount">0</span>
+                            <span class="cartamount">SGD $0.00</span>
+                        </a>
+                        <!-- need to get item count and amount from db cart eventually -->
+    
+                    </li>
+                    <!-- <li class="item" id="search"><a href="search.php" class="nav-link">Search</a></li> -->
+                </ul>
+                <hr id="divider">
+            </nav>
+
+
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">Shopping Cart</li>
+            </ul>
+
+            <section id="cartContainer">                
+
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th class="item" colspan="3">Product(s)</th>
+                            <th class="qty">Qty.</th>
+                            <th class="total">Total</th> 
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+
+                        <!-- TODO: loop cart item from cart table -->
+                        <tr class="item">
+
+                            <td class="remove" data-label="Remove">
+                                <form action="#" method="post">
+                                    <button type="submit"  name="delete"  class="btn btn-success">
+                                        <i class="fas fa-times fa-lg"></i>
+                                    </button>
+
+
+                                    <input type="hidden" name="cid" value="cartId" />
+                                    <input type="hidden" name="pname" value="productName" /><br>
+
+                                </form>
+                            </td>
+
+                            <td class="image" data-label="PRODUCT(S)">
+<!--                                <a href="ProductDetails.php?id=<?php echo $oneCart["productID"]; ?>">-->
+                                <a href="#">
+                                    <img src="../public/images/cat/cookies/almong_flour_chocochip.jpg" width="200"/>
+                                </a>
+                            </td>
+
+                            <td class="desc" data-label="Product Information">
+                                <a href="#"> Almond Flour Chocolate Chip</a>
+
+                                <div class="visible-xs mobile-subtotal"><span class="uc-price" value="cost">SGD $2.50 </span></div>
+                            </td>
+
+                            <td class="qty" data-label="QTY.">
+
+                                <form action="updatecart.php" method="post">
+                                    <input type="hidden" name="cid" value="<?php echo $oneCart['cartID']?>" /><br>
+
+                                    <input name="newQty" type="number" min="1" value="1" max="" size="3" required/>                                
+                                    <input type="submit"  name="update"  class="updateBTN"
+                                           value="Update">
+
+
+                                </form>
+                            </td>
+
+                            <td class="price" data-label="TOTAL">
+                                <span class="uc-price" value="<?qty * cost ?>">SGD $2.50</span>
+                            </td> 
+                        </tr>
+<!--
+                        <?php $total = $oneCart['qty'] * $oneCart['ccost']; 
+$grandTotal = $grandTotal + $total;
+} 
+?>
+-->
+                        <tr class="item">
+                            <td colspan="5" class="subtotal">
+                                <span id="subtotal-title">Subtotal:</span> <span class="uc-price" value="">SGD $2.50</span>
+                            </td>
+                        </tr>
+
+                        <tr class="item">
+                            <td colspan="5" class="points">
+                                <span id="points-title">Points to be earned:</span> <span class="uc-price" value="">1</span>
+                            </td> 
+                        </tr>
+
+
+                    </tbody>
+                </table>
+
+                <div class="gst">incl. GST</div>
+
+                <div id="cart-buttons">
+
+                    <button  onclick="location.href='#'"  class="continueBTN" >Continue shopping</button>
+                    <button onclick="location.href='#'" class="checkoutBTN" >Checkout</button>
+
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+        <!-- <script>
+var close = document.getElementsByClassName("closebtn");
+var i;
+
+for (i = 0; i < close.length; i++) {
+close[i].onclick = function(){
+var div = this.parentElement;
+div.style.opacity = "0";
+setTimeout(function(){ div.style.display = "none"; }, 600);
+}
+}
+</script> -->
+
+    </body>
+
+</html>
