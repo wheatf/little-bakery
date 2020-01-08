@@ -19,14 +19,14 @@
 
 .productImg{
     /*    width: 50%;*/
-    max-width: 400px;
-    max-height: 400px;
+    max-width: 500px;
+    max-height: 500px;
 
 }
 .productImg .img{
     /*        max-width: 70%;*/
-    max-width: 400px;
-    max-height: 400px;
+    max-width: 500px;
+    max-height: 500px;
 }
 
 .productDetails{
@@ -104,22 +104,24 @@
 
 }
 
-input[name=qty]{
+input[name=quantity]{
     margin: 5px;
     padding: 8px;
-    width: 15%;
+    width: 8%;
 }
 
 
 
-#addCartAndQuantityFlex{
-/*
+/* #addCartAndQuantityFlex{
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-*/
 
 }
+
+#addCartAndQuantityFlex > div{
+    flex: 1;
+} */
 
 
 #addCartAndQuantityFlex > div{

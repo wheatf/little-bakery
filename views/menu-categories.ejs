@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Menu</title>
+        <title>Menu - All categories</title>
 
         <!-- <link rel="shortcut icon" type="image/x-icon" href="image/logo-name-img/logo.png" /> -->
         <link rel="stylesheet" type="text/css" href="/public/css/Css_Reset.css">
@@ -52,11 +52,11 @@
             <nav class="navbar">
                 <ul>
                     <!-- The top-level route defined in route.js + The sub-route defined in other file = The complete route to put inside 'href'. -->
-                    <li class="item"><a href="/category" class="nav-link ">Category</a></li>
+                    <li class="item active"><a href="/category" class="nav-link ">Categories</a></li>
                     <!-- <li class="item"><a href="#" class="nav-link">Catering</a></li> -->
                     <li class="item"><a href="#" class="nav-link">About</a></li>
                     <li class="item"><a href="#" class="nav-link">Contact</a></li>
-                    <li class="item active"><a href="/login" class="nav-link">Login/Register</a></li>
+                    <li class="item "><a href="/login" class="nav-link">Login/Register</a></li>
                     <li class="item cart">
                         <a href="#" class="nav-link">Cart
                             <span class="cartcount">0</span>
@@ -77,23 +77,29 @@
 
             <div class="flex-container">
 
-                <!-- TODO: need a loop to show all category from the db -->
-
+                <%
+                let categories = locals.categories;
+        
+                categories.forEach(category => {
+                %>
                 <figure class="category">
                     <div class="image">
-<!--                       
-<img src="image/<?php echo $row['productPicture']; ?>" onmouseover="this.src='image/<?php echo $row['productPicture2']; ?>';" onmouseout="this.src='image/<?php echo $row['productPicture']; ?>';" onclick="location.href='ProductDetails.php?id=<?php echo $row["productID"]; ?>';" style="cursor:pointer;" />-->
 
-                        <img src="../public/images/cat/cookies/chocochhip_cookie.jpg" 
-                             onclick="location.href='#'"
+                        <img src="<%=category.imagePath%>" 
+                            alt="<%=category.name%>"
+                             onclick="location.href='/category/<%=category.name.toLowerCase()%>'"
                              style="cursor:pointer;" />
 
-                        <a class="show-category" href="#" id="viewBtn">Cookies</a>
+                        <a class="show-category" href="/category/<%=category.name.toLowerCase()%>" id="viewBtn">                
+                            <%=category.name%>
+                        </a>
 
                     </div>
 
                 </figure>
-                     
+                <%
+            });
+            %>
 
             </div>
 

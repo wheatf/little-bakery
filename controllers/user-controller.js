@@ -320,6 +320,11 @@ module.exports = {
             // Redirect client to login.
             req.flash('success', 'Registration success! Please login with your username/email and password.');
             res.redirect('/login');
+
+            // res.redirect('/login?success=' + encodeURIComponent('Success_Msg'));
+
+
+
         }
     }
 }

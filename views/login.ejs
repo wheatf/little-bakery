@@ -22,7 +22,7 @@
         integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
 
     <script src="/public/js/client/jquery-3.3.1.min.js"></script>
-    
+
     <!-- show and hide password-->
     <script src="/public/js/client/validation.js"></script>
 
@@ -87,35 +87,20 @@
         </ul>
 
         <section class="login-reg-container" id="login-only-container">
-            <!-- 
-            <?php
-            // if login fail
-            if(isset($_GET['fail']))
-            {
+            <%
+            let message = getMessages().success;
 
-                echo '<div class="alert">
-                    <span class="closebtn">&times;</span>
-                    Incorrect email or password!
-                </div>';
-            }
-            ?>
+            if  (message != '') { %>        
 
-
-            <?php
-            // if reg success
-            if(isset($_GET['pass']))
-            {
-                echo '<div class="alert">
-                    <span class="closebtn">&times;</span>Register success! Please log in.
-
-                </div>';
-            }
-            ?> -->
-
+            <div class="alert">
+                <span class="closebtn">&times;</span>
+                <span class="alermsg"><%=message%></span>
+            </div>
+            <% } %>
 
             <form action="/login" method="POST" name="login" id="loginForm">
 
-                <label for="identification">Username/      
+                <label for="identification">Username/
                     Email Address:</label>
                 <!-- <input type="email" name="email" required> -->
 

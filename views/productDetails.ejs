@@ -26,22 +26,6 @@
     </head>
 
     <body>
-        <!-- Example only, please remove this once you are done reviewing the example -->
-        <section id="removeThis">
-            <% let product = locals.product; %> </br>
-            Name: <%= product.name %> </br>
-            Description: <%= product.description %> </br>
-            Price: <%= product.price %> </br>
-            Available Quantity: <%= product.availableQuantity %> </br>
-            Points Obtainable: <%= product.pointsObtainable %> </br>
-            Image: <img src="<%= product.imagePath %>" width="100" height="100" /> </br>
-            
-            <form action="/cart/add" method="POST">
-                <input type="hidden" name="productId" value="<%= product._id %>" />
-                Quantity: <input type="number" name="quantity" />
-                <button type="submit">Add to Cart</button>
-            </form>
-        </section>
 
         <div id="wrapper">
             <header>
@@ -87,49 +71,39 @@
                 <hr id="divider">
             </nav>
 
+
+            <% let product = locals.product; %> 
+            
             <ul class="breadcrumb">
                 <li><a href="/">Home</a></li>
-                <li><a href="/">Menu (By category) </a></li>
-                <li><a href="/">Cookies</a></li>
-
-
-                <!-- TODO: retrieve category name based on href clicked at menu.html -->
-                <li class="active">Almond Flour Chocolate Chip</li> 
+                <li><a href="/category">Menu (By category) </a></li>
+                <li><a href="/"><%= product.category.name %></a></li>
+                <li class="active"><%= product.name %></li> 
             </ul>
-
-
 
             <section id="productContainer">
                 <div class="productImg">
-                    <img name="img" class="img" src="../public/images/cat/cookies/almong_flour_chocochip.jpg" >
+                    <img name="img" class="img" src="<%= product.imagePath %>" >
                 </div>
 
                 <div class="productDetails">
-                    <h1>Almond Flour Chocolate Chip</h1>
-                    <p class="price">SGD $2.50</p>
-                    <p class="desc">Sweet almond flour together with bitter chocochip to balance and give....</p>
-                    <p class="stock">No. of stock remaining: 20</p>
+                    <h1><%= product.name %></h1>
+                    <p class="price">SGD $<%= product.price.toFixed(2) %></p>
+                    <p class="desc"><%= product.description %></p>
+                    <p class="stock">Available Quantity: <%= product.availableQuantity %></p>
+                    <p class="points">Points Obtainable: <%= product.pointsObtainable %></p>
 
 
-                    <form method="post" action="" class="addCartForm">
+                    <!-- TODO: make quantity input and add to cart side by side -->
+                    <form method="POST" action="/cart/add" class="addCartForm">
                         <div id="addCartAndQuantityFlex">
-
-                            <!-- TODO: max value will be based on qoh from db -->
                             <div>
-                                <label>Quantity:</label><input type="number" name="qty" size="2" min="1" max="" required /><br />
+                                <input type="hidden" name="productId" value="<%= product._id %>" />
+                                <label>Quantity:</label><input type="number" name="quantity" size="2" min="1" max="<%= product.availableQuantity %>" value="1" required /><br />
                             </div>
                             <div>
-                                <input type="hidden" name="pname" value="productName" />
-                                <input type="hidden" name="pprice" value="productprice" />
-                                <input type="hidden" name="pimg" value="productimg" />
-                                <input type="hidden" name="pid" value="productid"/>
-
-                                <!--                            <button name="submit" class="cartBtn" id="myBtn">Add to Cart</button>-->
-
-                                <!--                            
-<button class="soldoutBTN" >Sold Out</button>
--->
-
+                                <!-- TODO: if available quantity is 0, add to cart button will be disabled/hidden
+                                            and display "sold out" text -->
                                 <input type="submit" name="submit" value="Add to Cart">
                             </div>
                         </div>
@@ -138,7 +112,6 @@
             </section>
 
         </div>
-
 
     </body>
 

@@ -5,10 +5,6 @@ const orderDatastore = require('../datastores/order-datastore');
  */
 const crypto = require('crypto');
 /**
- * Provides functions for hashing.
- */
-const crypto = require('crypto');
-/**
  * The object modeling tool for working with MongoDB.
  */
 const mongoose = require('mongoose');
@@ -29,8 +25,8 @@ const userSchema = new Schema({
     username: String,
     password: {
         type: String,
-        get: function(password) { // Calls the following method when retrieving the password.
-            return Buffer.from(password, 'base64'); // Decode Base64; the encoding used for storing password in the database.
+        set: function(password) { // Calls the following method when retrieving the password.
+            return crypto.createHash('sha256').update(password).digest('base64');
         }
     }
 });

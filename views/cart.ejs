@@ -27,28 +27,7 @@
     </head>
 
     <body>
-        <!-- Example only, please remove this once you are done reviewing the example -->
-        <div id="removeThis">
-            <%
-            let carts = locals.carts;
-            if (carts) { 
-                carts.forEach(cart => {
-            %>
-                    <ul>
-                        <li>Name: <%= cart.product.name %></li> </br>
-                        <li>Description: <%= cart.product.description %></li> </br>
-                        <li>Price: <%= cart.product.price %></li> </br>
-                        <li>Available Quantity: <%= cart.product.availableQuantity %></li> </br>
-                        <li>Points Obtainable: <%= cart.product.pointsObtainable %></li> </br>
-                        <li>Image Path: <img src="<%= cart.product.imagePath %>" height="100" width="100" /></li> </br>
-                        <li>Quantity: <%= cart.quantity %></li> </br>
-                    </ul>
-            <%
-                });
-            }
-            %>
-            <div><a href="/checkout">Checkout</a></div>
-        </div>
+ 
 
         <div id="wrapper">
             <header>
@@ -114,7 +93,15 @@
 
                     <tbody>
 
-                        <!-- TODO: loop cart item from cart table -->
+                        <%
+                        let total = 0.0
+                        let subtotal = 0.0;
+                        let totalpoints = 0;
+
+                        let carts = locals.carts;
+                        if (carts) { 
+                            carts.forEach(cart => {
+                        %>
                         <tr class="item">
 
                             <td class="remove" data-label="Remove">
@@ -131,50 +118,60 @@
                             </td>
 
                             <td class="image" data-label="PRODUCT(S)">
-<!--                                <a href="ProductDetails.php?id=<?php echo $oneCart["productID"]; ?>">-->
-                                <a href="#">
-                                    <img src="../public/images/cat/cookies/almong_flour_chocochip.jpg" width="200"/>
+                                <a href="/product/<%=cart.product._id%>">
+                                    <img src="<%= cart.product.imagePath %>" width="200"/>
                                 </a>
                             </td>
 
                             <td class="desc" data-label="Product Information">
-                                <a href="#"> Almond Flour Chocolate Chip</a>
+                                <a href="#"><%= cart.product.name %></a>
 
-                                <div class="visible-xs mobile-subtotal"><span class="uc-price" value="cost">SGD $2.50 </span></div>
+                                <div class="visible-xs mobile-subtotal"><span class="uc-price" value="cost">SGD $<%= cart.product.price.toFixed(2) %> </span></div>
+                                <div class="visible-xs mobile-subtotal"><span class="uc-price" value="cost">Points: <%= cart.product.pointsObtainable %> %> </span></div>
+
                             </td>
 
                             <td class="qty" data-label="QTY.">
 
                                 <form action="updatecart.php" method="post">
-                                    <input type="hidden" name="cid" value="<?php echo $oneCart['cartID']?>" /><br>
-
-                                    <input name="newQty" type="number" min="1" value="1" max="" size="3" required/>                                
+                                    <input name="newQty" type="number" min="1" value="<%= cart.quantity %>" max="" size="3" required/>                                
                                     <input type="submit"  name="update"  class="updateBTN"
                                            value="Update">
 
 
                                 </form>
                             </td>
+                            <%
+
+                            total = (cart.quantity * cart.price);
+                            subtotal = subtotal + total;
+                            totalpoints = totalpoints + (cart.product.pointsObtainable * cart.quantity);
+
+                            %>
 
                             <td class="price" data-label="TOTAL">
-                                <span class="uc-price" value="<?qty * cost ?>">SGD $2.50</span>
+                                <span class="uc-price" value="<?qty * cost ?>">SGD $<%=total%></span>
                             </td> 
                         </tr>
-<!--
-                        <?php $total = $oneCart['qty'] * $oneCart['ccost']; 
-$grandTotal = $grandTotal + $total;
-} 
-?>
--->
+
+                        <%
+
+
+                    });
+                }
+
+
+                %>
+
                         <tr class="item">
                             <td colspan="5" class="subtotal">
-                                <span id="subtotal-title">Subtotal:</span> <span class="uc-price" value="">SGD $2.50</span>
+                                <span id="subtotal-title">Subtotal:</span> <span class="uc-price" value="">SGD $<%=subtotal.toFixed(2)%></span>
                             </td>
                         </tr>
 
                         <tr class="item">
                             <td colspan="5" class="points">
-                                <span id="points-title">Points to be earned:</span> <span class="uc-price" value="">1</span>
+                                <span id="points-title">Total Points to be earned:</span> <span class="uc-price" value=""><%=totalpoints%></span>
                             </td> 
                         </tr>
 
@@ -186,8 +183,8 @@ $grandTotal = $grandTotal + $total;
 
                 <div id="cart-buttons">
 
-                    <button  onclick="location.href='#'"  class="continueBTN" >Continue shopping</button>
-                    <button onclick="location.href='#'" class="checkoutBTN" >Checkout</button>
+                    <button  onclick="location.href='/category'"  class="continueBTN" >Continue shopping</button>
+                    <button onclick="location.href='/checkout'" class="checkoutBTN" >Checkout</button>
 
 
                 </div>

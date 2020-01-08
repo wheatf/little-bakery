@@ -12,7 +12,7 @@ module.exports = {
     categoriesPage: async function(req, res) {
         let categories = await categoryDatastore.findAll();
 
-        res.render('categories', {
+        res.render('menu-categories', {
             categories: categories
         });
     },
@@ -28,7 +28,7 @@ module.exports = {
 
         let products = await productDatastore.findByCategory(category);
 
-        res.render('category', {
+        res.render('menu-category-product', {
             category: category,
             products: products
         });
