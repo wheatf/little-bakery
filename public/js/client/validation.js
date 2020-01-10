@@ -19,14 +19,14 @@ $(document).ready(function () {
         $("#showPass i").toggle();
     });
 
-    $(".alert").hide();
+    // $(".alert").hide();
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const myParam = urlParams.get('success');
-    if(myParam == "Success_Msg") {
-        $('.alert').show();
-        $('.alermsg').html('Registration success! <br> Please login with your username/email and password.');
-    }
+    // const urlParams = new URLSearchParams(window.location.search);
+    // const myParam = urlParams.get('success');
+    // if(myParam == "Success_Msg") {
+    //     $('.alert').show();
+    //     $('.alermsg').html('Registration success! <br> Please login with your username/email and password.');
+    // }
     
 
 

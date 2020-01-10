@@ -9,5 +9,10 @@ module.exports = {
         // Use res.render() to render .ejs files.
         // Express will start searching from the views directory, as stated in app.js.
         res.render('index');
+
+        // // make 'user' available to template
+        // res.render('index', {
+        //     session: req.session
+        // });
     }
 }

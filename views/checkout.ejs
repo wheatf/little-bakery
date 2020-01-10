@@ -1,29 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout</title>
-</head>
-<body>
-    <h1>Checkout</h1>
 
-    <% 
-    let carts = locals.carts;
-    if (carts) {
-        carts.forEach(cart => {
-    %>
-        <ul>
-            <li>Name: <%= cart.product.name %></li>
-            <li>Quantity: <%= cart.quantity %></li>
-        </ul>
-    <% 
-        });
-    }
-    %>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Cart</title>
 
-    <form action="/checkout" method="POST">
-        <button type="submit">Confirm Checkout</button>
-    </form>
-</body>
+        <!-- <link rel="shortcut icon" type="image/x-icon" href="image/logo-name-img/logo.png" /> -->
+        <link rel="stylesheet" type="text/css" href="/public/css/Css_Reset.css">
+        <link rel="stylesheet" type="text/css" href="/public/css/style_common.css">
+        <link rel="stylesheet" type="text/css" href="/public/css/style_cart_checkout.css">
+
+        <!-- fonts used -->
+        <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+        <!-- search icon -->
+        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'
+              integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+
+        <script src="/public/js/client/jquery-3.3.1.min.js"></script>
+
+
+    </head>
+
+    <body>
+ 
+
+        <div id="wrapper">
+            <header>
+                <section id="header">
+    
+                    <section id="search">
+                        <i class="fas fa-search fa-sm"></i>
+                        <form autocomplete="off" action="#" id="search" class="alignleft">
+                            <div class="autocomplete" style="width:300px;">
+                                <input id="myInput" type="text" name="valueToSearch" placeholder="Search" size="40"
+                                    maxlength="128" class="submit_on_enter">
+                            </div>
+    
+                            <input type="submit" name="search" value="Search"
+                                style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
+                                hidefocus="true" tabindex="-1">
+    
+                            <br><br>
+                        </form>
+                    </section>
+    
+                    <section id="links">
+    
+                        <%
+    
+            
+                        let userId = locals.session.userId;
+                
+                        // Check if user is logged in or not.
+                        if (userId) { // is logged in
+                
+                        %>
+    
+                        <div class="acc-btn" onclick="window.location.href='/profile'" style="cursor:pointer;"><i
+                            class="fas fa-user "></i><a href="/profile" class="login"> My Account</a></div>
+
+                    <div class="login-btn" onclick="window.location.href='/logout'" style="cursor:pointer;"><i
+                            class="fas fa-sign-out-alt"></i><a href="/logout" class="login"> Logout</a></div>
+
+
+    
+    
+                        <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
+                            <i class="fas fa-shopping-cart ">
+                            </i>
+                            <span class="cartcount">0</span>
+                            <span class="cartamount">SGD $0.00</span>
+    
+    
+                        </div>
+    
+    
+                        <%
+    
+                    }else{ // not logged in
+            
+            %>
+    
+    
+                        <div class="login-btn" onclick="window.location.href='/login'" style="cursor:pointer;"><i
+                                class="fas fa-lock "></i><a href="/login" class="login"> Login / Register</a></div>
+    
+    
+                        <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
+                            <i class="fas fa-shopping-cart ">
+                            </i>
+                            <span class="cartcount">0</span>
+                            <span class="cartamount">SGD $0.00</span>
+    
+    
+                        </div>
+    
+                        <%
+                    }   
+                %>
+    
+                    </section>
+    
+                </section>
+    
+                <!-- <div class="logo_name" onclick="window.location.href='index.ejs'"></div> -->
+                <div class="logo_name" onclick="window.location.href='/'"> LITTLE BAKERY</div>
+    
+            </header>
+    
+            <nav class="navbar">
+                <ul>
+                    <li class="item"><a href="/" class="nav-link ">Home</a></li>
+                    <!-- The top-level route defined in route.js + The sub-route defined in other file = The complete route to put inside 'href'. -->
+                    <li class="item"><a href="/category" class="nav-link ">Category</a></li>
+                    <!-- <li class="item"><a href="#" class="nav-link">Catering</a></li> -->
+                    <li class="item"><a href="/about" class="nav-link">About</a></li>
+                    <li class="item"><a href="/contact" class="nav-link">Contact</a></li>
+                </ul>
+                <hr id="divider">
+            </nav>
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">Confirm Checkout</li>
+            </ul>
+
+            <section id="checkOutContainer">                
+
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th class="item" colspan="3">Product(s)</th>
+                            <th class="qty">Qty.</th>
+                            <th class="total">Total</th> 
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+
+                        <%
+                        let total = 0.0
+                        let subtotal = 0.0;
+                        let totalpoints = 0;
+
+                        let carts = locals.carts;
+                        if (carts) { 
+                            carts.forEach(cart => {
+                        %>
+                        <tr class="item">
+
+
+                            <td class="image" data-label="PRODUCT(S)">
+                                <a href="/product/<%=cart.product._id%>">
+                                    <img src="<%= cart.product.imagePath %>" width="200"/>
+                                </a>
+                            </td>
+
+                            <td class="desc" data-label="Product Information">
+                                <a href="#"><%= cart.product.name %></a>
+
+                                <div class="visible-xs mobile-price"><span class="uc-price" value="">SGD $<%= cart.product.price.toFixed(2) %> </span></div>
+                                <div class="visible-xs mobile-points"><span class="uc-price" value="">Points: <%= cart.product.pointsObtainable %> %> </span></div>
+                            </td>
+
+                            <td class="qty" data-label="QTY.">
+
+                                <!-- <input name="Qty" type="text" value="<%= cart.quantity %>" readonly/>                                 -->
+                                <span class="uc-qty" value="<%= cart.quantity %>"><%= cart.quantity %></span>
+
+
+                            </td>
+                            <%
+
+                            total = cart.quantity * cart.product.price;
+                            subtotal = subtotal + total;
+                            totalpoints = totalpoints + (cart.product.pointsObtainable * cart.quantity);
+
+                            %>
+
+                            <td class="price" data-label="TOTAL">
+                                <span class="uc-subtotal" value="<?qty * cost ?>">SGD $<%=total.toFixed(2)%></span>
+                            </td> 
+                        </tr>
+
+                        <%
+
+
+                    });
+                }
+
+
+                %>
+
+                        <tr class="item">
+                            <td colspan="5" class="subtotal">
+                                <span id="subtotal-title">Subtotal:</span> <span class="uc-price" value="">SGD $<%=subtotal.toFixed(2)%></span>
+                            </td>
+                        </tr>
+
+                        <tr class="item">
+                            <td colspan="5" class="points">
+                                <span id="points-title">Total Points to be earned:</span> <span class="uc-price" value=""><%=totalpoints%></span>
+                            </td> 
+                        </tr>
+
+
+                    </tbody>
+                </table>
+
+                <div class="gst">incl. GST</div>
+
+                <div id="checkout-buttons">
+
+                    <button  onclick="location.href='/cart'"  class="cancelBTN">Cancel</button>
+                    <!-- <button onclick="location.href='/checkout'" formmethod="POST" class="confirmBTN">Confirm</button> -->
+
+                    <form action="/checkout" method="POST">
+                        <button class="confirmBTN">Confirm Checkout</button>
+                    </form>
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+        <!-- <script>
+var close = document.getElementsByClassName("closebtn");
+var i;
+
+for (i = 0; i < close.length; i++) {
+close[i].onclick = function(){
+var div = this.parentElement;
+div.style.opacity = "0";
+setTimeout(function(){ div.style.display = "none"; }, 600);
+}
+}
+</script> -->
+
+    </body>
+
 </html>

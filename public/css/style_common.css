@@ -14,21 +14,31 @@ body a {
 /* ------ Header ---------- */
 #header {
     display: flex;
+    justify-content: space-between;
+    margin: 20px 0px;
+}
+
+section#search{
+    display: flex;
     justify-content: flex-start;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
-
-.fas{
-    color: black;
-    opacity: 0.8;
-    font-size: 16px;
-
+#links{
+    display: flex;
 }
 
-/* for display no. of items and total price in the cart so far */
+#links > div{
+    margin-right: 25px;
+}
+
 .fa-circle{
     color: lightcoral;
+}
+
+#header i{
+    font-size: 14px;
+    margin-top: 3px;
 }
 
 .cartcount {
@@ -42,22 +52,27 @@ body a {
     text-align: center;
     vertical-align: middle;
     white-space: nowrap;
+    margin-left: -10px;
 }
 
-#header i{
-    font-size: 16px;
+#cart{
+    cursor: pointer;
 }
 
-
-input[name=valueToSearch] {
+input[name=valueToSearch], #links a {
+    /*background-repeat: no-repeat;
+    background-position: 10px 10px; 
+    background-size: 18px 18px;*/
     border: none;
     font-size: 14px;
     font-family: 'Raleway', sans-serif;
-    padding-left: 5px; /* space from search icon */
-    background-color: transparent;
+    padding-left: 5px;
+    /* background-color: transparent; */
 }
 
-input[name=valueToSearch]::placeholder {
+
+input[name=valueToSearch]::placeholder, #links a {
+    font-family: 'Raleway', sans-serif;
     font-size: 14px;
     letter-spacing: 0.1em; /* tracking 100 => 100/1000 = 0.1em */
     color: black;
@@ -65,10 +80,19 @@ input[name=valueToSearch]::placeholder {
     opacity: 0.8;
 }
 
+#links a {
+    opacity: 1.0;
+    /* font-weight: 600; */
+
+}
+
 input[name=valueToSearch]:focus{
     outline-color: transparent;
     outline-style: none;
-}
+} 
+
+
+
 
 
 
@@ -201,4 +225,32 @@ ul.breadcrumb li.active a {
 }
 ul.breadcrumb li a:hover {
     text-decoration: underline;
+}
+
+
+
+/* ------ message boxes ---------- */
+.alert {
+    text-align: center;
+    padding: 10px;
+    border:1px solid lightcoral;
+    color: darksalmon;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 20px;
+}
+
+.alert .closebtn {
+    margin-left: 15px;
+    color: lightcoral;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.alert .closebtn:hover {
+    color: darkslategrey;
 }
