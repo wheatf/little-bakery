@@ -1,55 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Product Details</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Product Details</title>
 
-        <!-- <link rel="shortcut icon" type="image/x-icon" href="image/logo-name-img/logo.png" /> -->
-        <link rel="stylesheet" type="text/css" href="/public/css/Css_Reset.css">
-        <link rel="stylesheet" type="text/css" href="/public/css/style_common.css">
-        <link rel="stylesheet" type="text/css" href="/public/css/style_products.css">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="image/logo-name-img/logo.png" /> -->
+    <link rel="stylesheet" type="text/css" href="/public/css/Css_Reset.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/style_common.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/style_products.css">
 
-        <!-- fonts used -->
-        <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <!-- fonts used -->
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 
-        <!-- search icon -->
-        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+    <!-- search icon -->
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'
+        integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
 
-        <script src="/public/js/client/jquery-3.3.1.min.js"></script>
+    <script src="/public/js/client/jquery-3.3.1.min.js"></script>
 
 
-    </head>
+</head>
 
-    <body>
+<body>
 
-        <div id="wrapper">
-            <header>
-                <section id="header">
-    
-                    <section id="search">
-                        <i class="fas fa-search fa-sm"></i>
-                        <form autocomplete="off" action="#" id="search" class="alignleft">
-                            <div class="autocomplete" style="width:300px;">
-                                <input id="myInput" type="text" name="valueToSearch" placeholder="Search" size="40"
-                                    maxlength="128" class="submit_on_enter">
-                            </div>
-    
-                            <input type="submit" name="search" value="Search"
-                                style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
-                                hidefocus="true" tabindex="-1">
-    
-                            <br><br>
-                        </form>
-                    </section>
-    
-                    <section id="links">
-    
-                        <%
+    <div id="wrapper">
+        <header>
+            <section id="header">
+
+                <section id="search">
+                    <i class="fas fa-search fa-sm"></i>
+                    <form autocomplete="off" action="#" id="search" class="alignleft">
+                        <div class="autocomplete" style="width:300px;">
+                            <input id="myInput" type="text" name="valueToSearch" placeholder="Search" size="40"
+                                maxlength="128" class="submit_on_enter">
+                        </div>
+
+                        <input type="submit" name="search" value="Search"
+                            style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
+                            hidefocus="true" tabindex="-1">
+
+                        <br><br>
+                    </form>
+                </section>
+
+                <section id="links">
+
+                    <%
     
             
                         let userId = locals.session.userId;
@@ -58,115 +59,147 @@
                         if (userId) { // is logged in
                 
                         %>
-    
-    
-                        <div class="acc-btn" onclick="window.location.href='myAccount.php'" style="cursor:pointer;"><i
-                                class="fas fa-user "></i><a href="myAccount.php" class="login"> My Account</a></div>
-    
-                        <div class="login-btn" onclick="window.location.href='logout.php'" style="cursor:pointer;"><i
-                                class="fas fa-sign-out-alt"></i><a href="logout.php" class="login"> Logout</a></div>
-    
-    
-    
-    
-                        <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
-                            <i class="fas fa-shopping-cart ">
-                            </i>
-                            <span class="cartcount">0</span>
-                            <span class="cartamount">SGD $0.00</span>
-    
-    
-                        </div>
-    
-    
-                        <%
+
+
+                    <div class="acc-btn" onclick="window.location.href='myAccount.php'" style="cursor:pointer;"><i
+                            class="fas fa-user "></i><a href="myAccount.php" class="login"> My Account</a></div>
+
+                    <div class="login-btn" onclick="window.location.href='logout.php'" style="cursor:pointer;"><i
+                            class="fas fa-sign-out-alt"></i><a href="logout.php" class="login"> Logout</a></div>
+
+
+
+
+                    <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
+                        <i class="fas fa-shopping-cart ">
+                        </i>
+                        <span class="cartcount">0</span>
+                        <span class="cartamount">SGD $0.00</span>
+
+
+                    </div>
+
+
+                    <%
     
                     }else{ // not logged in
             
             %>
-    
-    
-                        <div class="login-btn" onclick="window.location.href='/login'" style="cursor:pointer;"><i
-                                class="fas fa-lock "></i><a href="/login" class="login"> Login / Register</a></div>
-    
-    
-                        <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
-                            <i class="fas fa-shopping-cart ">
-                            </i>
-                            <span class="cartcount">0</span>
-                            <span class="cartamount">SGD $0.00</span>
-    
-    
-                        </div>
-    
-                        <%
+
+
+                    <div class="login-btn" onclick="window.location.href='/login'" style="cursor:pointer;"><i
+                            class="fas fa-lock "></i><a href="/login" class="login"> Login / Register</a></div>
+
+
+                    <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
+                        <i class="fas fa-shopping-cart ">
+                        </i>
+                        <span class="cartcount">0</span>
+                        <span class="cartamount">SGD $0.00</span>
+
+
+                    </div>
+
+                    <%
                     }   
                 %>
-    
-                    </section>
-    
+
                 </section>
-    
-                <!-- <div class="logo_name" onclick="window.location.href='index.ejs'"></div> -->
-                <div class="logo_name" onclick="window.location.href='/'"> LITTLE BAKERY</div>
-    
-            </header>
-    
-            <nav class="navbar">
-                <ul>
-                    <li class="item"><a href="/" class="nav-link ">Home</a></li>
-                    <!-- The top-level route defined in route.js + The sub-route defined in other file = The complete route to put inside 'href'. -->
-                    <li class="item"><a href="/category" class="nav-link ">Category</a></li>
-                    <!-- <li class="item"><a href="#" class="nav-link">Catering</a></li> -->
-                    <li class="item"><a href="/about" class="nav-link">About</a></li>
-                    <li class="item"><a href="/contact" class="nav-link">Contact</a></li>
-                </ul>
-                <hr id="divider">
-            </nav>
 
-
-            
-            <% let product = locals.product; %> 
-            
-            <ul class="breadcrumb">
-                <li><a href="/">Home</a></li>
-                <li><a href="/category">Menu (By category) </a></li>
-                <li><a href="/"><%= product.category.name %></a></li>
-                <li class="active"><%= product.name %></li> 
-            </ul>
-
-            <section id="productContainer">
-                <div class="productImg">
-                    <img name="img" class="img" src="<%= product.imagePath %>" >
-                </div>
-
-                <div class="productDetails">
-                    <h1><%= product.name %></h1>
-                    <p class="price">SGD $<%= product.price.toFixed(2) %></p>
-                    <p class="desc"><%= product.description %></p>
-                    <p class="stock">Available Quantity: <%= product.availableQuantity %></p>
-                    <p class="points">Points Obtainable: <%= product.pointsObtainable %></p>
-
-
-                    <!-- TODO: make quantity input and add to cart side by side -->
-                    <form method="POST" action="/cart/add" class="addCartForm">
-                        <div id="addCartAndQuantityFlex">
-                            <div>
-                                <input type="hidden" name="productId" value="<%= product._id %>" />
-                                <label>Quantity:</label><input type="number" name="quantity" size="2" min="1" max="<%= product.availableQuantity %>" value="1" required /><br />
-                            </div>
-                            <div>
-                                <!-- TODO: if available quantity is 0, add to cart button will be disabled/hidden
-                                            and display "sold out" text -->
-                                <input type="submit" name="submit" value="Add to Cart">
-                            </div>
-                        </div>
-                    </form>
-                </div>
             </section>
 
-        </div>
+            <!-- <div class="logo_name" onclick="window.location.href='index.ejs'"></div> -->
+            <div class="logo_name" onclick="window.location.href='/'"> LITTLE BAKERY</div>
 
-    </body>
+        </header>
+
+        <nav class="navbar">
+            <ul>
+                <li class="item"><a href="/" class="nav-link ">Home</a></li>
+                <!-- The top-level route defined in route.js + The sub-route defined in other file = The complete route to put inside 'href'. -->
+                <li class="item"><a href="/category" class="nav-link ">Category</a></li>
+                <!-- <li class="item"><a href="#" class="nav-link">Catering</a></li> -->
+                <li class="item"><a href="/about" class="nav-link">About</a></li>
+                <li class="item"><a href="/contact" class="nav-link">Contact</a></li>
+            </ul>
+            <hr id="divider">
+        </nav>
+
+
+
+        <% let product = locals.product; %>
+
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li><a href="/category">Menu (By category) </a></li>
+            <li><a href="/"><%= product.category.name %></a></li>
+            <li class="active"><%= product.name %></li>
+        </ul>
+
+
+        <%
+        let addToCartSuccess = getMessages().success;
+
+        console.log("add To Cart Success msg:" + addToCartSuccess);
+
+        if  (addToCartSuccess) { %>
+
+        <div class="alert">
+            <span class="closebtn">&times;</span>
+            <span class="alermsg"><%=addToCartSuccess%></span>
+        </div>
+        <% } %>
+
+    
+
+        <section id="productContainer">
+            <div class="productImg">
+                <img name="img" class="img" src="<%= product.imagePath %>">
+            </div>
+
+            <div class="productDetails">
+                <h1><%= product.name %></h1>
+                <p class="price">SGD $<%= product.price.toFixed(2) %></p>
+                <p class="desc"><%= product.description %></p>
+                <p class="stock">Available Quantity: <%= product.availableQuantity %></p>
+                <p class="points">Points Obtainable: <%= product.pointsObtainable %></p>
+
+
+                <!-- TODO: make quantity input and add to cart side by side -->
+                <form method="POST" action="/cart/add" class="addCartForm">
+                    <div id="addCartAndQuantityFlex">
+                        <div>
+                            <input type="hidden" name="productName" value="<%= product.name %>" />
+                            <input type="hidden" name="productId" value="<%= product._id %>" />
+                            <label>Quantity:</label><input type="number" name="quantity" size="2" min="1"
+                                max="<%= product.availableQuantity %>" value="1" required /><br />
+                        </div>
+                        <div>
+                            <!-- TODO: if available quantity is 0, add to cart button will be disabled/hidden
+                                            and display "sold out" text -->
+                            <input type="submit" name="submit" value="Add to Cart">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        var close = document.getElementsByClassName("closebtn");
+        var i;
+
+        for (i = 0; i < close.length; i++) {
+            close[i].onclick = function () {
+                var div = this.parentElement;
+                div.style.opacity = "0";
+                setTimeout(function () { div.style.display = "none"; }, 600);
+            }
+        }
+    </script>
+
+
+</body>
 
 </html>

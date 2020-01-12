@@ -161,17 +161,17 @@
                                 </a>
                             </td>
 
-                            <td class="desc" data-label="Product Information">
+                            <td class="desc"  colspan="2" data-label="Product Information">
                                 <a href="#"><%= cart.product.name %></a>
 
                                 <div class="visible-xs mobile-price"><span class="uc-price" value="">SGD $<%= cart.product.price.toFixed(2) %> </span></div>
                                 <div class="visible-xs mobile-points"><span class="uc-price" value="">Points: <%= cart.product.pointsObtainable %> %> </span></div>
                             </td>
 
-                            <td class="qty" data-label="QTY.">
+                            <td class="qty" id="checkout-qty" data-label="QTY.">
 
                                 <!-- <input name="Qty" type="text" value="<%= cart.quantity %>" readonly/>                                 -->
-                                <span class="uc-qty" value="<%= cart.quantity %>"><%= cart.quantity %></span>
+                                <span class="uc-qty" value=""><%= cart.quantity %></span>
 
 
                             </td>
@@ -184,7 +184,7 @@
                             %>
 
                             <td class="price" data-label="TOTAL">
-                                <span class="uc-subtotal" value="<?qty * cost ?>">SGD $<%=total.toFixed(2)%></span>
+                                <span class="uc-subtotal" value="">SGD $<%=total.toFixed(2)%></span>
                             </td> 
                         </tr>
 

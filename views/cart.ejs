@@ -72,7 +72,6 @@
                         <i class="fas fa-shopping-cart ">
                         </i>
 
-                        <!-- TODO: display based on session[for non login user]-->
                         <!-- TODO: display based on carts[for already login user]-->
                         <span class="cartcount">0</span>
                         <span class="cartamount">SGD $0.00</span>
@@ -95,6 +94,7 @@
                     <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
                         <i class="fas fa-shopping-cart ">
                         </i>
+                        <!-- TODO: display based on session[for non login user]-->
                         <span class="cartcount">0</span>
                         <span class="cartamount">SGD $0.00</span>
 
@@ -102,6 +102,8 @@
                     </div>
 
                     <%
+
+                
                     }   
                 %>
 
@@ -167,11 +169,7 @@
                                 <button type="submit" name="delete" class="btn btn-success">
                                     <i class="fas fa-times fa-lg"></i>
                                 </button>
-
-
-                                <input type="hidden" name="cid" value="cartId" />
-                                <input type="hidden" name="pname" value="productName" /><br>
-
+                                <br>
                             </form>
                         </td>
 
@@ -269,18 +267,6 @@
 
     </div>
 
-    <!-- <script>
-var close = document.getElementsByClassName("closebtn");
-var i;
-
-for (i = 0; i < close.length; i++) {
-close[i].onclick = function(){
-var div = this.parentElement;
-div.style.opacity = "0";
-setTimeout(function(){ div.style.display = "none"; }, 600);
-}
-}
-</script> -->
 
 </body>
 

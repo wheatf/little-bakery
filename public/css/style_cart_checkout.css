@@ -52,8 +52,6 @@ td.remove button{
     -webkit-border-radius: 0;
     padding: 0;
     outline: none;
-    color: #fff;
-    background-color: transparent;
     width: 20px;
     height: 20px;
     font-size: 14px;
@@ -63,6 +61,9 @@ td.remove button{
     font-weight: 400;
     -webkit-appearance: none;
     cursor: pointer;
+    color: black;
+    opacity: 0.8;
+    background-color: transparent;
 }
 
 td.image{
@@ -119,6 +120,7 @@ td.qty form input[name=update]:hover
     border: 2px solid #edc2bd;
 
 }
+
 
 td.price {
     padding-right: 0.5em;
@@ -190,7 +192,7 @@ td.price {
     border: 1px solid #f6e3e1;
     /* display: inline-block; */
     font-family: inherit;
-    width: 15%;
+    /* width: 15%; */
     box-sizing:border-box;
     background-color: #edc2bd;
     color: black;
@@ -205,7 +207,7 @@ td.price {
     border: 1px solid #f6e3e1;
     /* display: inline-block; */
     font-family: inherit;
-    width: 15%;
+    /* width: 15%; */
     box-sizing:border-box;
     background-color: #edc2bd;
     color: black;
