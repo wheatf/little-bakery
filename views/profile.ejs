@@ -1,26 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-</head>
-<body>
-    <h1>Profile Page</h1>
-    
-    Name: <%= user.fullname %></br>
-    Email: <%= user.email %></br>
-    Address: <%= user.address %></br>
-    Mobile: <%= user.mobile %></br>
-    Points Earned: <%= pointsEarned %>
-
-    <a href="/profile/edit">Edit Profile</a>
-    <a href="/profile/order-history">Order History</a>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
 
     <head>
         <meta charset="UTF-8">
@@ -134,7 +113,8 @@
                     
                     <tr>
                         <td></td>
-                        <td><input type="submit" name="submit" value="Edit Profile"></td>
+                        <!-- <td><input type="submit" name="submit" value="Edit Profile"></td> -->
+                       <td><button id = "profileBTN" onclick="location.href='/profile/edit'" >EditProfile</button></td>
                     </tr>
                     
                 </table>

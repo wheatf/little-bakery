@@ -1,28 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>History</title>
+
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="image/logo-name-img/logo.png" /> -->
+    <link rel="stylesheet" type="text/css" href="/public/css/Css_Reset.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/style_common.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/style_odetails.css">
+
+    <!-- fonts used -->
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+    <!-- search icon -->
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'
+        integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+
+    <script src="/public/js/client/jquery-3.3.1.min.js"></script>
+
+
 </head>
+
 <body>
-    <h1>Order History</h1>
-    <% 
-    let orders = locals.orders;
-    orders.forEach(order => {
-        let totalAmount = 0;
-        order.orderDetails.forEach(orderDetail => {
-            totalAmount += orderDetail.product.price * orderDetail.quantity;
-    %>
-        <p>
+    <div id="wrapper">
+        <header>
+            <section id="header">
+                <i class="fas fa-search fa-sm"></i>
+                <form autocomplete="off" action="search.php" id="search" class="alignleft">
+                    <div class="autocomplete" style="width:300px;">
+                        <input id="myInput" type="text" name="valueToSearch" placeholder="Search" size="40"
+                            maxlength="128" class="submit_on_enter">
+                    </div>
+
+                    <input type="submit" name="search" value="Search"
+                        style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
+                        hidefocus="true" tabindex="-1">
+
+                    <br><br>
+                </form>
+            </section>
+
+            <!-- <div class="logo_name" onclick="window.location.href='index.ejs'"></div> -->
+            <div class="logo_name" onclick="window.location.href='/'"> LITTLE BAKERY</div>
+
+        </header>
+
+        <nav class="navbar">
             <ul>
-                <li>Ordered At: <%= order.createdAt %></li>
-                <li>Total Amount: <%= totalAmount %></li>
-                <li><a href="/profile/order-history/<%=order._id%>">View ordered products</a></li>
+                <li class="item"><a href="#" class="nav-link ">Menu</a></li>
+                <li class="item"><a href="#" class="nav-link">Catering</a></li>
+                <li class="item"><a href="#" class="nav-link">About</a></li>
+                <li class="item"><a href="#" class="nav-link">Contact</a></li>
+                <li class="item cart">
+                    <a href="#" class="nav-link">Cart
+                        <span class="cartcount">0</span>
+                        <span class="cartamount">SGD $0.00</span>
+                    </a>
+                    <!-- need to get item count and amount from db cart eventually -->
+
+                </li>
+                <li class="item active"><a href="/login" class="nav-link">Login/Register</a></li>
+                <!-- <li class="item" id="search"><a href="search.php" class="nav-link">Search</a></li> -->
             </ul>
-        </p>
-    <%
-        });
-    }); %>
+            <hr id="divider">
+        </nav>
+
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li><a href="/">Menu (By category) </a></li>
+            <li><a href="/">Profile</a></li>
+
+
+            <!-- TODO: retrieve category name based on href clicked at menu.html -->
+            <li class="active">Order History</li>
+        </ul>
+
+        <!-- <h1>Order History</h1> -->
+
+
+        <section id="ordersContainer">
+
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th class="item" colspan="2">Product(s) </th>
+                        <th class="qty">Qty.</th>
+                        <th class="total">Total</th>
+                    </tr>
+                </thead>
+
+
+                <tbody>
+
+                    <% 
+        let orders = locals.orders;
+        orders.forEach(order => {
+            let totalAmount = 0;
+            order.orderDetails.forEach(orderDetail => {
+                totalAmount += orderDetail.product.price * orderDetail.quantity;
+        %>
+
+
+                    <tr class="item">
+
+                        <td class="image">
+                            <img name="img" class="img" src="<%= orderDetail.product.imagePath %>">
+
+                        </td>
+
+                        <td class="name">
+                            <%= orderDetail.product.name %>
+
+
+                        </td>
+
+                        <td class="qty">
+                            <%= orderDetail.quantity %>
+
+                        </td>
+
+
+                        <td class="price">
+                            <%= orderDetail.quantity * orderDetail.product.price %>
+
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td class="date">
+                            Ordered At: <%= order.createdAt %>
+                        </td>
+                    </tr>
+                    <%
+                    });
+                }); %>
+
+                </tbody>
+            </table>
+            <button onclick="location.href='/profile'" class="backBTN">Back</button>
+        </section>
+
+
+
+
+
+    </div>
 </body>
+
 </html>
