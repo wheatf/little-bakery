@@ -48,8 +48,8 @@ td.remove{
 
 td.remove button{
     border: none;
-    -moz-border-radius: 0;
-    -webkit-border-radius: 0;
+    /* -moz-border-radius: 0; */
+    /* -webkit-border-radius: 0; */
     padding: 0;
     outline: none;
     width: 20px;
@@ -94,7 +94,7 @@ td.qty form input[name=newQty]{
     background-color: #fcf7f3;
     border-radius: 5px;    
     border: 1px solid #f6e3e1;
-    display: inline-block;
+    /* display: inline-block; */
     float: left;
     font-family: inherit;
     width:20%;
