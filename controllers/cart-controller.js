@@ -33,6 +33,7 @@ module.exports = {
     
     add: async function(req, res) {
         let quantity = req.body.quantity;
+        let productName = req.body.productName;
         let productId = req.body.productId;
         let product = await productDatastore.find(productId);
 
@@ -77,10 +78,16 @@ module.exports = {
                 req.session.cart = cart;
             }
 
+            // res.redirect('/product/' + productId);
+
+            req.flash('success', productName + ' added into your shopping cart.');
             res.redirect('/product/' + productId);
+
+
         } else {
             // Product not found, user must have tempered with the hidden input.
             res.redirect('/category')
         }
     }
 }
+

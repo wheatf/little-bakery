@@ -261,7 +261,8 @@ module.exports = {
                 identification: identification
                 // By convention, password isn't sent back since the user is unable to see the password in plain text. This means he will end up retyping the password again.
                 // password: password
-            });
+            }
+            );
         }
     },
 
@@ -320,11 +321,6 @@ module.exports = {
             // Redirect client to login.
             req.flash('success', 'Registration success! Please login with your username/email and password.');
             res.redirect('/login');
-
-            // res.redirect('/login?success=' + encodeURIComponent('Success_Msg'));
-
-
-
         }
     }
 }

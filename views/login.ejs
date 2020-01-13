@@ -33,19 +33,81 @@
     <div id="wrapper">
         <header>
             <section id="header">
-                <i class="fas fa-search fa-sm"></i>
-                <form autocomplete="off" action="search.php" id="search" class="alignleft">
-                    <div class="autocomplete" style="width:300px;">
-                        <input id="myInput" type="text" name="valueToSearch" placeholder="Search" size="40"
-                            maxlength="128" class="submit_on_enter">
+
+                <section id="search">
+                    <i class="fas fa-search fa-sm"></i>
+                    <form autocomplete="off" action="#" id="search" class="alignleft">
+                        <div class="autocomplete" style="width:300px;">
+                            <input id="myInput" type="text" name="valueToSearch" placeholder="Search" size="40"
+                                maxlength="128" class="submit_on_enter">
+                        </div>
+
+                        <input type="submit" name="search" value="Search"
+                            style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
+                            hidefocus="true" tabindex="-1">
+
+                        <br><br>
+                    </form>
+                </section>
+
+                <section id="links">
+
+                    <%
+
+        
+                    let userId = locals.session.userId;
+            
+                    // Check if user is logged in or not.
+                    if (userId) { // is logged in
+            
+                    %>
+
+
+                    <div class="acc-btn" onclick="window.location.href='/profile'" style="cursor:pointer;"><i
+                        class="fas fa-user "></i><a href="/profile" class="login"> My Account</a></div>
+
+                <div class="login-btn" onclick="window.location.href='/logout'" style="cursor:pointer;"><i
+                        class="fas fa-sign-out-alt"></i><a href="/logout" class="login"> Logout</a></div>
+
+
+
+
+                    <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
+                        <i class="fas fa-shopping-cart ">
+                        </i>
+                        <span class="cartcount">0</span>
+                        <span class="cartamount">SGD $0.00</span>
+
+
                     </div>
 
-                    <input type="submit" name="search" value="Search"
-                        style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
-                        hidefocus="true" tabindex="-1">
 
-                    <br><br>
-                </form>
+                    <%
+
+                }else{ // not logged in
+        
+        %>
+
+
+                    <div class="login-btn" onclick="window.location.href='/login'" style="cursor:pointer;"><i
+                            class="fas fa-lock "></i><a href="/login" class="login"> Login / Register</a></div>
+
+
+                    <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
+                        <i class="fas fa-shopping-cart ">
+                        </i>
+                        <span class="cartcount">0</span>
+                        <span class="cartamount">SGD $0.00</span>
+
+
+                    </div>
+
+                    <%
+                }   
+            %>
+
+                </section>
+
             </section>
 
             <!-- <div class="logo_name" onclick="window.location.href='index.ejs'"></div> -->
@@ -55,21 +117,12 @@
 
         <nav class="navbar">
             <ul>
+                <li class="item"><a href="/" class="nav-link ">Home</a></li>
                 <!-- The top-level route defined in route.js + The sub-route defined in other file = The complete route to put inside 'href'. -->
                 <li class="item"><a href="/category" class="nav-link ">Category</a></li>
                 <!-- <li class="item"><a href="#" class="nav-link">Catering</a></li> -->
-                <li class="item"><a href="#" class="nav-link">About</a></li>
-                <li class="item"><a href="#" class="nav-link">Contact</a></li>
-                <li class="item active"><a href="/login" class="nav-link">Login/Register</a></li>
-                <li class="item cart">
-                    <a href="#" class="nav-link">Cart
-                        <span class="cartcount">0</span>
-                        <span class="cartamount">SGD $0.00</span>
-                    </a>
-                    <!-- need to get item count and amount from db cart eventually -->
-
-                </li>
-                <!-- <li class="item" id="search"><a href="search.php" class="nav-link">Search</a></li> -->
+                <li class="item"><a href="/about" class="nav-link">About</a></li>
+                <li class="item"><a href="/contact" class="nav-link">Contact</a></li>
             </ul>
             <hr id="divider">
         </nav>
@@ -88,15 +141,32 @@
 
         <section class="login-reg-container" id="login-only-container">
             <%
-            let message = getMessages().success;
+            let regSuccess = getMessages().success;
+            let loginFail = getMessages().error;
 
-            if  (message != '') { %>        
+            console.log("reg success" + regSuccess);
+            console.log("login fail " + loginFail);
+
+            if  (regSuccess) { %>
 
             <div class="alert">
                 <span class="closebtn">&times;</span>
-                <span class="alermsg"><%=message%></span>
+                <span class="alermsg"><%=regSuccess%></span>
             </div>
             <% } %>
+
+            <%
+            
+                if(loginFail){
+
+                %>
+
+                <div class="alert">
+                    <span class="closebtn">&times;</span>
+                    <span class="alermsg"><%=loginFail%></span>
+                </div>
+                <% }
+                %>
 
             <form action="/login" method="POST" name="login" id="loginForm">
 
@@ -104,9 +174,8 @@
                     Email Address:</label>
                 <!-- <input type="email" name="email" required> -->
 
-                <!-- Values passed by the server are stored in the locals object. If the attribute doesn't exists, Express will send back an error instead. -->
-                <!-- Check if attribute exists by using 'locals.attribute || default_value'. -->
-                <input type="text" id="identification" name="identification" value="<%=locals.identification || ''%>" />
+                <!-- Values passed by the server are stored in the locals object. -->
+                <input type="text" id="identification" name="identification" value="<%=locals.identification%>" />
 
                 <label>Password:</label><input type="password" name="pw" id="pw-field" class="pw" required>
                 <span id="showPass">
@@ -123,7 +192,7 @@
 
     </div>
 
-    <!-- <script>
+    <script>
         var close = document.getElementsByClassName("closebtn");
         var i;
 
@@ -134,7 +203,7 @@
                 setTimeout(function(){ div.style.display = "none"; }, 600);
             }
         }
-    </script> -->
+    </script>
 
 </body>
 

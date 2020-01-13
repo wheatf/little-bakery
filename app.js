@@ -75,6 +75,12 @@ app.use(session({
     cookie: {maxAge: cookieMaxAge}
 }));
 
+// Middleware to allow all '.ejs' files to access session
+app.use(function(req, res, next){
+    res.locals.session = req.session;
+    next();
+});
+
 /**
  * Parse URL encoded data sent using HTTP POST requests, such as from a form.
  */
