@@ -80,7 +80,7 @@ module.exports = {
 
             // res.redirect('/product/' + productId);
 
-            req.flash('success', productName + ' added into your shopping cart.');
+            req.flash('success', ' ' + productName + ' added into your shopping cart.');
             res.redirect('/product/' + productId);
 
 

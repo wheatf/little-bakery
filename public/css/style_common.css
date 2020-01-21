@@ -255,3 +255,11 @@ ul.breadcrumb li a:hover {
 .alert .closebtn:hover {
     color: darkslategrey;
 }
+
+span.alertmsg{
+    margin: 5px auto;
+    line-height: 1.5em;
+    /* border: 1px solid red; */
+    /* text-align: left; */
+
+}

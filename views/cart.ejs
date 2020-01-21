@@ -142,7 +142,9 @@
 
             let carts = locals.carts;
 
-            if (carts) { 
+            console.log("what is carts: " + carts);
+
+            if (carts.length > 0 ) { 
 
                 %>
             <table border="1">
@@ -151,7 +153,6 @@
                         <th class="item" colspan="3">Product(s)</th>
                         <th class="qty">Qty.</th>
                         <th class="total">Total</th>
-
                     </tr>
                 </thead>
 
@@ -251,7 +252,9 @@
 
             <%
 
-                }else{
+                }
+
+                else{
             
             %>
 

@@ -144,14 +144,14 @@
             let regSuccess = getMessages().success;
             let loginFail = getMessages().error;
 
-            console.log("reg success" + regSuccess);
-            console.log("login fail " + loginFail);
+            //console.log("reg success" + regSuccess);
+            //console.log("login fail " + loginFail);
 
             if  (regSuccess) { %>
 
             <div class="alert">
                 <span class="closebtn">&times;</span>
-                <span class="alermsg"><%=regSuccess%></span>
+                <span class="alertmsg"><%=regSuccess%></span>
             </div>
             <% } %>
 
@@ -163,7 +163,7 @@
 
                 <div class="alert">
                     <span class="closebtn">&times;</span>
-                    <span class="alermsg"><%=loginFail%></span>
+                    <span class="alertmsg"><%=loginFail%></span>
                 </div>
                 <% }
                 %>
