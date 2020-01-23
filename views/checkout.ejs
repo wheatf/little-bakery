@@ -209,6 +209,22 @@
                             </td> 
                         </tr>
 
+                        <tr class="item">
+                            <td colspan="5" class="points">
+                                <span id="points-title">Use all points(10<!--TODO: get all points from profile-->) to get discount? </span> 
+                                <select name="usePoints" class= "points-yes-np">
+                                    <option value="yes" name="yes">Yes</option>
+                                    <option value="no" name="no">No</option>
+                                </select>
+                            </td> 
+                        </tr>
+
+                        <!-- TODO: show this when user select yes above else hide-->
+                        <tr class="item">
+                            <td colspan="5" class="subtotal">
+                                <span id="subtotal-title">Discounted Price:</span> <span class="uc-price" value="">SGD $<%=subtotal.toFixed(2)%></span>
+                            </td>
+                        </tr>
 
                     </tbody>
                 </table>

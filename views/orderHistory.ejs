@@ -155,39 +155,39 @@
                 <tbody>
 
                     <% 
-        let orders = locals.orders;
-        orders.forEach(order => {
-            let totalAmount = 0;
-            order.orderDetails.forEach(orderDetail => {
-                totalAmount += orderDetail.product.price * orderDetail.quantity;
-        %>
+                    let orders = locals.orders;
+
+                    orders.forEach(order => {
+                        let totalAmount = 0;
+
+                        order.orderDetails.forEach(orderDetail => {
+                        totalAmount += orderDetail.product.price * orderDetail.quantity;
+                    
+
+                    %>
 
 
                     <tr class="item">
 
                         <td class="image">
                             <img name="img" class="img" src="<%= orderDetail.product.imagePath %>">
-
                         </td>
 
                         <td class="name">
                             <%= orderDetail.product.name %>
-
-
                         </td>
 
                         <td class="qty">
                             <%= orderDetail.quantity %>
-
                         </td>
 
 
                         <td class="price">
                             <%= orderDetail.quantity * orderDetail.product.price %>
-
                         </td>
                         
                     </tr>
+                    <!-- TODO: put date at /profile orders table-->
                     <tr>
                         <td class="date">
                             Ordered At: <%= order.createdAt %>
