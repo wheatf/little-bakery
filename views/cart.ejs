@@ -135,6 +135,29 @@
             <li class="active">Shopping Cart</li>
         </ul>
 
+        <%
+        let message = getMessages()
+        let removeToCartSuccess = message.removeSuccess;
+        let updateCartSuccess = message.updateSuccess;
+
+        if  (removeToCartSuccess) { %>
+
+        <div class="alert">
+            <span class="closebtn">&times;</span>
+            <span class="alermsg"><%=removeToCartSuccess%></span>
+        </div>
+        <% } %>
+
+        <%
+        
+        if  (updateCartSuccess) { %>
+
+            <div class="alert">
+                <span class="closebtn">&times;</span>
+                <span class="alermsg"><%=updateCartSuccess%></span>
+            </div>
+            <% } %>
+
         <section id="cartContainer">
 
             <%
@@ -142,6 +165,7 @@
             let subtotal = 0.0;
             let totalpoints = 0;
 
+            
             let carts = locals.carts;
 
             console.log("what is carts: " + carts);

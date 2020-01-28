@@ -93,7 +93,6 @@ div.logout-btn button {
     letter-spacing: 0.1em; /* tracking 100 => 100/1000 = 0.1em */
     color: black;
     margin-right: 10px;
-    opacity: 0.8;
 }
 
 #links a {
