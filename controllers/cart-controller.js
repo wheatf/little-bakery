@@ -116,6 +116,41 @@ module.exports = {
         }
 
         res.redirect('/cart');
+    },
+
+    update: async function(req, res) {
+        let quantity = req.body.newQty;
+        let productId = req.body.productId;
+        let userId = req.session.userId;
+
+        // Check whether user is logged in or not.
+        if (userId) {
+            let cart = new cartModel({
+                user: userId,
+                product: productId,
+                quantity: quantity
+            });
+
+            await cartDatastore.update(cart);
+        } else {
+            // Find item in session
+
+            // Attempt to retrieve the cart from the session.
+            let cart = req.session.cart;
+            if (cart) {
+                // Attempt to retrieve the index of the matching productId.
+                let index = cart.map(item => { return item.productId }).indexOf(productId);
+
+                // Item found
+                if (index > -1) {
+                    // Update item quantity
+                    let item = cart[index];
+                    item.quantity = quantity;
+                }
+            }
+        }
+
+        res.redirect('/cart');
     }
 }
 

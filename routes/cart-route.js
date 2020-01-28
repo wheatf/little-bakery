@@ -5,8 +5,10 @@ const router = express.Router();
 
 router.post('/add', cartController.add);
 
-router.get('/', cartController.cartPage);
-
 router.post('/remove', cartController.remove);
+
+router.post('/update', cartController.update);
+
+router.get('/', cartController.cartPage);
 
 module.exports = router;

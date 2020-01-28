@@ -51,5 +51,20 @@ module.exports = {
      */
     removeByUserId: async function(id) {
         await cartModel.deleteMany({user: id});
+    },
+
+    /**
+     * Update an item's quantity from the cart.
+     * 
+     * @param {cartModel} cart - The cart to update in the database.
+     */
+    update: async function(cart) {
+        // Check if item exists in cart.
+        let cartItem = await cartModel.findOne({user: cart.user, product: cart.product});
+
+        if (cartItem) { // Item exists, update its quantity.
+            cartItem.quantity = parseInt(cart.quantity);
+            cartItem.save();
+        }
     }
 }
