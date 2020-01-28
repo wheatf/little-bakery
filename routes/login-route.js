@@ -22,4 +22,5 @@ router.get('/', userController.loginPage);
 // This route will use the urlencoded parser as a middleware to read data from forms.
 router.post('/', userController.login);
 
+
 module.exports = router;

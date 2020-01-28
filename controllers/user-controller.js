@@ -15,13 +15,13 @@ module.exports = {
      * @param {Express.Request} req - The request object.
      * @param {Express.Response} res - The response object.
      */
-    profilePage: async function(req, res) {
+    profilePage: async function (req, res) {
         // Check if user is logged in or not.
         let userId = req.session.userId;
         if (userId) {
             // Retrieve user information.
             let user = await userDatastore.find(userId);
-            
+
             // Calculate total points earned.
             let orders = await orderDatastore.findByUserId(userId);
             let totalPoints = 0;
@@ -50,7 +50,7 @@ module.exports = {
      * @param {Express.Request} req - The request object
      * @param {Express.Response} res - The response object
      */
-    editProfilePage: async function(req, res) {
+    editProfilePage: async function (req, res) {
         // Check if user is logged in
         let userId = req.session.userId;
         if (userId) {
@@ -77,7 +77,7 @@ module.exports = {
      * @param {Express.Request} req - The request object
      * @param {Express.Response} res - The response object
      */
-    editProfile: async function(req, res) {
+    editProfile: async function (req, res) {
         // Check if user is logged in
         let userId = req.session.userId;
         if (userId) {
@@ -164,7 +164,7 @@ module.exports = {
      * @param {Express.Request} req - The request object.
      * @param {Express.Response} res - The response object.
      */
-    orderDetailHistoryPage: async function(req, res) {
+    orderDetailHistoryPage: async function (req, res) {
         // Check if user is logged in
         let userId = req.session.userId;
         // Retrieve order id
@@ -265,6 +265,12 @@ module.exports = {
             );
         }
     },
+    logout: async function (req, res) {
+        req.session.destroy(function(err){
+            res.redirect('/');
+          });
+    
+    },
 
     /**
      * Serve the register page to the client.
@@ -295,7 +301,7 @@ module.exports = {
         let errors = validateRegister(req, res);
         if (errors) {
             console.log(errors);
-            
+
             req.flash('error', errors);
             res.render('register', {
                 fullname: fullname,
@@ -351,7 +357,7 @@ function validateEdit(req, res) {
     } else {
         // Regex for testing email format (must contain one @ and one fullstop; abc@mail.com).
         let regex = /^\S+@\S+\.\S+$/;
-        
+
         if (!regex.test(email)) {
             errors.push('Email must be of a valid format! For example: abc@mail.com');
         }
@@ -436,7 +442,7 @@ function validateRegister(req, res) {
     } else {
         // Regex for testing email format (must contain one @ and one fullstop; abc@mail.com).
         let regex = /^\S+@\S+\.\S+$/;
-        
+
         if (!regex.test(email)) {
             errors.push('Email must be of a valid format! For example: abc@mail.com');
         }
