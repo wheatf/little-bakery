@@ -66,11 +66,16 @@
                         <div class="acc-btn" onclick="window.location.href='/profile'" style="cursor:pointer;"><i
                                 class="fas fa-user "></i><a href="/profile" class="login"> My Account</a></div>
     
-                        <div class="login-btn" onclick="window.location.href='/logout'" style="cursor:pointer;"><i
-                                class="fas fa-sign-out-alt"></i><a href="/logout" class="login"> Logout</a></div>
-    
-    
-    
+                                <form method="POST" action="/logout">
+
+                        <div class="logout-btn" style="cursor:pointer;"><i
+                                class="fas fa-sign-out-alt"></i><!--<a href="/logout" class="login"> Logout</a>-->
+                            
+                                    <button type="submit"  name="delete" class="logout">Logout</button>                                
+                            
+                            </div>
+                        </form>
+
     
                         <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
                             <i class="fas fa-shopping-cart ">
@@ -161,7 +166,7 @@
         <div class="containerOne">
             <h2>Macarons & Gifts</h2>
             <p>Delicious macarons for every occasion</p>
-            <button>View Our Macarons</button>
+            <button onclick="window.location.href='/category/macarons'">View Our Macarons</button>
         </div>
 
         <div class="visitFlexContainer">
@@ -253,14 +258,36 @@
 
 
         <div class="containerThree">
-            <h2>The Little Bakery Newsletter</h2>
-            <p>Get exclusive on new items & limited edition offerings</p>
-            <div id="newsletterInputs">
-                <label></label><input type="text" name="email" id="email-field" class="email"
-                    placeholder="Enter your email address" required>
-                <label></label><input type="submit" name="submit" value="Submit">
+            <h2>The Little Bakery</h2>
+            <p>123 ANG MO KIO AVENUE 1, #01-23, S560123</p>
+            <p>6123-4567</p>
+            <a>www.littlebakery.com</a>
+
+
+            <div id="socialMediaFlexContainer">
+                <div>
+                    <a href="https://www.facebook.com/" target="_blank" title="Facebook link" >
+                        <img src="/public/images/social_media/facebook-logo.png" alt="facebook" >
+                    </a>
+                </div>
+                <div>
+                    <a href="https://www.twitter.com/" target="_blank" title="Twitter link" >
+                        <img src="/public/images/social_media/twitter.png" alt="twitter" >
+                    </a>
+                </div>
+                <div>
+                    <a href="https://www.instagram.com/" target="_blank" title="Instagram link" >
+                        <img src="/public/images/social_media/instagram-logo.png" alt="instagram" >
+                    </a>
+                </div>
+                <div>
+                    <a href="https://www.pintrest.com/" target="_blank" title="Pintrest link" >
+                        <img src="/public/images/social_media/pinterest-social-logo.png" alt="pintrest" >
+                    </a>
+                </div>
             </div>
 
+            <p> © 2019-2020 Little Bakery - All rights reserved.</p>
         </div>
 
 
