@@ -30,11 +30,41 @@ module.exports = {
     },
 
     /**
+     * Remove an item from the cart.
+     * 
+     * @param {Mongoose.SchemaTypes.ObjectId} userId - The _id of the user that the cart belongs.
+     * @param {Mongoose.SchemaTypes.ObjectId} productId - The _id of the product
+     */
+    remove: async function(userId, productId) {
+        // Check if item exists in cart.
+        let cartItem = await cartModel.findOne({user: userId, product: productId});
+
+        if (cartItem) { // Item exists, remove it.
+            cartItem.remove();
+        }
+    },
+
+    /**
      * Clears all cart from the user.
      * 
      * @param {Mongoose.SchemaTypes.ObjectId} id - The _id of the user to search for.
      */
     removeByUserId: async function(id) {
         await cartModel.deleteMany({user: id});
+    },
+
+    /**
+     * Update an item's quantity from the cart.
+     * 
+     * @param {cartModel} cart - The cart to update in the database.
+     */
+    update: async function(cart) {
+        // Check if item exists in cart.
+        let cartItem = await cartModel.findOne({user: cart.user, product: cart.product});
+
+        if (cartItem) { // Item exists, update its quantity.
+            cartItem.quantity = parseInt(cart.quantity);
+            cartItem.save();
+        }
     }
 }
