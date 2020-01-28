@@ -88,6 +88,34 @@ module.exports = {
             // Product not found, user must have tempered with the hidden input.
             res.redirect('/category')
         }
+    },
+
+    remove: async function(req, res) {
+        let productId = req.body.productId;
+        let userId = req.session.userId;
+
+        // Check whether user is logged in or not.
+        if (userId) {
+            // Find item in cart collection.
+            await cartDatastore.remove(userId, productId);
+        } else {
+            // Find item in session
+            
+            // Attempt to retrieve the cart from the session.
+            let cart = req.session.cart;
+            if (cart) {
+                // Attempt to retrieve the index of the matching productId.
+                let index = cart.map(item => { return item.productId }).indexOf(productId);
+
+                // Item found
+                if (index > -1) {
+                    // Remove from cart.
+                    cart.splice(index, 1);
+                }
+            }
+        }
+
+        res.redirect('/cart');
     }
 }
 

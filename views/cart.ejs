@@ -166,7 +166,8 @@
                     <tr class="item">
 
                         <td class="remove" data-label="Remove">
-                            <form action="#" method="post">
+                            <form action="/cart/remove" method="post">
+                                <input type="hidden" name="productId" value="<%=cart.product._id%>" />
                                 <button type="submit" name="delete" class="btn btn-success">
                                     <i class="fas fa-times fa-lg"></i>
                                 </button>

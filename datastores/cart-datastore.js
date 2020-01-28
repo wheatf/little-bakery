@@ -30,6 +30,21 @@ module.exports = {
     },
 
     /**
+     * Remove an item from the cart.
+     * 
+     * @param {Mongoose.SchemaTypes.ObjectId} userId - The _id of the user that the cart belongs.
+     * @param {Mongoose.SchemaTypes.ObjectId} productId - The _id of the product
+     */
+    remove: async function(userId, productId) {
+        // Check if item exists in cart.
+        let cartItem = await cartModel.findOne({user: userId, product: productId});
+
+        if (cartItem) { // Item exists, remove it.
+            cartItem.remove();
+        }
+    },
+
+    /**
      * Clears all cart from the user.
      * 
      * @param {Mongoose.SchemaTypes.ObjectId} id - The _id of the user to search for.
