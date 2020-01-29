@@ -35,15 +35,20 @@
 
                 <section id="search">
                     <i class="fas fa-search fa-sm"></i>
-                    <form autocomplete="off" action="#" id="search" class="alignleft">
+                    <form autocomplete="off" action="/product/search" id="search" class="alignleft">
                         <div class="autocomplete" style="width:300px;">
                             <input id="myInput" type="text" name="valueToSearch" placeholder="Search" size="40"
                                 maxlength="128" class="submit_on_enter">
                         </div>
 
-                        <input type="submit" name="search" value="Search"
+                        <input type="submit" 
                             style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
                             hidefocus="true" tabindex="-1">
+                        
+<!-- 
+                        <input type="submit" name="search" value="Search"
+                            style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
+                            hidefocus="true" tabindex="-1"> -->
 
                         <br><br>
                     </form>
@@ -51,97 +56,73 @@
 
                 <section id="links">
 
-    <body>
-        <div id="wrapper">
-            <header>
-                <header>
-                    <section id="header">
+                    <%
+
         
-                        <section id="search">
-                            <i class="fas fa-search fa-sm"></i>
-                            <form autocomplete="off" action="#" id="search" class="alignleft">
-                                <div class="autocomplete" style="width:300px;">
-                                    <input id="myInput" type="text" name="valueToSearch" placeholder="Search" size="40"
-                                        maxlength="128" class="submit_on_enter">
-                                </div>
-        
-                                <input type="submit" name="search" value="Search"
-                                    style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
-                                    hidefocus="true" tabindex="-1">
-        
-                                <br><br>
-                            </form>
-                        </section>
-        
-                        <section id="links">
-        
-                            <%
-        
-                
-                            let userId = locals.session.userId;
-                    
-                            // Check if user is logged in or not.
-                            if (userId) { // is logged in
-                    
-                            %>
-        
-        
-                            <div class="acc-btn" onclick="window.location.href='/profile'" style="cursor:pointer;"><i
-                                    class="fas fa-user "></i><a href="/profile" class="login"> My Account</a></div>
-        
-                                    <form method="POST" action="/logout">
-    
-                            <div class="logout-btn" style="cursor:pointer;"><i
-                                    class="fas fa-sign-out-alt"></i><!--<a href="/logout" class="login"> Logout</a>-->
-                                
-                                        <button type="submit"  name="delete" class="logout">Logout</button>                                
-                                
-                                </div>
-                            </form>
-    
-        
-                            <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
-                                <i class="fas fa-shopping-cart ">
-                                </i>
-                                <span class="cartcount">0</span>
-                                <span class="cartamount">SGD $0.00</span>
-        
-        
-                            </div>
-        
-        
-                            <%
-        
-                        }else{ // not logged in
-                
-                %>
-        
-        
-                            <div class="login-btn" onclick="window.location.href='/login'" style="cursor:pointer;"><i
-                                    class="fas fa-lock "></i><a href="/login" class="login"> Login / Register</a></div>
-        
-        
-                            <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
-                                <i class="fas fa-shopping-cart ">
-                                </i>
-                                <span class="cartcount">0</span>
-                                <span class="cartamount">SGD $0.00</span>
-        
-        
-                            </div>
-        
-                            <%
-                        }   
+                    let userId = locals.session.userId;
+            
+                    // Check if user is logged in or not.
+                    if (userId) { // is logged in
+            
                     %>
+
+
+                    <div class="acc-btn" onclick="window.location.href='/profile'" style="cursor:pointer;"><i
+                            class="fas fa-user "></i><a href="/profile" class="login"> My Account</a></div>
+
+                    <form method="POST" action="/logout">
+
+                        <div class="logout-btn" style="cursor:pointer;"><i class="fas fa-sign-out-alt"></i>
+                            <!--<a href="/logout" class="login"> Logout</a>-->
+
+                            <button type="submit" name="delete" class="logout">Logout</button>
+
+                        </div>
+                    </form>
+
+
+                    <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
+                        <i class="fas fa-shopping-cart ">
+                        </i>
+                        <span class="cartcount">0</span>
+                        <span class="cartamount">SGD $0.00</span>
+
+
+                    </div>
+
+
+                    <%
+
+                }else{ // not logged in
         
-                        </section>
-        
-                    </section>
-        
-                    <!-- <div class="logo_name" onclick="window.location.href='index.ejs'"></div> -->
-                    <div class="logo_name" onclick="window.location.href='/'"> LITTLE BAKERY</div>
-        
-                </header>
+        %>
+
+
+                    <div class="login-btn" onclick="window.location.href='/login'" style="cursor:pointer;"><i
+                            class="fas fa-lock "></i><a href="/login" class="login"> Login / Register</a></div>
+
+
+                    <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
+                        <i class="fas fa-shopping-cart ">
+                        </i>
+                        <span class="cartcount">0</span>
+                        <span class="cartamount">SGD $0.00</span>
+
+
+                    </div>
+
+                    <%
+                }   
+            %>
+
+                </section>
+
+            </section>
+
+            <!-- <div class="logo_name" onclick="window.location.href='index.ejs'"></div> -->
+            <div class="logo_name" onclick="window.location.href='/'"> LITTLE BAKERY</div>
+
+        </header>
     
             <nav class="navbar">
                 <ul>
