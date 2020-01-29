@@ -139,12 +139,7 @@
                 <li><a href="/">Home</a></li>
                 <li class="active">My Account</li>
             </ul>
-            <hr id="divider">
-        </nav>
-        <ul class="breadcrumb">
-            <li><a href="/">Home</a></li>
-            <li class="active">My Account</li>
-        </ul>
+          
 
         <section class="profile-container">
 
@@ -198,13 +193,7 @@
 
             <table>
 
-               <% 
-                
-               let order = locals.order;
-
-               if (order) {
-                order.orderDetails.forEach(orderDetail => {
-               %>
+            
                 <tr>
                     <th>Order #</th>
                     <th>Ordered Date</th>
@@ -213,15 +202,30 @@
                     <th>Total Amount</th>
 
                 </tr>
+                <% 
+                
+                let orders = locals.order;
+ 
+                if (orders) {
+                let orderNo = 0;
+                 orders.forEach(order => {
+                    let totalAmount = 0;
 
+                    order.orderDetails.forEach(orderDetail => {
+                    totalAmount += orderDetail.product.price * orderDetail.quantity;
+                     orderNo++;
+                %>
                 <tr>
-                    <td><span><a href="/profile/order-history/:orderId"><%= order._id%>></a></span></td>
+                    <td><span><a href="/profile/order-history/<%= order._id%>"><%= orderNo%></a></span></td>
                     <td><%= order.createdAt%></td>
                     <td><%= order.updatedAt %></td>
-                    <td><%= order.orderStatus %>></td>
-                    <td>Total</td>
+                    <td><%= order.status %></td>
+                    <td><%=totalAmount %></td>
                 </tr>
-    
+                <%
+            })});
+        }
+        %>
             </table>
 
 
@@ -233,4 +237,4 @@
 
 </body>
 
-</html> -->
+</html> 

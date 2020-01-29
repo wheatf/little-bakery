@@ -34,6 +34,7 @@ module.exports = {
 
             res.render('profile', {
                 user: user,
+                order: orders,
                 pointsEarned: totalPoints
             });
         } else {
