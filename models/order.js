@@ -22,7 +22,9 @@ const orderSchema = new Schema(
             ref: 'OrderDetail'
         }]
     },
-    { timestamps: true }
+    { timestamps: true },
+    {status : String}
+   
 );
 
 /**
