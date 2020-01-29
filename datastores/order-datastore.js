@@ -1,6 +1,7 @@
 const orderModel = require('../models/order');
 const orderDetailsModel = require('../models/orderDetails');
 
+const productDatastore = require('../datastores/product-datastore');
 const cartDatastore = require('../datastores/cart-datastore');
 
 module.exports = {
@@ -54,6 +55,9 @@ module.exports = {
             await orderDetails.save().then(function (value) {
                 orderDetailsIds.push(value._id);
             });
+
+            // Update available quantity of product.
+            await productDatastore.reduceQuantity(cart.product._id, cart.quantity);
         }
 
         // Store order into database.

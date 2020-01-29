@@ -217,3 +217,18 @@ td.price {
 #cart-buttons button:hover, #checkout-buttons button:hover{
     border: 1px solid #edc2bd ;
 }
+
+
+#msg_container{
+    text-align: left;
+    margin: 25px auto;
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+    color: rgba(0, 0, 0, 1);
+    line-height: 1.5;
+    letter-spacing: 0.1em;  
+}
+
+#msg_container a{
+    color: lightcoral;
+}

@@ -10,7 +10,7 @@
     <!-- <link rel="shortcut icon" type="image/x-icon" href="image/logo-name-img/logo.png" /> -->
     <link rel="stylesheet" type="text/css" href="/public/css/Css_Reset.css">
     <link rel="stylesheet" type="text/css" href="/public/css/style_common.css">
-    <link rel="stylesheet" type="text/css" href="/public/css/style_editProfile.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/style_cart_checkout.css">
 
     <!-- fonts used -->
     <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
@@ -22,6 +22,7 @@
         integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
 
     <script src="/public/js/client/jquery-3.3.1.min.js"></script>
+
     <!-- show and hide password-->
     <script src="/public/js/client/validation.js"></script>
 
@@ -132,90 +133,16 @@
             <hr id="divider">
         </nav>
 
+
         <ul class="breadcrumb">
             <li><a href="/">Home</a></li>
-            <li><a href="/">My Account</a></li>
-            <li class="active">Edit Profile</li>
+            <li>Checkout Details</li>
         </ul>
 
-
-        <%
-        let messages = getMessages();
-        let errors = messages.error;
-        if (errors) {
-
-        %>
-        <div class="alert">
-            <span class="closebtn">&times;</span>
-                <% errors.forEach(error => { %>
-            <span class="alertmsg"><%= error %><br/></span>
-            <% }); %>
-
+        <div id="msg_container" class="checkOutSuccessMsg">
+            <p>Checkout successful.</p>
+            <p>Please go to My Account -> <u><a href="/profile">Order History</a></u> to track your order.</p>
         </div>
-
-
-        <% } %>
-
-
-        <section class="profile-container">
-            <form action="/profile/edit" method="POST">
-                <table>
-                    <!-- TODO: standardize the columns(:) some have some dont have-->
-                    <tr>
-                        <td>Full Name:</td>
-                        <!-- TODO: the input width need to be longerrrr-->
-
-                        <td><input type="text" name="name" id="name" value="<%= locals.fullname %>" /> </td>
-
-
-                    </tr>
-
-                    <tr>
-                        <td>Email Address:</td>
-                        <td><input type="email" name="email" id="email" value="<%= locals.email %>" /></td>
-
-                    </tr>
-
-                    <tr>
-                        <td>Address:</td>
-                        <td><input type="text" name="address" id="address" value="<%= locals.address %>" /> </td>
-                    </tr>
-
-                    <tr>
-                        <td>Mobile Number</td>
-                        <td><input type="tel" name="mobileNo" id="mobileNo" value="<%= locals.mobile %>" /></td>
-                    </tr>
-
-                    <tr>
-                        <td>Old Password</td>
-                        <td><input type="password" name="oldpw" id="oldpw" /> </td>
-                    </tr>
-
-                    <tr>
-                        <td>New Password</td>
-                        <td><input type="password" name="pw" id="pw" value="<%= locals.pw || '' %>" /></td>
-                    </tr>
-
-                    <tr>
-                        <td>Confirm Password</td>
-                        <td><input type="password" name="cfpw" id="cfpw" value="<%= locals.cfpw || '' %>" /></td>
-                    </tr>
-
-                    <tr>
-                        <td></td>
-                        <td> <button id="saveBTN" type="submit">Save Changes</button></td>
-                        <!-- TODO: NEED A CANCEL BUTTON-->
-
-                    </tr>
-
-                </table>
-
-
-            </form>
-        </section>
-
-
-    </div>
 
 
 </body>

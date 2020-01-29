@@ -59,5 +59,22 @@ module.exports = {
                 $match: { 'category.name' : category }
             }
         ]).exec();
+    },
+
+    /**
+     * Reduce the quantity of the current product.
+     * Typically used after user has performed a checkout, to reflect the update qunatity.
+     * 
+     * @param {Mongoose.SchemaTypes.ObjectId} id - The _id of the product to update.
+     * @param {Number} quantity - The quantity to reduce.
+     */
+    reduceQuantity: async function(id, quantity) {
+        // Chcek if item exists in database.
+        let product = await productModel.findById(id);
+
+        if (product) { // Product exists, reduce its quantity.
+            product.availableQuantity -= parseInt(quantity);
+            product.save();
+        }
     }
 }

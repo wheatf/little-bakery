@@ -80,6 +80,21 @@ input[name=valueToSearch]::placeholder, #links a {
     opacity: 0.8;
 }
 
+/* remove default style properties of logout button */
+div.logout-btn button {
+	background: none;
+	color: inherit;
+	border: none;
+	font: inherit;
+	cursor: pointer;
+    outline: inherit;
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.1em; /* tracking 100 => 100/1000 = 0.1em */
+    color: black;
+    margin-right: 10px;
+}
+
 #links a {
     opacity: 1.0;
     /* font-weight: 600; */
@@ -262,4 +277,55 @@ span.alertmsg{
     /* border: 1px solid red; */
     /* text-align: left; */
 
+}
+
+
+/* ----------- FOOTER ----------- */
+.containerThree{
+    background-color:rgba(236,112,99,0.2);
+    text-align: center;
+    color: #E74C3C;
+    font-family: 'Raleway', sans-serif;
+    margin: 10px auto;
+    padding: 20px 0px;
+}
+
+.containerThree h2{
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.2em;  
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.containerThree p, 
+.containerThree a{
+    color: #E74C3C;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.containerThree a{
+    text-decoration: underline;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+#socialMediaFlexContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#socialMediaFlexContainer > div{
+    margin-right: 5px;
+}
+
+#socialMediaFlexContainer img{
+    width: 40px;
 }

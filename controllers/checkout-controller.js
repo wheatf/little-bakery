@@ -31,7 +31,8 @@ module.exports = {
             if (carts) {
                 orderDatastore.add(userId, carts);
                 // TODO: Redirect somewhere else.
-                return res.redirect('/index');
+                // return res.redirect('/index');
+                return res.render('checkoutsuccess');
             }
         }
 
