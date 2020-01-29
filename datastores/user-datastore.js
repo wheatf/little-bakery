@@ -75,6 +75,22 @@ module.exports = {
     },
 
     /**
+     * Remove all points of the user.
+     * Typically used after user has performed a checkout, to redeem the points of the user.
+     * 
+     * @param {Mongoose.SchemaTypes.ObjectId} id - The _id of the user to search for.
+     */
+    removeAllPoints: async function(id) {
+        // Check if user exists in database.
+        let user = await userModel.findById(id);
+
+        if (user) { // User exists, remove all his points
+            user.pointsEarned = 0;
+            user.save();
+        }
+    },
+
+    /**
      * Remove an existing user in the database.
      * 
      * @param {Mongoose.SchemaTypes.ObjectId} id - The _id of the user to search for.
