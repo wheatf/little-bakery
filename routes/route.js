@@ -21,8 +21,12 @@ function routes(app) {
     app.use('/checkout', require('./checkout-route'));
     // Profile route. Start with '/profile', sub-routes will be added using the router in profile-route.js
     app.use('/profile', require('./profile-route'));
-     // About route. Start with '/about', sub-routes will be added using the router in about-route.js
-     app.use('/about', require('./about-route'));
+    // About route. Start with '/about', sub-routes will be added using the router in about-route.js
+    app.use('/about', require('./about-route'));
+    // About route. Start with '/about', sub-routes will be added using the router in contact-route.js
+    app.use('/contact', require('./contact-route'));
+
+
 }
 
 
