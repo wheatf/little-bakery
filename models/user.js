@@ -23,6 +23,7 @@ const userSchema = new Schema({
     address: String,
     mobile: String, // Store mobile numbers as String to avoid any loss in numbers, and to support globalization.
     username: String,
+    pointsEarned: Number,
     password: {
         type: String,
         set: function(password) { // Calls the following method when retrieving the password.

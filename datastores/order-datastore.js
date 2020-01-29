@@ -1,6 +1,7 @@
 const orderModel = require('../models/order');
 const orderDetailsModel = require('../models/orderDetails');
 
+const userDatastore = require('../datastores/user-datastore');
 const productDatastore = require('../datastores/product-datastore');
 const cartDatastore = require('../datastores/cart-datastore');
 
@@ -52,12 +53,16 @@ module.exports = {
                 status: "Ordered" 
             });
 
+            // Update available quantity of product.
+            await productDatastore.reduceQuantity(cart.product._id, cart.quantity);
+
+            // Save into order details.
             await orderDetails.save().then(function (value) {
                 orderDetailsIds.push(value._id);
             });
 
-            // Update available quantity of product.
-            await productDatastore.reduceQuantity(cart.product._id, cart.quantity);
+            // Add user's points.
+            await userDatastore.addPoints(userId, parseInt(cart.product.pointsObtainable) * parseInt(cart.quantity));
         }
 
         // Store order into database.

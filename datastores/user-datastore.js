@@ -57,6 +57,24 @@ module.exports = {
     },
 
     /**
+     * Add the points of user.
+     * Typically used after user has performed a checkout, to
+     * increase the points of the user.
+     * 
+     * @param {Mongoose.SchemaTypes.ObjectId} id - The _id of the user to search for.
+     * @param {Number} points - The numbers of points to add
+     */
+    addPoints: async function(id, points) {
+        // Check if user exists in database.
+        let user = await userModel.findById(id);
+
+        if (user) { // User exists, increase his points
+            user.pointsEarned += parseInt(points);
+            user.save();
+        }
+    },
+
+    /**
      * Remove an existing user in the database.
      * 
      * @param {Mongoose.SchemaTypes.ObjectId} id - The _id of the user to search for.
