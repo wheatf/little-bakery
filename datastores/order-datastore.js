@@ -49,7 +49,6 @@ module.exports = {
             let orderDetails = new orderDetailsModel({
                 product: cart.product._id,
                 quantity: cart.quantity,
-                status: "Ordered" 
             });
 
             await orderDetails.save().then(function (value) {
@@ -64,7 +63,7 @@ module.exports = {
         let order = new orderModel({
             user: userId,
             orderDetails: orderDetailsIds,
-        
+            status: "Ordered"
         });
         order.save();
 

@@ -20,11 +20,13 @@ const orderSchema = new Schema(
         orderDetails: [{
             type: Schema.Types.ObjectId,
             ref: 'OrderDetail'
-        }]
-    },
-    { timestamps: true },
-    {status : String}
-   
+        }],
+        status: String
+    }
+    ,
+    { timestamps: true }
+
+
 );
 
 /**
