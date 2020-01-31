@@ -29,7 +29,7 @@ module.exports = {
      * @param {String} name - The name of the product to search for.
      */
     findByName: async function(name) {
-        return await productModel.find({name: name}).populate('category', 'name').exec();
+        return await productModel.find({name: new RegExp(name, 'i')}).populate('category', 'name').exec();
     },
 
     /**

@@ -25,7 +25,7 @@ function routes(app) {
     app.use('/profile', require('./profile-route'));
     // About route. Start with '/about', sub-routes will be added using the router in about-route.js
     app.use('/about', require('./about-route'));
-    // About route. Start with '/about', sub-routes will be added using the router in contact-route.js
+    // Contact route. Start with '/contact', sub-routes will be added using the router in contact-route.js
     app.use('/contact', require('./contact-route'));
 
 

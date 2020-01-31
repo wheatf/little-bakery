@@ -34,6 +34,8 @@ module.exports = {
 
             res.render('profile', {
                 user: user,
+                order: orders,
+                pointsEarned: totalPoints
             });
         } else {
             // User must be logged in before allowing access to his profile page.

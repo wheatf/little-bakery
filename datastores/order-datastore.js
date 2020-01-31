@@ -52,7 +52,7 @@ module.exports = {
         for (const cart of carts) {
             let orderDetails = new orderDetailsModel({
                 product: cart.product._id,
-                quantity: cart.quantity
+                quantity: cart.quantity,
             });
 
             // Update available quantity of product.
