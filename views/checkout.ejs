@@ -196,7 +196,9 @@
                             subtotal = subtotal + total;
                             totalpoints = totalpoints + (cart.product.pointsObtainable * cart.quantity);
                             discountedPrice = subtotal - Math.floor(userPoints/ 10);
-
+                            if (discountedPrice < 0) {
+                                discountedPrice = 0.0;
+                            }
                             %>
 
                             <td class="price" data-label="TOTAL">
