@@ -25,30 +25,30 @@
 
 
 
-    <body>
-        <div id="wrapper">
-            <header>
-                <section id="header">
-    
-                    <section id="search">
-                        <i class="fas fa-search fa-sm"></i>
-                        <form autocomplete="off" method="POST"  action="/product/search" id="search" class="alignleft">
-                            <div class="autocomplete" style="width:300px;">
-                                <input id="myInput" type="text" name="valueToSearch" placeholder="Search" size="40"
-                                    maxlength="128" class="submit_on_enter">
-                            </div>
-    
-                            <input type="submit"
-                                style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
-                                hidefocus="true" tabindex="-1">
-    
-                            <br><br>
-                        </form>
-                    </section>
-    
-                    <section id="links">
-    
-                        <%
+<body>
+    <div id="wrapper">
+        <header>
+            <section id="header">
+
+                <section id="search">
+                    <i class="fas fa-search fa-sm"></i>
+                    <form autocomplete="off" method="POST" action="/product/search" id="search" class="alignleft">
+                        <div class="autocomplete" style="width:300px;">
+                            <input id="myInput" type="text" name="valueToSearch" placeholder="Search" size="40"
+                                maxlength="128" class="submit_on_enter">
+                        </div>
+
+                        <input type="submit"
+                            style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
+                            hidefocus="true" tabindex="-1">
+
+                        <br><br>
+                    </form>
+                </section>
+
+                <section id="links">
+
+                    <%
         
                 
                             let userId = locals.session.userId;
@@ -57,110 +57,144 @@
                             if (userId) { // is logged in
                     
                             %>
-    
-    
-                        <div class="acc-btn" onclick="window.location.href='/profile'" style="cursor:pointer;"><i
-                                class="fas fa-user "></i><a href="/profile" class="login"> My Account</a></div>
-    
-                        <form method="POST" action="/logout">
-    
-                            <div class="logout-btn" style="cursor:pointer;"><i class="fas fa-sign-out-alt"></i>
-                                <!--<a href="/logout" class="login"> Logout</a>-->
-    
-                                <button type="submit" name="delete" class="logout">Logout</button>
-    
-                            </div>
-                        </form>
-    
-    
-                        <!-- <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
+
+
+                    <div class="acc-btn" onclick="window.location.href='/profile'" style="cursor:pointer;"><i
+                            class="fas fa-user "></i><a href="/profile" class="login"> My Account</a></div>
+
+                    <form method="POST" action="/logout">
+
+                        <div class="logout-btn" style="cursor:pointer;"><i class="fas fa-sign-out-alt"></i>
+                            <!--<a href="/logout" class="login"> Logout</a>-->
+
+                            <button type="submit" name="delete" class="logout">Logout</button>
+
+                        </div>
+                    </form>
+
+
+                    <!-- <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
                             <i class="fas fa-shopping-cart ">
                             </i>
                             <span class="cartcount">0</span>
                             <span class="cartamount">SGD $0.00</span>
                         </div> -->
-    
-                        <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
-                            <i class="fas fa-shopping-cart ">
-                            </i>
-                            <a href="/cart" class="login"> Shopping Cart </a>
-                        </div>
-    
-    
-                        <%
+
+                    <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
+                        <i class="fas fa-shopping-cart ">
+                        </i>
+                        <a href="/cart" class="login"> Shopping Cart </a>
+                    </div>
+
+
+                    <%
         
                         }else{ // not logged in
                 
                 %>
-    
-    
-                        <div class="login-btn" onclick="window.location.href='/login'" style="cursor:pointer;"><i
-                                class="fas fa-lock "></i><a href="/login" class="login"> Login / Register</a></div>
-    
-    
-                        <!-- <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
+
+
+                    <div class="login-btn" onclick="window.location.href='/login'" style="cursor:pointer;"><i
+                            class="fas fa-lock "></i><a href="/login" class="login"> Login / Register</a></div>
+
+
+                    <!-- <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
                             <i class="fas fa-shopping-cart ">
                             </i>
                             <span class="cartcount">0</span>
                             <span class="cartamount">SGD $0.00</span>
                         </div> -->
-    
-                        <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
-                            <i class="fas fa-shopping-cart ">
-                            </i>
-                            <a href="/cart" class="login"> Shopping Cart </a>
-                        </div>
-    
-                        <%
+
+                    <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
+                        <i class="fas fa-shopping-cart ">
+                        </i>
+                        <a href="/cart" class="login"> Shopping Cart </a>
+                    </div>
+
+                    <%
                         }   
                     %>
-    
-                    </section>
-    
+
                 </section>
-    
-                <!-- <div class="logo_name" onclick="window.location.href='index.ejs'"></div> -->
-                <div class="logo_name" onclick="window.location.href='/'"> LITTLE BAKERY</div>
-    
-            </header>
-    
-            <nav class="navbar">
-                <ul>
-                    <li class="item"><a href="/" class="nav-link ">Home</a></li>
-                    <!-- The top-level route defined in route.js + The sub-route defined in other file = The complete route to put inside 'href'. -->
-                    <li class="item"><a href="/category" class="nav-link ">Category</a></li>
-                    <!-- <li class="item"><a href="#" class="nav-link">Catering</a></li> -->
-                    <li class="item"><a href="/about" class="nav-link">About</a></li>
-                    <li class="item"><a href="/contact" class="nav-link">Contact</a></li>
-                </ul>
-                <hr id="divider">
-            </nav>
 
-            <div id="top-flex">
+            </section>
 
-        <ul class="breadcrumb">
-            <li><a href="/">Home</a></li>
-            <li class="active">Contact</li>
-        </ul>
+            <!-- <div class="logo_name" onclick="window.location.href='index.ejs'"></div> -->
+            <div class="logo_name" onclick="window.location.href='/'"> LITTLE BAKERY</div>
 
-        <div id="msg_container">
-            <p>Do you have anything in your mind to let us know? Kindly don't delay to connect to us by means of our
-                contact form.</p>
-        </div>
+        </header>
 
-        <!-- this is flex container parent -->
-        <section class="contact-container" id="contactus-container">
-            <!-- this is flex child 1 -->
-            <div class="row">
-                <div class="contact">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.6611865763484!2d103.84676001475407!3d1.3799499989935695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da16eb64b0249d%3A0xe5f10ff680eed942!2sNanyang%20Polytechnic!5e0!3m2!1sen!2ssg!4v1578137556003!5m2!1sen!2ssg"
-                        width="500" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-                </div>
+        <nav class="navbar">
+            <ul>
+                <li class="item"><a href="/" class="nav-link ">Home</a></li>
+                <!-- The top-level route defined in route.js + The sub-route defined in other file = The complete route to put inside 'href'. -->
+                <li class="item"><a href="/category" class="nav-link ">Category</a></li>
+                <!-- <li class="item"><a href="#" class="nav-link">Catering</a></li> -->
+                <li class="item"><a href="/about" class="nav-link">About</a></li>
+                <li class="item"><a href="/contact" class="nav-link">Contact</a></li>
+            </ul>
+            <hr id="divider">
+        </nav>
+
+        <div id="top-flex">
+
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">Contact</li>
+            </ul>
+
+            <div id="msg_container">
+                <p>Do you have anything in your mind to let us know? Kindly don't delay to connect to us by means of our
+                    contact form.</p>
             </div>
 
-            <!-- this is flex child 2 -->
-            <div class="contact">
+            <!-- this is flex container parent -->
+            <section class="contact-container" id="contactus-container">
+                <!-- this is flex child 1 -->
+                <div class="row">
+                    <div class="contact">
+                        <div id="map">
+
+                            <!-- <script src="./keys.js"></script> -->
+                            <script>
+                                let map;
+                                document.addEventListener("DOMContentLoaded", () => {
+                                    let s = document.createElement("script");
+                                    document.head.appendChild(s);
+                                    s.addEventListener("load", () => {
+                                        //script has loaded
+                                        console.log("script has loaded");
+                                        map = new google.maps.Map(document.getElementById("map"), {
+                                            center: {
+                                                lat: 1.3800,
+                                                lng: 103.8489
+                                            },
+                                            zoom: 16,
+                                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                                        });
+
+                                        //Add marker
+
+                                        var marker = new google.maps.Marker({
+                                            position:{lat:1.3800, lng:103.8489},
+                                            map:map,
+                                            icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+                                        })
+                                    });
+                                    s.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyClHF9QCp6hUc5XUg6aPtb5CBBZUriR45Y`;
+                                });
+                            </script>
+                        </div>
+                    </div>
+
+                    <!-- <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.6611865763484!2d103.84676001475407!3d1.3799499989935695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da16eb64b0249d%3A0xe5f10ff680eed942!2sNanyang%20Polytechnic!5e0!3m2!1sen!2ssg!4v1578137556003!5m2!1sen!2ssg"
+                        width="500" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>g,,l -->
+
+                </div>
+
+                <!-- this is flex child 2 -->
+                <div class="contact">
                 <form action="/contact" method="POST" name="contact" id="contactForm">
 
                     <span class="success"></span>
@@ -180,11 +214,11 @@
 
 
                 </form>
-            </div>
-        </section>
+            </div> 
+            </section>
 
 
-    </div>
+        </div>
 
 
 

@@ -17,20 +17,24 @@ const Schema = mongoose.Schema;
 /**
  * The schema for the 'users' collection.
  */
-const userSchema = new Schema({
-    fullname: String,
-    email: String,
-    address: String,
-    mobile: String, // Store mobile numbers as String to avoid any loss in numbers, and to support globalization.
-    username: String,
-    pointsEarned: Number,
-    password: {
-        type: String,
-        set: function(password) { // Calls the following method when retrieving the password.
-            return crypto.createHash('sha256').update(password).digest('base64');
+const userSchema = new Schema(
+    {
+        fullname: String,
+        email: String,
+        address: String,
+        mobile: String, // Store mobile numbers as String to avoid any loss in numbers, and to support globalization.
+        username: String,
+        pointsEarned: Number,
+        password: {
+            type: String,
+            set: function (password) { // Calls the following method when retrieving the password.
+                return crypto.createHash('sha256').update(password).digest('base64');
+            }
         }
-    }
-});
+
+    },
+    { timestamps: true },
+);
 
 /**
  * The model that represent a document in the 'users' collection.
