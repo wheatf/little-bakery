@@ -170,7 +170,7 @@
 
                 <tr>
                     <td>Date Joined</td>
-                    <td>29-12-2019</td>
+                    <td><%= user.createdAt%></td>
                 </tr>
 
                 <tr>
@@ -190,6 +190,19 @@
 
         </section>
 
+        <% 
+                
+        let orders = locals.order;
+
+        if (orders) {
+        let orderNo = 0;
+         orders.forEach(order => {
+            let totalAmount = 0;
+
+            order.orderDetails.forEach(orderDetail => {
+            totalAmount += orderDetail.product.price * orderDetail.quantity;
+             orderNo++;
+        %>
         <p>Order History</p>
 
         <section class="order-container">
@@ -205,19 +218,7 @@
                     <th>Total Amount</th>
 
                 </tr>
-                <% 
-                
-                let orders = locals.order;
- 
-                if (orders) {
-                let orderNo = 0;
-                 orders.forEach(order => {
-                    let totalAmount = 0;
-
-                    order.orderDetails.forEach(orderDetail => {
-                    totalAmount += orderDetail.product.price * orderDetail.quantity;
-                     orderNo++;
-                %>
+             
                 <tr>
                     <td><span><a href="/profile/order-history/<%= order._id%>"><%= orderNo%></a></span></td>
                     <td><%= order.createdAt%></td>

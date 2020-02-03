@@ -13,8 +13,10 @@
     color: lightcoral;
 }
 
-
-.map{
+#map{
+    border: 2px solid #333333;
+    width: 40vw;
+    height: 40vh;
     
 }
 
@@ -48,6 +50,7 @@
 */ 
     display: flex;
     justify-content: center;
+    font-family: 'Muli',sans-serif;
 
 }
 

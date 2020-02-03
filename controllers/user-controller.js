@@ -22,15 +22,15 @@ module.exports = {
             // Retrieve user information.
             let user = await userDatastore.find(userId);
 
-            // // Calculate total points earned.
-            // let orders = await orderDatastore.findByUserId(userId);
-            // let totalPoints = 0;
-            // for (const order of orders) {
-            //     for (const orderDetail of order.orderDetails) {
-            //         // Points times quantity.
-            //         totalPoints += orderDetail.product.pointsObtainable * orderDetail.quantity;
-            //     }
-            // }
+            // Calculate total points earned.
+            let orders = await orderDatastore.findByUserId(userId);
+            let totalPoints = 0;
+            for (const order of orders) {
+                for (const orderDetail of order.orderDetails) {
+                    // Points times quantity.
+                    totalPoints += orderDetail.product.pointsObtainable * orderDetail.quantity;
+                }
+            }
 
             res.render('profile', {
                 user: user,
