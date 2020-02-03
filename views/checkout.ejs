@@ -238,7 +238,6 @@
                                         <option value="no" name="no">No</option>
                                     </select>
                                     <% } %>
-        
                             </td> 
                         </tr>
 
@@ -249,6 +248,7 @@
                                 <span id="subtotal-title">Discounted Price:</span> <span class="uc-price" value="">SGD $<%=discountedPrice.toFixed(2)%></span>
                             </td>
                         </tr>
+                        
 
                     </tbody>
                 </table>
@@ -256,17 +256,16 @@
                 <div class="gst">incl. GST</div>
 
                 <div id="checkout-buttons">
-                    <button  onclick="location.href='/cart'"  class="cancelBTN">Cancel</button>
-
-
+                    
                         <!-- <button  onclick="location.href='/cart'"  class="cancelBTN">Cancel</button> -->
                         <!-- <button onclick="location.href='/checkout'" formmethod="POST" class="confirmBTN">Confirm</button> -->
 
                         <button class="confirmBTN">Confirm Checkout</button>
                     </form>
+                    <button  onclick="location.href='/cart'"  class="cancelBTN">Cancel</button>
+
 
                 </div>
-
 
             </section>
 
