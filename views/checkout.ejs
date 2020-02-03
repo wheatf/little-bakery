@@ -161,6 +161,7 @@
                         let total = 0.0
                         let subtotal = 0.0;
                         let totalpoints = 0;
+                        let discountedPrice = 0.0;
 
                         let carts = locals.carts;
                         if (carts) { 
@@ -194,6 +195,7 @@
                             total = cart.quantity * cart.product.price;
                             subtotal = subtotal + total;
                             totalpoints = totalpoints + (cart.product.pointsObtainable * cart.quantity);
+                            discountedPrice = subtotal - Math.floor(userPoints/ 10);
 
                             %>
 
@@ -226,7 +228,7 @@
                         <!-- TODO: show this when user select yes above else hide-->
                         <tr class="item">
                             <td colspan="5" class="subtotal">
-                                <span id="subtotal-title">Discounted Price:</span> <span class="uc-price" value="">SGD $<%=subtotal.toFixed(2)%></span>
+                                <span id="subtotal-title">Discounted Price:</span> <span class="uc-price" value="">SGD $<%=discountedPrice.toFixed(2)%></span>
                             </td>
                         </tr>
 
