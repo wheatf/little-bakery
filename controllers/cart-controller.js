@@ -92,8 +92,11 @@ module.exports = {
 
     remove: async function (req, res) {
         let productId = req.body.productId;
-        let productName = req.body.productName;
         let userId = req.session.userId;
+
+        // Assign product name for flash messages.
+        let product = await productDatastore.find(productId);
+        let productName = product.name;
 
         // Check whether user is logged in or not.
         if (userId) {
@@ -123,8 +126,11 @@ module.exports = {
     update: async function (req, res) {
         let quantity = req.body.newQty;
         let productId = req.body.productId;
-        let productName = req.body.productName;
         let userId = req.session.userId;
+
+        // Assign product name for flash messages.
+        let product = await productDatastore.find(productId);
+        let productName = product.name;
 
         // Check whether user is logged in or not.
         if (userId) {
