@@ -190,7 +190,14 @@ module.exports = {
      * @param {Express.Response} res - The response object.
      */
     loginPage: async function (req, res) {
-        res.render('login');
+        let userId = req.session.userId;
+
+        // Check if user is logged in or not.
+        if (userId) {
+            res.redirect('/index');
+        } else {
+            res.render('login');
+        }
     },
 
     /**
@@ -280,7 +287,14 @@ module.exports = {
      * @param {Express.Response} res 
      */
     registerPage: async function (req, res) {
+        let userId = req.session.userId;
+
+        // Check if user is logged in or not.
+        if (userId) {
+            res.redirect('/index');
+        } else {
         res.render('register');
+    }
     },
 
     /**

@@ -76,5 +76,25 @@ module.exports = {
             product.availableQuantity -= parseInt(quantity);
             product.save();
         }
+    },
+    /**
+     * Get products from the database.
+     * 
+     * @param {String} price - The price of the product to search for.
+     */
+    sortTopFour: async function() {
+        // return await productModel.find({name: new RegExp(name, 'i')}).populate('category', 'name').exec();
+
+        // return await  productModel.find({}).sort({ price: 'descending' }).exec();
+
+        // from product
+        // order by 
+    //    return await productModel.find({}).sort({ price: 'descending' }).populate('category', 'name').exec();
+
+    // return await productModel.find({}).populate('category','name').exec();
+    return await productModel.find({}).sort({price: -1}).limit(4).populate('category','name').exec();
     }
+
+
+    
 }

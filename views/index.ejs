@@ -202,64 +202,34 @@
         <article id="best-seller">
             <div class="flex-container">
 
-                <!-- TODO: loop one figure class to display top 4 best sellers-->
+                <%
+                let products = locals.products;
+                        
+                    products.forEach(product => {
+
+                %>
+               
                 <figure class="flex-item" onclick="window.open('#','mywindow');">
 
-                    <img src="/public/images/cat/cookies/strawberries_chocochip.jpg">
+                    <img src="<%= product.imagePath %>" 
+                    alt="<%=product.name%>"
+                    onclick="location.href='/product/<%=product._id%>'"
+                    style="cursor:pointer;" />
+                    
                     <figcaption>
-                        <p>Strawberry Chocolate Chip</p>
+                        <p><%= product.name %></p>
                         <div class="price">
-                            <s>$2.50</s>
-                            <p>$2.00</p>
+                            <!-- <s><%=product.price.toFixed(2)%></s> -->
+                            <p>$<%=product.price.toFixed(2)%></p>
                         </div>
                     </figcaption>
                     <i class="fas fa-shopping-cart"></i>
-                    <a href="#"></a>
+                    <a href="/product/<%=product._id%>"></a>
                 </figure>
 
-                <!-- hardcoded top 4 best sellers as of now -->
-                <figure class="flex-item" onclick="window.open('#','mywindow');">
-
-                    <img src="/public/images/cat/macaron/colorful_marcarons.jpg">
-                    <figcaption>
-                        <p>Colorful Macarons</p>
-                        <div class="price">
-                            <s>$3.50</s>
-                            <p>$3.00</p>
-                        </div>
-                    </figcaption>
-                    <i class="fas fa-shopping-cart"></i>
-                    <a href="#"></a>
-                </figure>
-
-                <figure class="flex-item" onclick="window.open('#','mywindow');">
-
-                    <img src="/public/images/cat/minicakes/chococoffee.jpg">
-                    <figcaption>
-                        <p>Chcocolate Coffee</p>
-                        <div class="price">
-                            <s>$4.50</s>
-                            <p>$4.00</p>
-                        </div>
-                    </figcaption>
-                    <i class="fas fa-shopping-cart"></i>
-                    <a href="#"></a>
-                </figure>
-
-                <figure class="flex-item" onclick="window.open('#','mywindow');">
-
-                    <img src="/public/images/cat//cookies/frostsugar_cookie.jpg">
-                    <figcaption>
-                        <p>Frost Sugar Cookie</p>
-                        <div class="price">
-                            <s>$2.50</s>
-                            <p>$2.00</p>
-                        </div>
-                    </figcaption>
-                    <i class="fas fa-shopping-cart"></i>
-                    <a href="#"></a>
-                </figure>
-
+                <%
+            });
+            %>
             </div>
         </article>
 

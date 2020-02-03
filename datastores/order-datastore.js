@@ -84,6 +84,11 @@ module.exports = {
             // Round down to avoid user having extra discount
             discountedPrice -= Math.floor(userPoints / 10);
 
+            // Prevent discounted price from going below 0
+            if (discountedPrice < 0) {
+                discountedPrice = 0;
+            }
+
             // Remove all user points.
             await userDatastore.removeAllPoints(userId);
         } 

@@ -161,6 +161,7 @@
                         let total = 0.0
                         let subtotal = 0.0;
                         let totalpoints = 0;
+                        let discountedPrice = 0.0;
 
                         let carts = locals.carts;
                         if (carts) { 
@@ -194,7 +195,10 @@
                             total = cart.quantity * cart.product.price;
                             subtotal = subtotal + total;
                             totalpoints = totalpoints + (cart.product.pointsObtainable * cart.quantity);
-
+                            discountedPrice = subtotal - Math.floor(userPoints/ 10);
+                            if (discountedPrice < 0) {
+                                discountedPrice = 0.0;
+                            }
                             %>
 
                             <td class="price" data-label="TOTAL">
@@ -223,10 +227,26 @@
                             </td> 
                         </tr>
 
+                        <tr class="item">
+                            <td colspan="5" class="points">
+                                <form action="/checkout" method="POST">
+                                    <!-- Can't redeem discount if user has less than 10 points. -->
+                                    <% if (locals.userPoints > 10) { %> 
+                                        <span id="points-title">Use all points (<%= locals.userPoints %>) to get discount? </span>
+                                    <select name="usePoints" class= "points-yes-np">
+                                        <option value="yes" name="yes">Yes</option>
+                                        <option value="no" name="no">No</option>
+                                    </select>
+                                    <% } %>
+        
+                            </td> 
+                        </tr>
+
+                        
                         <!-- TODO: show this when user select yes above else hide-->
                         <tr class="item">
                             <td colspan="5" class="subtotal">
-                                <span id="subtotal-title">Discounted Price:</span> <span class="uc-price" value="">SGD $<%=subtotal.toFixed(2)%></span>
+                                <span id="subtotal-title">Discounted Price:</span> <span class="uc-price" value="">SGD $<%=discountedPrice.toFixed(2)%></span>
                             </td>
                         </tr>
 
@@ -236,17 +256,10 @@
                 <div class="gst">incl. GST</div>
 
                 <div id="checkout-buttons">
+                    <button  onclick="location.href='/cart'"  class="cancelBTN">Cancel</button>
 
-                    <form action="/checkout" method="POST">
-                        <!-- Can't redeem discount if user has less than 10 points. -->
-                        <% if (locals.userPoints > 10) { %> 
-                            <span id="points-title">Use all points (<%= locals.userPoints %>) to get discount? </span>
-                        <select name="usePoints" class= "points-yes-np">
-                            <option value="yes" name="yes">Yes</option>
-                            <option value="no" name="no">No</option>
-                        </select>
-                        <% } %>
-                        <button  onclick="location.href='/cart'"  class="cancelBTN">Cancel</button>
+
+                        <!-- <button  onclick="location.href='/cart'"  class="cancelBTN">Cancel</button> -->
                         <!-- <button onclick="location.href='/checkout'" formmethod="POST" class="confirmBTN">Confirm</button> -->
 
                         <button class="confirmBTN">Confirm Checkout</button>
