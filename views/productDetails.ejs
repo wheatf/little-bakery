@@ -175,6 +175,12 @@
                 <p class="price">SGD $<%= product.price.toFixed(2) %></p>
                 <p class="desc"><%= product.description %></p>
                 <p class="stock">Available Quantity: <%= product.availableQuantity %></p>
+                <%
+
+                if(product.availableQuantity >= 1) {
+                    %>
+
+                
                 <p class="points">Points Obtainable: <%= product.pointsObtainable %></p>
 
 
@@ -194,6 +200,10 @@
                         </div>
                     </div>
                 </form>
+                <%
+
+                }
+            %>
             </div>
         </section>
 

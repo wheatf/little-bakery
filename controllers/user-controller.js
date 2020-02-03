@@ -22,15 +22,15 @@ module.exports = {
             // Retrieve user information.
             let user = await userDatastore.find(userId);
 
-            // // Calculate total points earned.
-            // let orders = await orderDatastore.findByUserId(userId);
-            // let totalPoints = 0;
-            // for (const order of orders) {
-            //     for (const orderDetail of order.orderDetails) {
-            //         // Points times quantity.
-            //         totalPoints += orderDetail.product.pointsObtainable * orderDetail.quantity;
-            //     }
-            // }
+            // Calculate total points earned.
+            let orders = await orderDatastore.findByUserId(userId);
+            let totalPoints = 0;
+            for (const order of orders) {
+                for (const orderDetail of order.orderDetails) {
+                    // Points times quantity.
+                    totalPoints += orderDetail.product.pointsObtainable * orderDetail.quantity;
+                }
+            }
 
             res.render('profile', {
                 user: user,
@@ -190,7 +190,14 @@ module.exports = {
      * @param {Express.Response} res - The response object.
      */
     loginPage: async function (req, res) {
-        res.render('login');
+        let userId = req.session.userId;
+
+        // Check if user is logged in or not.
+        if (userId) {
+            res.redirect('/index');
+        } else {
+            res.render('login');
+        }
     },
 
     /**
@@ -280,7 +287,14 @@ module.exports = {
      * @param {Express.Response} res 
      */
     registerPage: async function (req, res) {
+        let userId = req.session.userId;
+
+        // Check if user is logged in or not.
+        if (userId) {
+            res.redirect('/index');
+        } else {
         res.render('register');
+    }
     },
 
     /**

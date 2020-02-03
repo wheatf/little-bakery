@@ -223,6 +223,22 @@
                             </td> 
                         </tr>
 
+                        <tr class="item">
+                            <td colspan="5" class="points">
+                                <form action="/checkout" method="POST">
+                                    <!-- Can't redeem discount if user has less than 10 points. -->
+                                    <% if (locals.userPoints > 10) { %> 
+                                        <span id="points-title">Use all points (<%= locals.userPoints %>) to get discount? </span>
+                                    <select name="usePoints" class= "points-yes-np">
+                                        <option value="yes" name="yes">Yes</option>
+                                        <option value="no" name="no">No</option>
+                                    </select>
+                                    <% } %>
+        
+                            </td> 
+                        </tr>
+
+                        
                         <!-- TODO: show this when user select yes above else hide-->
                         <tr class="item">
                             <td colspan="5" class="subtotal">
@@ -236,17 +252,10 @@
                 <div class="gst">incl. GST</div>
 
                 <div id="checkout-buttons">
+                    <button  onclick="location.href='/cart'"  class="cancelBTN">Cancel</button>
 
-                    <form action="/checkout" method="POST">
-                        <!-- Can't redeem discount if user has less than 10 points. -->
-                        <% if (locals.userPoints > 10) { %> 
-                            <span id="points-title">Use all points (<%= locals.userPoints %>) to get discount? </span>
-                        <select name="usePoints" class= "points-yes-np">
-                            <option value="yes" name="yes">Yes</option>
-                            <option value="no" name="no">No</option>
-                        </select>
-                        <% } %>
-                        <button  onclick="location.href='/cart'"  class="cancelBTN">Cancel</button>
+
+                        <!-- <button  onclick="location.href='/cart'"  class="cancelBTN">Cancel</button> -->
                         <!-- <button onclick="location.href='/checkout'" formmethod="POST" class="confirmBTN">Confirm</button> -->
 
                         <button class="confirmBTN">Confirm Checkout</button>
