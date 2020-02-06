@@ -233,19 +233,18 @@
                                     <!-- Can't redeem discount if user has less than 10 points. -->
                                     <% if (locals.userPoints > 10) { %> 
                                         <span id="points-title">Use all points (<%= locals.userPoints %>) to get discount? </span>
-                                    <select name="usePoints" class= "points-yes-np">
-                                        <option value="yes" name="yes">Yes</option>
+                                    <select name="usePoints" id="usePoints" class= "points-yes-no"  onchange="dropdown()">
                                         <option value="no" name="no">No</option>
+                                        <option value="yes" name="yes">Yes</option>
                                     </select>
                                     <% } %>
                             </td> 
                         </tr>
 
                         
-                        <!-- TODO: show this when user select yes above else hide-->
-                        <tr class="item">
+                        <tr class="item" id="disountTr">
                             <td colspan="5" class="subtotal">
-                                <span id="subtotal-title">Discounted Price:</span> <span class="uc-price" value="">SGD $<%=discountedPrice.toFixed(2)%></span>
+                                <span id="subtotal-title">Discounted Price:</span> <span class="uc-price" id="discountedPrice" value="">SGD $<%=discountedPrice.toFixed(2)%></span>
                             </td>
                         </tr>
                         
@@ -272,18 +271,20 @@
 
         </div>
 
-        <!-- <script>
-var close = document.getElementsByClassName("closebtn");
-var i;
+    <script>
+        document.getElementById('disountTr').style.visibility = "hidden";
 
-for (i = 0; i < close.length; i++) {
-close[i].onclick = function(){
-var div = this.parentElement;
-div.style.opacity = "0";
-setTimeout(function(){ div.style.display = "none"; }, 600);
-}
-}
-</script> -->
+        function dropdown() {
+
+        if(document.getElementById('usePoints').value == "yes") {
+            document.getElementById('disountTr').style.visibility = "visible";
+            document.getElementById('discountedPrice').value =  discountedPrice.toFixed(2)
+        }else{ // no
+            // document.getElementById('discountedPrice').value =  subtotal.toFixed(2)
+            document.getElementById('disountTr').style.visibility = "hidden";
+        }
+    }
+    </script>
 
     </body>
 

@@ -179,7 +179,7 @@ module.exports = {
             });
         } else {
             req.session.loginRedirect = '/profile/order-history/' + orderId;
-            req.redirect('/login');
+            res.redirect('/login');
         }
     },
 

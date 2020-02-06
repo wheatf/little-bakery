@@ -214,21 +214,27 @@
                 <%
             let orderNo = 0;
                 orders.forEach(order => {
+                    
                     let totalAmount = 0;
 
-                    order.orderDetails.forEach(orderDetail => {
-                        totalAmount += orderDetail.product.price * orderDetail.quantity;
-                        orderNo++;
+                    if (order.discountedPrice == null) {
+                        order.orderDetails.forEach(orderDetail => {
+                            totalAmount += orderDetail.product.price * orderDetail.quantity;
+                        });
+                    } else {
+                        totalAmount = order.discountedPrice;
+                    }
+                    
+                    orderNo++;
             %>
                 <tr>
                     <td><span><a href="/profile/order-history/<%= order._id%>"><%= orderNo %></a></span></td>
                     <td><%= order.createdAt %></td>
                     <td><%= order.updatedAt %></td>
                     <td><%= order.status %></td>
-                    <td><%=totalAmount.toFixed(2) %></td>
+                    <td>$<%=totalAmount.toFixed(2) %></td>
                 </tr>
                 <%
-                });
             }); //forEach loop close   %>
 
             </table>

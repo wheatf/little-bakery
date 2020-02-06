@@ -157,6 +157,8 @@
                     let order = locals.order;
                     if (order) {
                         order.orderDetails.forEach(orderDetail => {
+                            total = orderDetail.product.price * orderDetail.quantity;
+                            subtotal += total;
                     %>
                     <tr class="item">
 
@@ -176,13 +178,7 @@
 
 
                         </td>
-                        <%
-
-                        total = orderDetail.quantity * orderDetail.product.price;
-                        subtotal = subtotal + total;
-                           
-
-                            %>
+                    
 
                         <td class="price" data-label="TOTAL">
                             <span class="uc-subtotal" value="">SGD $<%=total.toFixed(2)%></span>
@@ -193,6 +189,15 @@
                 });
             }
 
+            if (order.discountedPrice != null) {
+            %>
+            <tr class="item">
+                <td colspan="5" class="subtotal">
+                    <span id="subtotal-title">Discounted Subtotal:</span> <span class="uc-price" value="">SGD $<%=order.discountedPrice.toFixed(2)%></span>
+                </td>
+            </tr>
+            <%
+            }
             %>
             <tr class="item">
                 <td colspan="5" class="subtotal">
