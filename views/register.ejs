@@ -151,6 +151,24 @@
             <li class="active">Register</li>
         </ul>
 
+        <%
+        let messages = getMessages();
+        let validation_errors = messages.error;
+
+        if  (validation_errors) { %>
+
+        <div class="alert">
+            <span class="closebtn">&times;</span>
+            <% validation_errors.forEach(error => { %>
+
+            <ul>
+            <li><span class="alertmsg"><%=error%></span></li>
+            </ul>
+            <% }); %>
+
+        </div>
+        <% } %>
+
         <section class="login-reg-container" id="reg-only-container">
 
             <form action="/register" method="POST" name="register" id="regForm">

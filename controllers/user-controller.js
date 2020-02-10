@@ -57,7 +57,6 @@ module.exports = {
         if (userId) {
             // Retrieve user's information
             let user = await userDatastore.find(userId);
-
             res.render('editProfile', {
                 fullname: user.fullname,
                 email: user.email,
@@ -126,6 +125,7 @@ module.exports = {
 
             await userDatastore.update(user);
 
+            req.flash('success', "Profile updated.");
             res.redirect('/profile');
         } else {
             // User must be logged in before allowing access to edit his profile page.

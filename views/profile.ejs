@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login Page</title>
+    <title>Profile Page</title>
 
     <!-- <link rel="shortcut icon" type="image/x-icon" href="image/logo-name-img/logo.png" /> -->
     <link rel="stylesheet" type="text/css" href="/public/css/Css_Reset.css">
@@ -143,6 +143,18 @@
             <li class="active">My Account</li>
         </ul>
 
+        <%
+        let messages = getMessages();
+        let edit_success = messages.success;
+
+        if  (edit_success) { %>
+
+            <div class="alert">
+                <span class="closebtn">&times;</span>
+                <span class="alertmsg"><%=edit_success%></span></li>
+            </div>
+            <% } %>
+        %>
 
         <section class="profile-container">
 
