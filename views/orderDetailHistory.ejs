@@ -47,7 +47,6 @@
                 <section id="links">
 
                     <%
-    
             
                         let userId = locals.session.userId;
                 
@@ -226,7 +225,7 @@
             method: "GET"
         })
         .done(function (points) {
-            $('.acc-points').append(points);
+            $('.acc-points').append(points + ')');
         })
         .fail(function (err) {
             $('.acc-points').remove();

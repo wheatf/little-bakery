@@ -109,6 +109,11 @@ input[name=valueToSearch]:focus{
     outline-style: none;
 } 
 
+span.acc-points{
+    color: #E74C3C;
+
+}
+
 
 
 

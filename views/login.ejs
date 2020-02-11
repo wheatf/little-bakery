@@ -36,7 +36,7 @@
 
                 <section id="search">
                     <i class="fas fa-search fa-sm"></i>
-                    <form autocomplete="off" method="POST"  action="/product/search" id="search" class="alignleft">
+                    <form autocomplete="off" method="POST" action="/product/search" id="search" class="alignleft">
                         <div class="autocomplete" style="width:300px;">
                             <input id="myInput" type="text" name="valueToSearch" placeholder="Search" size="40"
                                 maxlength="128" class="submit_on_enter">
@@ -64,9 +64,9 @@
 
 
                     <div class="acc-btn" onclick="window.location.href='/profile'" style="cursor:pointer;"><i
-                            class="fas fa-user "></i><a href="/profile" class="login"> My Account</a></div>
+                            class="fas fa-user "></i><a href="/profile" class="login"> My Account <span
+                                class="acc-points">(Points: </span></a></div>
 
-                    <div class="acc-points">Points: </div>
 
                     <form method="POST" action="/logout">
 
@@ -174,11 +174,11 @@
 
                 %>
 
-                <div class="alert">
-                    <span class="closebtn">&times;</span>
-                    <span class="alertmsg"><%=loginFail%></span>
-                </div>
-                <% }
+            <div class="alert">
+                <span class="closebtn">&times;</span>
+                <span class="alertmsg"><%=loginFail%></span>
+            </div>
+            <% }
                 %>
 
             <form action="/login" method="POST" name="login" id="loginForm">
@@ -210,10 +210,10 @@
         var i;
 
         for (i = 0; i < close.length; i++) {
-            close[i].onclick = function(){
+            close[i].onclick = function () {
                 var div = this.parentElement;
                 div.style.opacity = "0";
-                setTimeout(function(){ div.style.display = "none"; }, 600);
+                setTimeout(function () { div.style.display = "none"; }, 600);
             }
         }
     </script>
@@ -223,12 +223,12 @@
             url: "/profile/getPoints",
             method: "GET"
         })
-        .done(function (points) {
-            $('.acc-points').append(points);
-        })
-        .fail(function (err) {
-            $('.acc-points').remove();
-        });
+            .done(function (points) {
+                $('.acc-points').append(points + ')');
+            })
+            .fail(function (err) {
+                $('.acc-points').remove();
+            });
     </script>
 </body>
 

@@ -1,54 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Menu - All categories</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Menu - All categories</title>
 
-        <!-- <link rel="shortcut icon" type="image/x-icon" href="image/logo-name-img/logo.png" /> -->
-        <link rel="stylesheet" type="text/css" href="/public/css/Css_Reset.css">
-        <link rel="stylesheet" type="text/css" href="/public/css/style_common.css">
-        <link rel="stylesheet" type="text/css" href="/public/css/style_menu_category.css">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="image/logo-name-img/logo.png" /> -->
+    <link rel="stylesheet" type="text/css" href="/public/css/Css_Reset.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/style_common.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/style_menu_category.css">
 
-        <!-- fonts used -->
-        <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <!-- fonts used -->
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 
-        <!-- search icon -->
-        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+    <!-- search icon -->
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'
+        integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
 
-        <script src="/public/js/client/jquery-3.3.1.min.js"></script>
+    <script src="/public/js/client/jquery-3.3.1.min.js"></script>
 
 
-    </head>
+</head>
 
-    <body>
-        <div id="wrapper">
-            <header>
-                <section id="header">
-    
-                    <section id="search">
-                        <i class="fas fa-search fa-sm"></i>
-                        <form autocomplete="off" method="POST"  action="/product/search" id="search" class="alignleft">
-                            <div class="autocomplete" style="width:300px;">
-                                <input id="myInput" type="text" name="valueToSearch" placeholder="Search" size="40"
-                                    maxlength="128" class="submit_on_enter">
-                            </div>
-    
-                            <input type="submit"
-                                style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
-                                hidefocus="true" tabindex="-1">
-    
-                            <br><br>
-                        </form>
-                    </section>
-    
-                    <section id="links">
-    
-                        <%
+<body>
+    <div id="wrapper">
+        <header>
+            <section id="header">
+
+                <section id="search">
+                    <i class="fas fa-search fa-sm"></i>
+                    <form autocomplete="off" method="POST" action="/product/search" id="search" class="alignleft">
+                        <div class="autocomplete" style="width:300px;">
+                            <input id="myInput" type="text" name="valueToSearch" placeholder="Search" size="40"
+                                maxlength="128" class="submit_on_enter">
+                        </div>
+
+                        <input type="submit"
+                            style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
+                            hidefocus="true" tabindex="-1">
+
+                        <br><br>
+                    </form>
+                </section>
+
+                <section id="links">
+
+                    <%
         
                 
                             let userId = locals.session.userId;
@@ -57,135 +58,133 @@
                             if (userId) { // is logged in
                     
                             %>
-    
-    
-                        <div class="acc-btn" onclick="window.location.href='/profile'" style="cursor:pointer;"><i
-                                class="fas fa-user "></i><a href="/profile" class="login"> My Account</a></div>
 
-                        <div class="acc-points">Points: </div>
 
-                        <form method="POST" action="/logout">
-    
-                            <div class="logout-btn" style="cursor:pointer;"><i class="fas fa-sign-out-alt"></i>
-                                <!--<a href="/logout" class="login"> Logout</a>-->
-    
-                                <button type="submit" name="delete" class="logout">Logout</button>
-    
-                            </div>
-                        </form>
-    
-    
-                        <!-- <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
+                    <div class="acc-btn" onclick="window.location.href='/profile'" style="cursor:pointer;"><i
+                            class="fas fa-user "></i><a href="/profile" class="login"> My Account <span
+                                class="acc-points">(Points: </span></a></div>
+
+
+                    <form method="POST" action="/logout">
+
+                        <div class="logout-btn" style="cursor:pointer;"><i class="fas fa-sign-out-alt"></i>
+                            <!--<a href="/logout" class="login"> Logout</a>-->
+
+                            <button type="submit" name="delete" class="logout">Logout</button>
+
+                        </div>
+                    </form>
+
+
+                    <!-- <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
                             <i class="fas fa-shopping-cart ">
                             </i>
                             <span class="cartcount">0</span>
                             <span class="cartamount">SGD $0.00</span>
                         </div> -->
-    
-                        <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
-                            <i class="fas fa-shopping-cart ">
-                            </i>
-                            <a href="/cart" class="login"> Shopping Cart </a>
-                        </div>
-    
-    
-                        <%
+
+                    <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
+                        <i class="fas fa-shopping-cart ">
+                        </i>
+                        <a href="/cart" class="login"> Shopping Cart </a>
+                    </div>
+
+
+                    <%
         
                         }else{ // not logged in
                 
                 %>
-    
-    
-                        <div class="login-btn" onclick="window.location.href='/login'" style="cursor:pointer;"><i
-                                class="fas fa-lock "></i><a href="/login" class="login"> Login / Register</a></div>
-    
-    
-                        <!-- <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
+
+
+                    <div class="login-btn" onclick="window.location.href='/login'" style="cursor:pointer;"><i
+                            class="fas fa-lock "></i><a href="/login" class="login"> Login / Register</a></div>
+
+
+                    <!-- <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
                             <i class="fas fa-shopping-cart ">
                             </i>
                             <span class="cartcount">0</span>
                             <span class="cartamount">SGD $0.00</span>
                         </div> -->
-    
-                        <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
-                            <i class="fas fa-shopping-cart ">
-                            </i>
-                            <a href="/cart" class="login"> Shopping Cart </a>
-                        </div>
-    
-                        <%
+
+                    <div id="cart" class="login-btn" onclick="window.location.href='/cart'">
+                        <i class="fas fa-shopping-cart ">
+                        </i>
+                        <a href="/cart" class="login"> Shopping Cart </a>
+                    </div>
+
+                    <%
                         }   
                     %>
-    
-                    </section>
-    
+
                 </section>
-    
-                <!-- <div class="logo_name" onclick="window.location.href='index.ejs'"></div> -->
-                <div class="logo_name" onclick="window.location.href='/'"> LITTLE BAKERY</div>
-    
-            </header>
-    
-            <nav class="navbar">
-                <ul>
-                    <li class="item"><a href="/" class="nav-link ">Home</a></li>
-                    <!-- The top-level route defined in route.js + The sub-route defined in other file = The complete route to put inside 'href'. -->
-                    <li class="item"><a href="/category" class="nav-link ">Category</a></li>
-                    <!-- <li class="item"><a href="#" class="nav-link">Catering</a></li> -->
-                    <li class="item"><a href="/about" class="nav-link">About</a></li>
-                    <li class="item"><a href="/contact" class="nav-link">Contact</a></li>
-                </ul>
-                <hr id="divider">
-            </nav>
 
-            <ul class="breadcrumb">
-                <li><a href="/">Home</a></li>
-                <li class="active">Menu (By category) </li>
+            </section>
+
+            <!-- <div class="logo_name" onclick="window.location.href='index.ejs'"></div> -->
+            <div class="logo_name" onclick="window.location.href='/'"> LITTLE BAKERY</div>
+
+        </header>
+
+        <nav class="navbar">
+            <ul>
+                <li class="item"><a href="/" class="nav-link ">Home</a></li>
+                <!-- The top-level route defined in route.js + The sub-route defined in other file = The complete route to put inside 'href'. -->
+                <li class="item"><a href="/category" class="nav-link ">Category</a></li>
+                <!-- <li class="item"><a href="#" class="nav-link">Catering</a></li> -->
+                <li class="item"><a href="/about" class="nav-link">About</a></li>
+                <li class="item"><a href="/contact" class="nav-link">Contact</a></li>
             </ul>
+            <hr id="divider">
+        </nav>
 
-            <div class="flex-container">
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li class="active">Menu (By category) </li>
+        </ul>
 
-                <%
+        <div class="flex-container">
+
+            <%
                 let categories = locals.categories;
         
                 categories.forEach(category => {
                 %>
-                <figure class="category">
-                    <div class="image">
+            <figure class="category">
+                <div class="image">
 
-                        <img src="<%=category.imagePath%>" 
-                            alt="<%=category.name%>"
-                             onclick="location.href='/category/<%=category.name.toLowerCase()%>'"
-                             style="cursor:pointer;" />
+                    <img src="<%=category.imagePath%>" alt="<%=category.name%>"
+                        onclick="location.href='/category/<%=category.name.toLowerCase()%>'" style="cursor:pointer;" />
 
-                        <a class="show-category" href="/category/<%=category.name.toLowerCase()%>" id="viewBtn">                
-                            <%=category.name%>
-                        </a>
+                    <a class="show-category" href="/category/<%=category.name.toLowerCase()%>" id="viewBtn">
+                        <%=category.name%>
+                    </a>
 
-                    </div>
+                </div>
 
-                </figure>
-                <%
+            </figure>
+            <%
             });
             %>
 
-            </div>
-
         </div>
+
+    </div>
 
     <script>
         $.ajax({
             url: "/profile/getPoints",
             method: "GET"
         })
-        .done(function (points) {
-            $('.acc-points').append(points);
-        })
-        .fail(function (err) {
-            $('.acc-points').remove();
-        });
+            .done(function (points) {
+                $('.acc-points').append(points + ')');
+            })
+            .fail(function (err) {
+                $('.acc-points').remove();
+            });
     </script>
-    
-    </body>
+
+</body>
 
 </html>

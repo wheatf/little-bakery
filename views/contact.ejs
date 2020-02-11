@@ -60,9 +60,9 @@
 
 
                     <div class="acc-btn" onclick="window.location.href='/profile'" style="cursor:pointer;"><i
-                            class="fas fa-user "></i><a href="/profile" class="login"> My Account</a></div>
-                            
-                    <div class="acc-points">Points: </div>
+                            class="fas fa-user "></i><a href="/profile" class="login"> My Account <span
+                                class="acc-points">(Points: </span></a></div>
+
 
                     <form method="POST" action="/logout">
 
@@ -178,8 +178,8 @@
                                         //Add marker
 
                                         var marker = new google.maps.Marker({
-                                            position:{lat:1.3800, lng:103.8489},
-                                            map:map,
+                                            position: { lat: 1.3800, lng: 103.8489 },
+                                            map: map,
                                             icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
                                         })
                                     });
@@ -197,44 +197,44 @@
 
                 <!-- this is flex child 2 -->
                 <div class="contact">
-                <form action="/" method="GET" name="contact" id="contactForm">
+                    <form action="/" method="GET" name="contact" id="contactForm">
 
-                    <span class="success"></span>
+                        <span class="success"></span>
 
-                    <label>Full Name:</label><input type="text" name="name" required><br><br>
-
-
-                    <label>Email Address:</label><input type="email" name="email" size="50" required><br><br>
-
-                    <label>Mobile Number:</label><input type="tel" name="mobileNo"
-                        oninvalid="this.setCustomValidity('Enter Mobile Number with 8 digits only(Starting 8 or 9)')"
-                        oninput="this.setCustomValidity('')" pattern="^[8||9]{1}[0-9]{7}$" required /><br />
-
-                    <label>Message :</label><textarea name="message" cols="10" rows="3" required></textarea><br />
-
-                    <label></label><input type="submit" name="submit" value="Submit">
+                        <label>Full Name:</label><input type="text" name="name" required><br><br>
 
 
-                </form>
-            </div> 
+                        <label>Email Address:</label><input type="email" name="email" size="50" required><br><br>
+
+                        <label>Mobile Number:</label><input type="tel" name="mobileNo"
+                            oninvalid="this.setCustomValidity('Enter Mobile Number with 8 digits only(Starting 8 or 9)')"
+                            oninput="this.setCustomValidity('')" pattern="^[8||9]{1}[0-9]{7}$" required /><br />
+
+                        <label>Message :</label><textarea name="message" cols="10" rows="3" required></textarea><br />
+
+                        <label></label><input type="submit" name="submit" value="Submit">
+
+
+                    </form>
+                </div>
             </section>
 
 
         </div>
 
 
-    <script>
-        $.ajax({
-            url: "/profile/getPoints",
-            method: "GET"
-        })
-        .done(function (points) {
-            $('.acc-points').append(points);
-        })
-        .fail(function (err) {
-            $('.acc-points').remove();
-        });
-    </script>
+        <script>
+            $.ajax({
+                url: "/profile/getPoints",
+                method: "GET"
+            })
+                .done(function (points) {
+                    $('.acc-points').append(points + ')');
+                })
+                .fail(function (err) {
+                    $('.acc-points').remove();
+                });
+        </script>
 
 </body>
 

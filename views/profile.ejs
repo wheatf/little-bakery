@@ -63,9 +63,8 @@
 
 
                     <div class="acc-btn" onclick="window.location.href='/profile'" style="cursor:pointer;"><i
-                            class="fas fa-user "></i><a href="/profile" class="login"> My Account</a></div>
+                        class="fas fa-user "></i><a href="/profile" class="login"> My Account <span class="acc-points">(Points: </span></a></div>
 
-                    <div class="acc-points">Points: </div>
 
                     <form method="POST" action="/logout">
 
@@ -283,7 +282,7 @@
             method: "GET"
         })
         .done(function (points) {
-            $('.acc-points').append(points);
+            $('.acc-points').append(points + ')');
         })
         .fail(function (err) {
             $('.acc-points').remove();
