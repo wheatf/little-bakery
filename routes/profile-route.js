@@ -6,6 +6,9 @@ const router = express.Router();
 // Client wants to go to profile page
 router.get('/', userController.profilePage);
 
+// AJAX get user's points
+router.get('/getPoints', userController.getPoints);
+
 // Client wants to go to edit profile page.
 router.get('/edit', userController.editProfilePage);
 

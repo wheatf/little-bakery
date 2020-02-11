@@ -45,6 +45,19 @@ module.exports = {
         }
     },
 
+    getPoints: async function (req, res) {
+        // Check if user is logged in or not.
+        let userId = req.session.userId;
+        if (userId) {
+            // Retrieve user information.
+            let user = await userDatastore.find(userId);
+            
+            return res.status(200).send(user.pointsEarned.toString());
+        }
+
+        return res.sendStatus(500);
+    },
+
     /**
      * Serve the edit profile page to client.
      * 
