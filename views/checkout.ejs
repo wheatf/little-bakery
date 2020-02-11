@@ -195,10 +195,6 @@
                             total = cart.quantity * cart.product.price;
                             subtotal = subtotal + total;
                             totalpoints = totalpoints + (cart.product.pointsObtainable * cart.quantity);
-                            discountedPrice = subtotal - Math.floor(userPoints/ 10);
-                            if (discountedPrice < 0) {
-                                discountedPrice = 0.0;
-                            }
                             %>
 
                             <td class="price" data-label="TOTAL">
@@ -212,6 +208,10 @@
                     });
                 }
 
+                discountedPrice = subtotal - Math.floor(userPoints/ 10);
+                if (discountedPrice < 0) {
+                    discountedPrice = 0.0;
+                }
 
                 %>
 
@@ -227,17 +227,16 @@
                             </td> 
                         </tr>
 
+                        <form action="/checkout" method="POST">
+                        <!-- Can't redeem discount if user has less than 10 points. -->
+                        <% if (locals.userPoints > 10) { %> 
                         <tr class="item">
                             <td colspan="5" class="points">
-                                <form action="/checkout" method="POST">
-                                    <!-- Can't redeem discount if user has less than 10 points. -->
-                                    <% if (locals.userPoints > 10) { %> 
                                         <span id="points-title">Use all points (<%= locals.userPoints %>) to get discount? </span>
                                     <select name="usePoints" id="usePoints" class= "points-yes-no"  onchange="dropdown()">
                                         <option value="no" name="no">No</option>
                                         <option value="yes" name="yes">Yes</option>
                                     </select>
-                                    <% } %>
                             </td> 
                         </tr>
 
@@ -247,7 +246,7 @@
                                 <span id="subtotal-title">Discounted Price:</span> <span class="uc-price" id="discountedPrice" value="">SGD $<%=discountedPrice.toFixed(2)%></span>
                             </td>
                         </tr>
-                        
+                        <% } %>
 
                     </tbody>
                 </table>

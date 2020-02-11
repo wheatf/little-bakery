@@ -193,7 +193,7 @@
                 <tr>
                     <td></td>
                     <!-- <td><input type="submit" name="submit" value="Edit Profile"></td> -->
-                    <td><button id="profileBTN" onclick="location.href='/profile/edit'">EditProfile</button></td>
+                    <td><button id="profileBTN" onclick="location.href='/profile/edit'">Edit Profile</button></td>
                 </tr>
 
             </table>
@@ -261,7 +261,19 @@
 
 
     </div>
+    
+    <script>
+        var close = document.getElementsByClassName("closebtn");
+        var i;
 
+        for (i = 0; i < close.length; i++) {
+            close[i].onclick = function(){
+                var div = this.parentElement;
+                div.style.opacity = "0";
+                setTimeout(function(){ div.style.display = "none"; }, 600);
+            }
+        }
+    </script>
 
 </body>
 

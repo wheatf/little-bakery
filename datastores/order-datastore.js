@@ -47,6 +47,8 @@ module.exports = {
         let orderDetailsIds = [];
         // Store total price.
         let totalPrice = 0;
+        // Store total points.
+        let totalPoints = 0;
 
         // Save every cart into order details.
         for (const cart of carts) {
@@ -63,8 +65,9 @@ module.exports = {
                 orderDetailsIds.push(value._id);
             });
 
-            // Add user's points.
-            await userDatastore.addPoints(userId, parseInt(cart.product.pointsObtainable) * parseInt(cart.quantity));
+            // Add to total points.
+            totalPoints += parseInt(cart.product.pointsObtainable) * parseInt(cart.quantity);
+            console.log(`Total Points: ${totalPoints}`);
 
             // Add to total price.
             totalPrice += parseFloat(cart.product.price) * parseInt(cart.quantity);
@@ -91,7 +94,12 @@ module.exports = {
 
             // Remove all user points.
             await userDatastore.removeAllPoints(userId);
+            console.log("User: " + await userDatastore.find(userId));
         } 
+
+        // Add points to user
+        await userDatastore.addPoints(userId, totalPoints);
+        console.log("New User: " + await userDatastore.find(userId));
 
         // Store order into database.
         let order = new orderModel({

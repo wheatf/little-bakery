@@ -70,7 +70,7 @@ module.exports = {
 
         if (user) { // User exists, increase his points
             user.pointsEarned += parseInt(points);
-            user.save();
+            await user.save();
         }
     },
 
@@ -86,7 +86,7 @@ module.exports = {
 
         if (user) { // User exists, remove all his points
             user.pointsEarned = 0;
-            user.save();
+            await user.save();
         }
     },
 
